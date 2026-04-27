@@ -1,4 +1,4 @@
-/* Custom Styles for Set et Brique */
+/* Custom Styles for Set et Brique - Modern Startup Edition */
 
 html {
     scroll-behavior: smooth;
@@ -6,32 +6,7 @@ html {
 
 ::selection {
     background-color: #2B207D;
-    color: #FCD54B;
-}
-
-/* Effet 3D basé sur le logo */
-.shadow-3d {
-    box-shadow: 6px 6px 0px 0px #2B207D;
-    border: 3px solid #2B207D;
-    transition: all 0.2s ease-in-out;
-}
-
-.shadow-3d:hover {
-    box-shadow: 8px 8px 0px 0px #2B207D;
-    transform: translate(-2px, -2px);
-}
-
-.btn-3d {
-    box-shadow: 4px 4px 0px 0px #2B207D;
-    border: 2px solid #2B207D;
-    transition: all 0.2s ease-in-out;
-}
-
-.btn-3d:hover {
-    box-shadow: 6px 6px 0px 0px #2B207D;
-    transform: translate(-2px, -2px);
-    background-color: #2B207D;
-    color: #FCD54B;
+    color: #FFFFFF;
 }
 
 /* Animations customisées pour Tailwind (Hero Backgrounds) */
@@ -52,7 +27,11 @@ html {
     animation-delay: 4s;
 }
 
-/* Fallback for FontAwesome if CDN fails */
-.fa-cubes, .fa-qrcode, .fa-mobile-screen-button, .fa-box-open, .fa-rotate-left {
-    display: inline-block;
+/* Hide scrollbar for clean look if needed */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
