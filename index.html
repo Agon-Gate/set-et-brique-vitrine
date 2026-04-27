@@ -37,7 +37,7 @@
                 extend: {
                     colors: {
                         lego: {
-                            red: '#F24E43',
+                            red: '#E3000B',
                             yellow: '#FCD54B',
                             blue: '#2B207D',
                             white: '#FFFFFF',
@@ -53,7 +53,7 @@
     </script>
 </head>
 
-<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-yellow-400 selection:text-slate-900">
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-red-600 selection:text-white">
 
     <!-- Header / Navbar -->
     <header
@@ -63,31 +63,31 @@
             <div class="flex justify-between items-center h-24">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4">
+                    <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4 group-hover:border-red-200">
                         <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
                             class="h-12 w-auto rounded-xl">
                     </div>
                     <span
-                        class="font-black text-2xl tracking-tighter text-lego-anthracite group-hover:text-yellow-500 transition-colors duration-300 hidden sm:block">Set
+                        class="font-black text-2xl tracking-tighter text-lego-anthracite group-hover:text-red-600 transition-colors duration-300 hidden sm:block">Set
                         et Brique</span>
                 </div>
 
                 <!-- Desktop Menu -->
                 <nav class="hidden md:flex space-x-10">
                     <a href="#concept"
-                        class="text-slate-700 hover:text-yellow-500 font-semibold transition-colors duration-200">Concept</a>
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Concept</a>
                     <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
-                        class="text-slate-700 hover:text-yellow-500 font-semibold transition-colors duration-200">Catalogue</a>
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Catalogue</a>
                     <a href="#vinted"
-                        class="text-slate-700 hover:text-yellow-500 font-semibold transition-colors duration-200">Vinted</a>
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Vinted</a>
                     <a href="#contact"
-                        class="text-slate-700 hover:text-yellow-500 font-semibold transition-colors duration-200">Contact</a>
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Contact</a>
                 </nav>
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn"
-                        class="text-slate-700 hover:text-yellow-500 focus:outline-none p-2 rounded-xl hover:bg-slate-200 transition-colors">
+                        class="text-slate-700 hover:text-red-600 focus:outline-none p-2 rounded-xl hover:bg-slate-200 transition-colors">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -99,15 +99,15 @@
             class="hidden md:hidden bg-slate-50 border-t border-slate-200 absolute w-full shadow-2xl origin-top transition-transform">
             <div class="px-4 pt-4 pb-8 space-y-3 sm:px-6">
                 <a href="#concept"
-                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-yellow-500 hover:bg-slate-100 rounded-2xl transition-all">Concept</a>
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Concept</a>
                 <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
-                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-yellow-500 hover:bg-slate-100 rounded-2xl transition-all">Catalogue
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Catalogue
                     Poppins</a>
                 <a href="#vinted"
-                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-yellow-500 hover:bg-slate-100 rounded-2xl transition-all">Boutique
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Boutique
                     Vinted</a>
                 <a href="#contact"
-                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-yellow-500 hover:bg-slate-100 rounded-2xl transition-all">Contact</a>
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Contact</a>
             </div>
         </div>
     </header>
@@ -127,10 +127,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div
                 class="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-slate-700 font-semibold text-sm mb-10 shadow-sm border border-slate-200 transform hover:scale-105 transition-transform cursor-default">
-                <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-yellow-500"></i> Basé à Lorient, Bretagne
+                <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-red-600"></i> Basé à Lorient, Bretagne
             </div>
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 text-lego-anthracite leading-[1.1]">
-                Louez. <span class="text-yellow-500">Construisez.</span><br class="hidden md:block" /> Ramenez.
+                Louez. <span class="text-red-600">Construisez.</span><br class="hidden md:block" /> Ramenez.
             </h1>
             <p class="mt-8 text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-medium leading-relaxed">
                 Profitez des plus grands et plus beaux sets LEGO® sans vous encombrer.
@@ -138,9 +138,9 @@
                     main.</span>
             </p>
             <div class="mt-14 flex flex-col sm:flex-row justify-center gap-6">
-                <!-- CTA Principal en Jaune Pop -->
+                <!-- CTA Principal en Rouge LEGO -->
                 <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
-                    class="px-10 py-5 text-lg font-black rounded-full text-slate-900 bg-yellow-400 shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center group">
+                    class="px-10 py-5 text-lg font-black rounded-full text-white bg-red-600 hover:bg-red-700 shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center group">
                     <i data-lucide="book-open" class="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform"></i> Voir le catalogue
                 </a>
                 <!-- CTA Secondaire en Bleu Action (blue-600/90) -->
@@ -163,10 +163,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                <!-- Step 1 -->
+                <!-- Step 1 (Liseré Rouge) -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
-                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors duration-300">
+                    class="bg-white p-10 rounded-3xl border-x border-b border-slate-200 border-t-4 border-t-red-500 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-red-50 transition-colors duration-300">
                         <i data-lucide="smartphone" class="w-8 h-8 text-lego-anthracite"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-4 text-lego-anthracite tracking-tight">1. Choix sur Poppins</h3>
@@ -176,9 +176,9 @@
                     </p>
                 </div>
 
-                <!-- Step 2 -->
+                <!-- Step 2 (Liseré Bleu) -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
+                    class="bg-white p-10 rounded-3xl border-x border-b border-slate-200 border-t-4 border-t-blue-500 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
                     <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors duration-300">
                         <i data-lucide="package-open" class="w-8 h-8 text-lego-anthracite"></i>
                     </div>
@@ -189,10 +189,10 @@
                     </p>
                 </div>
 
-                <!-- Step 3 -->
+                <!-- Step 3 (Liseré Jaune) -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
-                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors duration-300">
+                    class="bg-white p-10 rounded-3xl border-x border-b border-slate-200 border-t-4 border-t-yellow-400 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 group">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-yellow-50 transition-colors duration-300">
                         <i data-lucide="rotate-ccw" class="w-8 h-8 text-lego-anthracite"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-4 text-lego-anthracite tracking-tight">3. Retour</h3>
@@ -210,16 +210,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-24">
                 <div class="inline-flex items-center space-x-2 mb-6">
-                    <i data-lucide="star" class="w-6 h-6 text-yellow-400 fill-yellow-400"></i>
-                    <i data-lucide="star" class="w-6 h-6 text-yellow-400 fill-yellow-400"></i>
-                    <i data-lucide="star" class="w-6 h-6 text-yellow-400 fill-yellow-400"></i>
-                    <i data-lucide="star" class="w-6 h-6 text-yellow-400 fill-yellow-400"></i>
-                    <i data-lucide="star" class="w-6 h-6 text-yellow-400 fill-yellow-400"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-red-600 fill-red-600"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-red-600 fill-red-600"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-red-600 fill-red-600"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-red-600 fill-red-600"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-red-600 fill-red-600"></i>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-lego-anthracite mb-8">
                     Ce que disent nos constructeurs
                 </h2>
-                <a href="https://www.google.com/maps/place/Set+et+Brique/@47.7584794,-3.361166,17z/data=!3m1!4b1!4m6!3m5!1s0x48105f19957d68b1:0xa6cbb999b704cc5c!8m2!3d47.7584758!4d-3.3585911!16s%2Fg%2F11z17thrtk?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-slate-600 hover:text-blue-600 font-bold transition-colors duration-200">
+                <a href="https://www.google.com/maps/place/Set+et+Brique/@47.7584794,-3.361166,17z/data=!3m1!4b1!4m6!3m5!1s0x48105f19957d68b1:0xa6cbb999b704cc5c!8m2!3d47.7584758!4d-3.3585911!16s%2Fg%2F11z17thrtk?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-slate-600 hover:text-red-600 font-bold transition-colors duration-200">
                     <span class="font-bold uppercase tracking-widest text-sm mr-3">Avis Google</span>
                     <i data-lucide="external-link" class="w-4 h-4"></i>
                 </a>
@@ -240,11 +240,11 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6">
                     </div>
                     <div class="flex mb-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
                     </div>
                     <p class="text-slate-700 font-medium leading-relaxed">
                         "Une expérience incroyable ! Louer le Faucon Millenium m'a permis de réaliser un rêve de gosse sans me ruiner ni encombrer mon salon. Service au top à Lorient."
@@ -265,11 +265,11 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6">
                     </div>
                     <div class="flex mb-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
                     </div>
                     <p class="text-slate-700 font-medium leading-relaxed">
                         "Sets dans un état impeccable, triés par sachets comme neufs ! Mes enfants ont adoré construire le château Poudlard. Le système de retour est hyper pratique."
@@ -290,11 +290,11 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6">
                     </div>
                     <div class="flex mb-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-red-600 fill-red-600"></i>
                     </div>
                     <p class="text-slate-700 font-medium leading-relaxed">
                         "Super concept pour les gros sets LEGO inaccessibles financièrement d'habitude. L'équipe est très arrangeante pour les horaires de retrait. Je recommande à 100%."
@@ -321,10 +321,10 @@
                             Pour vous garantir une expérience sécurisée, fluide et professionnelle, toute la gestion de
                             nos locations (réservation, caution, paiement) s'effectue via l'application Poppins.
                         </p>
-                        <!-- Secondary Action Button in Blue -->
+                        <!-- Main Action Button in Red -->
                         <a href="https://app.poppins.io/shop/set-et-brique" target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex px-10 py-5 bg-blue-600/90 text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 items-center justify-center">
+                            class="inline-flex px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 items-center justify-center">
                             <i data-lucide="external-link" class="w-5 h-5 mr-3"></i> Accéder au catalogue
                         </a>
                     </div>
@@ -346,7 +346,8 @@
     <!-- Second Hand Section (Vinted) -->
     <section id="vinted" class="py-32 relative overflow-hidden">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-3xl shadow-sm border border-slate-200">
+            <!-- Icon Wrapper avec liseré rouge -->
+            <div class="inline-flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-3xl shadow-sm border-x border-b border-slate-200 border-t-4 border-t-red-500">
                 <svg class="w-10 h-10 text-[#09B1BA]" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.25 17.5h-2.5l-3.5-11h2.75l2.25 7.5 2.25-7.5h2.5l-3.75 11zm7.25-3.5c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5 1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5zm-3.5-1.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
                 </svg>
@@ -445,31 +446,32 @@
                         <div>
                             <label for="name" class="block text-sm font-bold text-slate-800 mb-3">Nom</label>
                             <input type="text" id="name" name="name"
-                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all font-medium text-slate-800 outline-none"
+                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-red-600 focus:ring-4 focus:ring-red-600/20 transition-all font-medium text-slate-800 outline-none"
                                 placeholder="Votre nom" required>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-bold text-slate-800 mb-3">Email</label>
                             <input type="email" id="email" name="email"
-                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all font-medium text-slate-800 outline-none"
+                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-red-600 focus:ring-4 focus:ring-red-600/20 transition-all font-medium text-slate-800 outline-none"
                                 placeholder="votre.email@exemple.com" required>
                         </div>
                     </div>
                     <div>
                         <label for="subject" class="block text-sm font-bold text-slate-800 mb-3">Objet</label>
                         <input type="text" id="subject" name="subject"
-                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all font-medium text-slate-800 outline-none"
+                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-red-600 focus:ring-4 focus:ring-red-600/20 transition-all font-medium text-slate-800 outline-none"
                             placeholder="ex: Question sur un set, Réservation..." required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-bold text-slate-800 mb-3">Message</label>
                         <textarea id="message" name="message" rows="5"
-                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all font-medium text-slate-800 outline-none resize-none"
+                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-red-600 focus:ring-4 focus:ring-red-600/20 transition-all font-medium text-slate-800 outline-none resize-none"
                             placeholder="Comment pouvons-nous vous aider ?" required></textarea>
                     </div>
                     <div class="text-center pt-6">
+                        <!-- Submit Button en Rouge -->
                         <button type="submit"
-                            class="w-full md:w-auto px-12 py-5 text-lg font-black rounded-full text-slate-900 bg-yellow-400 shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 inline-flex items-center justify-center">
+                            class="w-full md:w-auto px-12 py-5 text-lg font-black rounded-full text-white bg-red-600 hover:bg-red-700 shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300 inline-flex items-center justify-center">
                             <i data-lucide="send" class="w-5 h-5 mr-3"></i> Envoyer le message
                         </button>
                     </div>
@@ -513,11 +515,11 @@
                     </h3>
                     <ul class="space-y-6 text-slate-400 font-medium">
                         <li class="flex items-start">
-                            <i data-lucide="map-pin" class="w-5 h-5 mr-4 text-slate-500 shrink-0 mt-0.5"></i>
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-4 text-red-600 shrink-0 mt-0.5"></i>
                             <span>Basé à Lorient<br>Retrait en main propre</span>
                         </li>
                         <li class="flex items-center">
-                            <i data-lucide="mail" class="w-5 h-5 mr-4 text-slate-500 shrink-0"></i>
+                            <i data-lucide="mail" class="w-5 h-5 mr-4 text-red-600 shrink-0"></i>
                             <a href="mailto:setetbrique@gmail.com"
                                 class="hover:text-white transition-colors">setetbrique@gmail.com</a>
                         </li>
