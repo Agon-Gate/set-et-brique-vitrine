@@ -41,8 +41,7 @@
                             yellow: '#FCD54B',
                             blue: '#2B207D',
                             white: '#FFFFFF',
-                            anthracite: '#1e293b', /* More modern slate-800 */
-                            gray: '#f8fafc' /* slate-50 */
+                            anthracite: '#1e293b', /* slate-800 pour titres */
                         }
                     },
                     fontFamily: {
@@ -54,7 +53,7 @@
     </script>
 </head>
 
-<body class="font-sans text-lego-anthracite bg-slate-50 antialiased selection:bg-lego-red selection:text-white">
+<body class="font-sans text-slate-600 bg-slate-50 antialiased selection:bg-lego-red selection:text-white">
 
     <!-- Header / Navbar -->
     <header
@@ -64,8 +63,10 @@
             <div class="flex justify-between items-center h-24">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
-                        class="h-14 w-auto mr-4 rounded-xl shadow-sm transition-transform duration-300 group-hover:scale-105 border border-slate-100">
+                    <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-100 transition-transform duration-300 group-hover:scale-105 mr-4">
+                        <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
+                            class="h-12 w-auto rounded-xl">
+                    </div>
                     <span
                         class="font-black text-2xl tracking-tighter text-lego-anthracite group-hover:text-lego-red transition-colors duration-300 hidden sm:block">Set
                         et Brique</span>
@@ -116,33 +117,33 @@
         <!-- Abstract Minimal Shapes Background -->
         <div class="absolute inset-0 overflow-hidden z-0 pointer-events-none">
             <div
-                class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-lego-red rounded-full mix-blend-multiply filter blur-[100px] opacity-10 animate-blob">
+                class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-100 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob">
             </div>
             <div
-                class="absolute top-64 -left-32 w-[500px] h-[500px] bg-lego-blue rounded-full mix-blend-multiply filter blur-[100px] opacity-10 animate-blob animation-delay-2000">
+                class="absolute top-64 -left-32 w-[500px] h-[500px] bg-slate-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob animation-delay-2000">
             </div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div
-                class="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-slate-600 font-semibold text-sm mb-10 shadow-sm border border-slate-200 transform hover:scale-105 transition-transform cursor-default">
+                class="inline-flex items-center px-5 py-2.5 rounded-full bg-white/90 backdrop-blur-sm text-slate-600 font-semibold text-sm mb-10 shadow-sm border border-slate-200 transform hover:scale-105 transition-transform cursor-default">
                 <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-lego-red"></i> Basé à Lorient, Bretagne
             </div>
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 text-lego-anthracite leading-[1.1]">
                 Louez. <span class="text-lego-red">Construisez.</span><br class="hidden md:block" /> Ramenez.
             </h1>
-            <p class="mt-8 text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto font-medium leading-relaxed">
+            <p class="mt-8 text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
                 Profitez des plus grands et plus beaux sets LEGO® sans vous encombrer.
                 <span class="font-bold text-lego-blue block mt-2">Le plaisir de construire, à portée de
                     main.</span>
             </p>
             <div class="mt-14 flex flex-col sm:flex-row justify-center gap-6">
                 <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
-                    class="px-10 py-5 text-lg font-bold rounded-full text-white bg-lego-red shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center group">
+                    class="px-10 py-5 text-lg font-bold rounded-full text-white bg-lego-red shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center group">
                     <i data-lucide="book-open" class="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform"></i> Voir le catalogue
                 </a>
                 <a href="#concept"
-                    class="px-10 py-5 text-lg font-bold rounded-full text-slate-700 bg-white border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center">
+                    class="px-10 py-5 text-lg font-bold rounded-full text-slate-700 bg-white/90 backdrop-blur-sm border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center">
                     Comment ça marche ?
                 </a>
             </div>
@@ -150,11 +151,11 @@
     </section>
 
     <!-- Section Concept -->
-    <section id="concept" class="py-32 bg-white relative">
+    <section id="concept" class="py-32 bg-blue-50/40 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-24">
-                <h2 class="text-sm text-slate-400 font-bold tracking-widest uppercase mb-4">Notre Concept</h2>
-                <p class="text-4xl md:text-5xl font-black tracking-tighter text-lego-blue">
+                <h2 class="text-sm text-slate-500 font-bold tracking-widest uppercase mb-4">Notre Concept</h2>
+                <p class="text-4xl md:text-5xl font-black tracking-tighter text-lego-anthracite">
                     Simple comme un jeu d'enfant
                 </p>
             </div>
@@ -162,12 +163,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                 <!-- Step 1 -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl border-t-[4px] border-t-lego-red transition-all duration-500 hover:-translate-y-2 group">
+                    class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
                     <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-red-50 transition-colors duration-300">
                         <i data-lucide="smartphone" class="w-8 h-8 text-lego-red"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-4 text-lego-anthracite tracking-tight">1. Choix sur Poppins</h3>
-                    <p class="text-slate-500 font-medium leading-relaxed">
+                    <p class="text-slate-600 font-medium leading-relaxed">
                         Parcourez notre catalogue exclusif de grands sets via l'application Poppins et réservez votre
                         prochaine aventure de construction.
                     </p>
@@ -175,12 +176,12 @@
 
                 <!-- Step 2 -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl border-t-[4px] border-t-lego-yellow transition-all duration-500 hover:-translate-y-2 group">
-                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-yellow-50 transition-colors duration-300">
-                        <i data-lucide="package-open" class="w-8 h-8 text-lego-yellow"></i>
+                    class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors duration-300">
+                        <i data-lucide="package-open" class="w-8 h-8 text-lego-blue"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-4 text-lego-anthracite tracking-tight">2. Retrait Lorient</h3>
-                    <p class="text-slate-500 font-medium leading-relaxed">
+                    <p class="text-slate-600 font-medium leading-relaxed">
                         Venez récupérer votre set complet, trié avec soin et vérifié, à notre point de retrait de
                         proximité situé à Lorient.
                     </p>
@@ -188,12 +189,12 @@
 
                 <!-- Step 3 -->
                 <div
-                    class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl border-t-[4px] border-t-lego-blue transition-all duration-500 hover:-translate-y-2 group">
-                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors duration-300">
-                        <i data-lucide="rotate-ccw" class="w-8 h-8 text-lego-blue"></i>
+                    class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-yellow-50 transition-colors duration-300">
+                        <i data-lucide="rotate-ccw" class="w-8 h-8 text-lego-yellow"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-4 text-lego-anthracite tracking-tight">3. Retour</h3>
-                    <p class="text-slate-500 font-medium leading-relaxed">
+                    <p class="text-slate-600 font-medium leading-relaxed">
                         Une fois terminé, démontez et ramenez le set pour permettre à d'autres passionnés de partager le
                         même plaisir.
                     </p>
@@ -203,19 +204,19 @@
     </section>
 
     <!-- Poppins Section -->
-    <section class="py-32 bg-slate-50 relative overflow-hidden">
+    <section class="py-32 bg-gradient-to-br from-white to-blue-50/60 relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden relative group">
+            <div class="bg-white/90 backdrop-blur-md rounded-[2.5rem] border border-slate-100 shadow-md hover:shadow-xl transition-shadow duration-500 overflow-hidden relative group">
                 <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
                     <div class="p-12 md:p-20 relative z-10">
                         <div class="inline-flex items-center space-x-2 mb-8">
-                            <span class="w-2.5 h-2.5 rounded-full bg-lego-red animate-pulse"></span>
-                            <span class="text-slate-400 font-bold tracking-widest uppercase text-sm">Plateforme Officielle</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-lego-blue animate-pulse"></span>
+                            <span class="text-slate-500 font-bold tracking-widest uppercase text-sm">Plateforme Officielle</span>
                         </div>
                         <h2 class="text-4xl md:text-5xl font-black text-lego-anthracite mb-8 leading-tight tracking-tighter">
                             La location est gérée <br /> via <span class="text-lego-blue">Poppins</span>
                         </h2>
-                        <p class="text-slate-500 font-medium text-lg mb-12 leading-relaxed">
+                        <p class="text-slate-600 font-medium text-lg mb-12 leading-relaxed">
                             Pour vous garantir une expérience sécurisée, fluide et professionnelle, toute la gestion de
                             nos locations (réservation, caution, paiement) s'effectue via l'application Poppins.
                         </p>
@@ -225,9 +226,8 @@
                             <i data-lucide="external-link" class="w-5 h-5 mr-3"></i> Accéder au catalogue
                         </a>
                     </div>
-                    <!-- Minimal visual side instead of QR code, or keep QR styling clean -->
                     <div class="p-12 md:p-20 bg-slate-50/50 flex flex-col items-center justify-center border-l border-slate-100 h-full">
-                        <p class="text-slate-400 font-bold mb-8 text-center uppercase tracking-widest text-xs">Scannez pour réserver</p>
+                        <p class="text-slate-500 font-bold mb-8 text-center uppercase tracking-widest text-xs">Scannez pour réserver</p>
                         <div class="bg-white p-4 rounded-3xl shadow-sm border border-slate-100 transform group-hover:scale-105 transition-all duration-500">
                             <!-- Image QR Code Placeholder -->
                             <img src="assets/poppins.jpg" alt="QR Code Poppins"
@@ -241,29 +241,29 @@
     </section>
 
     <!-- Témoignage -->
-    <section class="py-32 bg-white relative">
+    <section class="py-32 bg-slate-50 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <i data-lucide="quote" class="w-12 h-12 text-slate-200 mx-auto mb-10"></i>
+            <i data-lucide="quote" class="w-12 h-12 text-slate-300 mx-auto mb-10"></i>
             <p class="text-3xl md:text-4xl font-bold text-lego-anthracite leading-tight mb-12 tracking-tight">
                 "Un concept génial pour Lorient ! On a pu construire le Faucon Millenium sans se ruiner ni encombrer le
                 salon. Le retrait est super simple."
             </p>
             <div class="flex items-center justify-center">
-                <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mr-4">
+                <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 rounded-full flex items-center justify-center mr-4">
                     <i data-lucide="user" class="w-5 h-5 text-slate-500"></i>
                 </div>
                 <div class="text-left">
                     <p class="font-bold text-lego-anthracite">Marc D.</p>
-                    <p class="text-sm font-medium text-slate-400">Parent & Passionné LEGO®</p>
+                    <p class="text-sm font-medium text-slate-500">Parent & Passionné LEGO®</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Second Hand Section (Vinted) -->
-    <section id="vinted" class="py-32 bg-slate-50 relative overflow-hidden border-y border-slate-100">
+    <section id="vinted" class="py-32 bg-gradient-to-t from-white to-blue-50/40 relative overflow-hidden border-y border-slate-100">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-3xl shadow-sm border border-slate-100">
+            <div class="inline-flex items-center justify-center w-20 h-20 mb-10 bg-white/90 backdrop-blur-sm rounded-3xl shadow-md border border-slate-100">
                 <svg class="w-10 h-10 text-[#09B1BA]" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.25 17.5h-2.5l-3.5-11h2.75l2.25 7.5 2.25-7.5h2.5l-3.75 11zm7.25-3.5c0 1.933-1.567 3.5-3.5 3.5s-3.5-1.567-3.5-3.5 1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5zm-3.5-1.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
                 </svg>
@@ -271,7 +271,7 @@
             <h2 class="text-4xl md:text-5xl font-black text-lego-anthracite mb-8 tracking-tighter">
                 L'aventure continue en Seconde Main
             </h2>
-            <p class="text-xl text-slate-500 font-medium mb-12 leading-relaxed">
+            <p class="text-xl text-slate-600 font-medium mb-12 leading-relaxed">
                 Parce que certains sets méritent une seconde vie définitive dans votre collection personnelle, retrouvez
                 nos ventes de LEGO® d'occasion sur notre boutique Vinted officielle.
             </p>
@@ -283,7 +283,7 @@
     </section>
 
     <!-- Revue de Presse -->
-    <section id="presse" class="py-32 bg-white relative">
+    <section id="presse" class="py-32 bg-blue-50/40 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-24">
                 <h2 class="text-4xl md:text-5xl font-black text-lego-anthracite tracking-tighter">
@@ -293,46 +293,46 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- Carte 1 : Ouest-France -->
-                <div class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
+                <div class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
                     <div class="mb-8 flex items-center">
-                        <span class="font-black text-2xl text-slate-800 tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-red-600 mr-3"></span>Ouest-France</span>
+                        <span class="font-black text-2xl text-lego-anthracite tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-red-600 mr-3"></span>Ouest-France</span>
                     </div>
                     <h3 class="text-2xl font-bold text-lego-anthracite mb-4 leading-snug">Ce couple loue des sets de Lego à Lorient</h3>
-                    <p class="text-slate-500 mb-10 flex-grow font-medium leading-relaxed">"On s’est rendu compte que ça coûtait cher... une solution
+                    <p class="text-slate-600 mb-10 flex-grow font-medium leading-relaxed">"On s’est rendu compte que ça coûtait cher... une solution
                         économique pour les passionnés."</p>
                     <a href="https://www.ouest-france.fr/bretagne/lorient-56100/on-sest-rendu-compte-que-ca-coutait-cher-ce-couple-loue-des-sets-de-lego-a-lorient-ae4b9c34-13ca-11f1-8725-6cea811c3c37"
                         target="_blank" rel="noopener noreferrer"
-                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-700 font-bold rounded-2xl hover:bg-lego-red hover:text-white transition-colors duration-300 mt-auto">
+                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-600 font-bold rounded-2xl hover:bg-slate-100 hover:text-lego-anthracite transition-colors duration-300 mt-auto border border-slate-100">
                         Lire l'article
                     </a>
                 </div>
 
                 <!-- Carte 2 : Le Télégramme -->
-                <div class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
+                <div class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
                     <div class="mb-8 flex items-center">
-                        <span class="font-black text-2xl text-slate-800 tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-blue-800 mr-3"></span>Le Télégramme</span>
+                        <span class="font-black text-2xl text-lego-anthracite tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-blue-800 mr-3"></span>Le Télégramme</span>
                     </div>
                     <h3 class="text-2xl font-bold text-lego-anthracite mb-4 leading-snug">Elle propose ses Lego à la location aux familles...</h3>
-                    <p class="text-slate-500 mb-10 flex-grow font-medium leading-relaxed">"Une initiative solidaire et ludique qui séduit déjà tout le
+                    <p class="text-slate-600 mb-10 flex-grow font-medium leading-relaxed">"Une initiative solidaire et ludique qui séduit déjà tout le
                         pays de Lorient."</p>
                     <a href="https://www.letelegramme.fr/morbihan/lorient-56100/a-lorient-elle-propose-ses-lego-a-la-location-aux-familles-entreprises-ou-hopitaux-6990908.php"
                         target="_blank" rel="noopener noreferrer"
-                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-700 font-bold rounded-2xl hover:bg-lego-red hover:text-white transition-colors duration-300 mt-auto">
+                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-600 font-bold rounded-2xl hover:bg-slate-100 hover:text-lego-anthracite transition-colors duration-300 mt-auto border border-slate-100">
                         Lire l'article
                     </a>
                 </div>
 
                 <!-- Carte 3 : Maville Lorient -->
-                <div class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
+                <div class="bg-white/90 backdrop-blur-md p-10 rounded-3xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
                     <div class="mb-8 flex items-center">
-                        <span class="font-black text-2xl text-slate-800 tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-orange-500 mr-3"></span>Maville.com</span>
+                        <span class="font-black text-2xl text-lego-anthracite tracking-tighter flex items-center"><span class="w-3 h-3 rounded-full bg-orange-500 mr-3"></span>Maville.com</span>
                     </div>
                     <h3 class="text-2xl font-bold text-lego-anthracite mb-4 leading-snug">Location de Lego : Une idée géniale pour petits et grands</h3>
-                    <p class="text-slate-500 mb-10 flex-grow font-medium leading-relaxed">"Redécouvrez le plaisir de construire sans vous encombrer."
+                    <p class="text-slate-600 mb-10 flex-grow font-medium leading-relaxed">"Redécouvrez le plaisir de construire sans vous encombrer."
                     </p>
                     <a href="https://lorient.maville.com/actu/actudet_--on-s-est-rendu-compte-que-ca-coutait-cher-ce-couple-loue-des-sets-de-lego-a-lorient-_loc-7211039_actu.Htm"
                         target="_blank" rel="noopener noreferrer"
-                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-700 font-bold rounded-2xl hover:bg-lego-red hover:text-white transition-colors duration-300 mt-auto">
+                        class="inline-flex w-full justify-center items-center py-4 bg-slate-50 text-slate-600 font-bold rounded-2xl hover:bg-slate-100 hover:text-lego-anthracite transition-colors duration-300 mt-auto border border-slate-100">
                         Lire l'article
                     </a>
                 </div>
@@ -347,38 +347,38 @@
                 <h2 class="text-4xl md:text-5xl font-black text-lego-anthracite tracking-tighter mb-6">
                     Nous Contacter
                 </h2>
-                <p class="text-lg text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">
+                <p class="text-lg text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
                     Une question ? Besoin d'un set spécifique pour un événement ? Contactez-nous, nous vous répondons
                     sous 24h.
                 </p>
             </div>
 
-            <div class="bg-white p-10 md:p-14 rounded-[2.5rem] shadow-sm border border-slate-100">
+            <div class="bg-white/90 backdrop-blur-md p-10 md:p-14 rounded-[2.5rem] shadow-md border border-slate-100">
                 <form action="#" method="POST" class="space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <label for="name" class="block text-sm font-bold text-slate-700 mb-3">Nom</label>
                             <input type="text" id="name" name="name"
-                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-lego-red focus:ring-4 focus:ring-lego-red/10 transition-all font-medium text-slate-800 outline-none"
+                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-lego-blue focus:ring-4 focus:ring-lego-blue/10 transition-all font-medium text-slate-800 outline-none"
                                 placeholder="Votre nom" required>
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-bold text-slate-700 mb-3">Email</label>
                             <input type="email" id="email" name="email"
-                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-lego-red focus:ring-4 focus:ring-lego-red/10 transition-all font-medium text-slate-800 outline-none"
+                                class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-lego-blue focus:ring-4 focus:ring-lego-blue/10 transition-all font-medium text-slate-800 outline-none"
                                 placeholder="votre.email@exemple.com" required>
                         </div>
                     </div>
                     <div>
                         <label for="subject" class="block text-sm font-bold text-slate-700 mb-3">Objet</label>
                         <input type="text" id="subject" name="subject"
-                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-lego-red focus:ring-4 focus:ring-lego-red/10 transition-all font-medium text-slate-800 outline-none"
+                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-lego-blue focus:ring-4 focus:ring-lego-blue/10 transition-all font-medium text-slate-800 outline-none"
                             placeholder="ex: Question sur un set, Réservation..." required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-bold text-slate-700 mb-3">Message</label>
                         <textarea id="message" name="message" rows="5"
-                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-lego-red focus:ring-4 focus:ring-lego-red/10 transition-all font-medium text-slate-800 outline-none resize-none"
+                            class="w-full px-6 py-4 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-lego-blue focus:ring-4 focus:ring-lego-blue/10 transition-all font-medium text-slate-800 outline-none resize-none"
                             placeholder="Comment pouvons-nous vous aider ?" required></textarea>
                     </div>
                     <div class="text-center pt-6">
@@ -393,14 +393,16 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white pt-24 pb-12 border-t-[6px] border-lego-red">
+    <footer class="bg-slate-900 text-white pt-24 pb-12 border-t-[6px] border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
                 <!-- Branding -->
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-8">
-                        <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
-                            class="h-12 w-auto mr-4 rounded-lg opacity-90">
+                        <div class="bg-white p-1.5 rounded-xl mr-4 shadow-sm">
+                            <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
+                                class="h-10 w-auto rounded-lg">
+                        </div>
                         <span class="font-black text-2xl tracking-tighter text-white">Set et Brique</span>
                     </div>
                     <p class="text-slate-400 font-medium leading-relaxed mb-8 max-w-sm">
@@ -409,11 +411,11 @@
                     </p>
                     <div class="flex space-x-4">
                         <a href="#"
-                            class="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-lego-red hover:-translate-y-1 transition-all">
+                            class="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all shadow-md">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
                         <a href="#"
-                            class="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-lego-blue hover:-translate-y-1 transition-all">
+                            class="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-slate-700 hover:-translate-y-1 transition-all shadow-md">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -425,11 +427,11 @@
                     </h3>
                     <ul class="space-y-6 text-slate-400 font-medium">
                         <li class="flex items-start">
-                            <i data-lucide="map-pin" class="w-5 h-5 mr-4 text-lego-red shrink-0 mt-0.5"></i>
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-4 text-slate-500 shrink-0 mt-0.5"></i>
                             <span>Basé à Lorient<br>Retrait en main propre</span>
                         </li>
                         <li class="flex items-center">
-                            <i data-lucide="mail" class="w-5 h-5 mr-4 text-lego-red shrink-0"></i>
+                            <i data-lucide="mail" class="w-5 h-5 mr-4 text-slate-500 shrink-0"></i>
                             <a href="mailto:setetbrique@gmail.com"
                                 class="hover:text-white transition-colors">setetbrique@gmail.com</a>
                         </li>
