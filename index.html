@@ -597,6 +597,34 @@
                 navbar.classList.add('bg-slate-50/90', 'border-b');
             }
         });
+        // Deep Linking Mobile Logic (Universal Links & Custom URL Schemes)
+        document.addEventListener("DOMContentLoaded", () => {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // 1. Poppins : Retrait de target="_blank" pour garantir le déclenchement de l'Universal Link de l'App (iOS/Android)
+                document.querySelectorAll('a[href^="https://app.poppins.io"]').forEach(link => {
+                    link.removeAttribute('target');
+                });
+
+                // 2. Vinted : Fallback Deep Linking (Custom URL Scheme)
+                document.querySelectorAll('a[href^="https://www.vinted.fr"]').forEach(link => {
+                    link.removeAttribute('target');
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const webUrl = this.href;
+                        
+                        // Tentative d'ouverture de l'App Vinted
+                        window.location.href = 'vinted://it/users/3128472152/items';
+                        
+                        // Fallback vers la version web si l'App ne s'ouvre pas dans les 500ms
+                        setTimeout(() => {
+                            window.location.href = webUrl;
+                        }, 500);
+                    });
+                });
+            }
+        });
     </script>
 </body>
 
