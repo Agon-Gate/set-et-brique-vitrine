@@ -1,40 +1,53 @@
 /* Custom Styles for Set et Brique */
 
-/* Smooth scrolling for anchor links */
 html {
     scroll-behavior: smooth;
 }
 
-/* Base custom text selection */
 ::selection {
-    background-color: #E3000B;
-    color: #FFFFFF;
+    background-color: #2B207D;
+    color: #FCD54B;
+}
+
+/* Effet 3D basé sur le logo */
+.shadow-3d {
+    box-shadow: 6px 6px 0px 0px #2B207D;
+    border: 3px solid #2B207D;
+    transition: all 0.2s ease-in-out;
+}
+
+.shadow-3d:hover {
+    box-shadow: 8px 8px 0px 0px #2B207D;
+    transform: translate(-2px, -2px);
+}
+
+.btn-3d {
+    box-shadow: 4px 4px 0px 0px #2B207D;
+    border: 2px solid #2B207D;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-3d:hover {
+    box-shadow: 6px 6px 0px 0px #2B207D;
+    transform: translate(-2px, -2px);
+    background-color: #2B207D;
+    color: #FCD54B;
 }
 
 /* Animations customisées pour Tailwind (Hero Backgrounds) */
 @keyframes blob {
-    0% {
-        transform: translate(0px, 0px) scale(1);
-    }
-    33% {
-        transform: translate(30px, -50px) scale(1.1);
-    }
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
-    100% {
-        transform: translate(0px, 0px) scale(1);
-    }
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
 }
 
 .animate-blob {
     animation: blob 7s infinite;
 }
-
 .animation-delay-2000 {
     animation-delay: 2s;
 }
-
 .animation-delay-4000 {
     animation-delay: 4s;
 }
