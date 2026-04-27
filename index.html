@@ -554,14 +554,13 @@
         </div>
     </footer>
 
-    <!-- Floating Mobile CTA -->
-    <div class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
-        <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
-            class="flex items-center justify-center w-full py-4 px-6 bg-red-600 text-white font-black rounded-full shadow-2xl hover:bg-red-700 active:scale-95 transition-all shadow-red-600/30 text-lg tracking-wide">
-            <i data-lucide="shopping-bag" class="w-6 h-6 mr-3"></i>
-            LOUER UN SET
-        </a>
-    </div>
+    <!-- Floating Sticky CTA -->
+    <a href="https://app.poppins.io/shop/set-et-brique" target="_blank" rel="noopener noreferrer"
+        id="floating-cta"
+        class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 flex items-center justify-center py-4 px-6 md:px-8 bg-red-600 text-white font-black rounded-full shadow-2xl hover:bg-red-700 active:scale-95 transition-all duration-500 opacity-0 translate-y-10 pointer-events-none shadow-red-600/30 text-sm md:text-base tracking-wide">
+        <i data-lucide="shopping-bag" class="w-5 h-5 md:w-6 md:h-6 mr-3"></i>
+        LOUER UN SET
+    </a>
 
     <!-- Scripts -->
     <script>
@@ -595,6 +594,18 @@
                 navbar.classList.remove('shadow-sm');
                 navbar.classList.remove('bg-white/95');
                 navbar.classList.add('bg-slate-50/90', 'border-b');
+            }
+        });
+
+        // Floating CTA Scroll Effect
+        const floatingCta = document.getElementById('floating-cta');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                floatingCta.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                floatingCta.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                floatingCta.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                floatingCta.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
             }
         });
         // Deep Linking Mobile Logic (Universal Links & Custom URL Schemes)
