@@ -191,30 +191,25 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Subtle background dots pattern */
-        .dots-bg {
-            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
-
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            border-radius: 3px;
-            opacity: 0.15;
-            animation: drift linear infinite;
-        }
-        @keyframes drift {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
     </style>
 </head>
 
 <body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-red-600 selection:text-white">
 
+    <!-- Global Animated Background -->
+    <div class="fixed inset-0 pointer-events-none z-[-10] overflow-hidden dots-bg">
+        <div class="particle w-8 h-5 bg-red-600 rounded" style="left:5%; animation-duration:12s; animation-delay:0s;"></div>
+        <div class="particle w-5 h-3 bg-lego-yellow rounded" style="left:15%; animation-duration:16s; animation-delay:2s;"></div>
+        <div class="particle w-10 h-5 bg-lego-anthracite rounded" style="left:80%; animation-duration:14s; animation-delay:4s;"></div>
+        <div class="particle w-6 h-4 bg-red-400 rounded" style="left:90%; animation-duration:10s; animation-delay:1s;"></div>
+        <div class="particle w-8 h-5 bg-yellow-300 rounded" style="left:60%; animation-duration:18s; animation-delay:6s;"></div>
+        <div class="particle w-4 h-3 bg-blue-950 rounded" style="left:40%; animation-duration:13s; animation-delay:3s;"></div>
+        <div class="particle w-7 h-4 bg-red-500 rounded" style="left:25%; animation-duration:15s; animation-delay:1.5s;"></div>
+        <div class="particle w-6 h-6 bg-lego-yellow rounded" style="left:70%; animation-duration:17s; animation-delay:3.5s;"></div>
+        <div class="particle w-9 h-5 bg-lego-anthracite rounded" style="left:30%; animation-duration:14s; animation-delay:5s;"></div>
+        <div class="particle w-5 h-3 bg-red-600 rounded" style="left:55%; animation-duration:11s; animation-delay:2.5s;"></div>
+        <div class="particle w-12 h-6 bg-blue-900 rounded" style="left:85%; animation-duration:19s; animation-delay:0.5s;"></div>
+    </div>
     <!-- Header / Navbar -->
     <header class="fixed w-full top-0 z-50 bg-slate-50/90 backdrop-blur-xl border-b border-slate-200 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 md:px-8">
@@ -222,7 +217,7 @@
                 <!-- Logo -->
                 <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
                     <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4 group-hover:border-red-200">
-                        <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique" class="h-10 md:h-12 w-auto max-w-full rounded-xl">
+                        <img src="assets/logo-set-et-brique.png" alt="Logo Set et Brique" class="h-10 md:h-12 w-auto max-w-full rounded-xl">
                     </div>
                     <span class="font-black text-xl md:text-2xl tracking-tighter text-lego-anthracite group-hover:text-red-600 transition-colors duration-300">Set et Brique</span>
                 </a>
@@ -258,15 +253,8 @@
     </header>
 
     <!-- Main 404 Content -->
-    <main class="min-h-screen dots-bg flex items-center justify-center pt-24 pb-20 relative overflow-hidden">
+    <main class="min-h-screen flex items-center justify-center pt-24 pb-20 relative overflow-hidden">
 
-        <!-- Floating particles (decorative mini bricks) -->
-        <div class="particle w-8 h-5 bg-red-600 rounded" style="left:5%; animation-duration:12s; animation-delay:0s;"></div>
-        <div class="particle w-5 h-3 bg-lego-yellow rounded" style="left:15%; animation-duration:16s; animation-delay:2s;"></div>
-        <div class="particle w-10 h-5 bg-lego-anthracite rounded" style="left:80%; animation-duration:14s; animation-delay:4s;"></div>
-        <div class="particle w-6 h-4 bg-red-400 rounded" style="left:90%; animation-duration:10s; animation-delay:1s;"></div>
-        <div class="particle w-8 h-5 bg-yellow-300 rounded" style="left:60%; animation-duration:18s; animation-delay:6s;"></div>
-        <div class="particle w-4 h-3 bg-blue-950 rounded" style="left:40%; animation-duration:13s; animation-delay:3s;"></div>
 
         <div class="max-w-3xl mx-auto px-6 md:px-8 text-center relative z-10">
 

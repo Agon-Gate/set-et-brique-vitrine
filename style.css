@@ -35,3 +35,24 @@ html {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+/* Subtle background dots pattern */
+.dots-bg {
+    background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    border-radius: 3px;
+    opacity: 0.15;
+    animation: drift linear infinite;
+    pointer-events: none;
+}
+@keyframes drift {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
