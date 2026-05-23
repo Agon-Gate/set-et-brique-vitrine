@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set et Brique - Location de Briques à Lorient</title>
+    <meta name="description"
+        content="Set et Brique : Location de grands sets de Briques à Lorient. Louez, construisez, ramenez ! La location simplifiée de briques via Poppins.">
+    <meta name="keywords"
+        content="Location de Briques Lorient, Set et Brique, Location de Briques, Lorient, Poppins, Vinted, Jouets d'occasion, Briques">
+    <meta name="author" content="Set et Brique">
+
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="Set et Brique - Location de Briques à Lorient">
+    <meta property="og:description"
+        content="Louez, construisez, rapportez. Profitez des plus grands sets de Briques sans vous encombrer.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS (via CDN for static architecture) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lego: {
+                            red: '#E3000B',
+                            yellow: '#FCD54B',
+                            blue: '#2B207D',
+                            white: '#FFFFFF',
+                            anthracite: '#172554', /* blue-950 pour le bleu 'encre' des titres */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-red-600 selection:text-white pb-24 md:pb-0">
+
+    <!-- Header / Navbar -->
+    <header
+        class="fixed w-full top-0 z-50 bg-slate-50/90 backdrop-blur-xl border-b border-slate-200 transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div
+                        class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4 group-hover:border-red-200">
+                        <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
+                            class="h-10 md:h-12 w-auto max-w-full rounded-xl">
+                    </div>
+                    <span
+                        class="font-black text-xl md:text-2xl tracking-tighter text-lego-anthracite group-hover:text-red-600 transition-colors duration-300">Set
+                        et Brique</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-10">
+                    <a href="index.html#concept"
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Concept</a>
+                    <a href="#" onclick="handlePoppinsClick(event)"
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Catalogue</a>
+                    <a href="index.html#vinted"
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Vinted</a>
+                    <a href="index.html#contact"
+                        class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-slate-700 hover:text-red-600 focus:outline-none p-2 rounded-xl hover:bg-slate-200 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-slate-50 border-t border-slate-200 absolute w-full shadow-2xl origin-top transition-transform">
+            <div class="px-6 pt-4 pb-8 space-y-3">
+                <a href="index.html#concept"
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Concept</a>
+                <a href="#" onclick="handlePoppinsClick(event)"
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Catalogue
+                    Poppins</a>
+                <a href="index.html#vinted"
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Boutique
+                    Vinted</a>
+                <a href="index.html#contact"
+                    class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Contact</a>
+            </div>
+        </div>
+    </header>
+    <main class="pt-32 pb-24 md:pt-40 md:pb-32 bg-slate-50 relative">
+        <div class="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
+            <div class="bg-white p-8 md:p-16 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-lego-anthracite mb-8">
+                    Qui sommes-nous ?
+                </h1>
+                
+                <div class="prose prose-lg prose-slate max-w-none text-slate-700 font-medium leading-relaxed">
+                    <p class="mb-6">
+                        Bienvenue chez Set et Brique, une entreprise familiale chaleureuse et innovante basÃ©e Ã  Lorient. Nous sommes Marion et GaÃ«tan, deux passionnÃ©s de briques de construction depuis notre plus tendre enfance. Cette passion, nous l'avons redÃ©couverte il y a quelques annÃ©es et n'avons pas tardÃ© Ã  la partager avec nos deux enfants.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-lego-anthracite mt-10 mb-4 tracking-tight">Notre histoire</h2>
+                    <p class="mb-6">
+                        En replongeant dans l'univers fascinant des briques de construction, nous avons rÃ©alisÃ© que nos constructions prenaient beaucoup de place et que le coÃ»t d'achat de nouveaux sets pouvait rapidement revenir onÃ©reux. Pour continuer Ã  assouvir notre passion sans nous ruiner, nous avons pensÃ© Ã  vendre nos sets une fois construits pour en acheter de nouveaux. Toutefois, cela nÃ©cessitait de conserver les boÃ®tes intactes et d'Ã©viter que les sets ne soient dÃ©truits ou perdus par nos enfants.
+                    </p>
+                    <p class="mb-6">
+                        Le plaisir de construire Ã©tait lÃ , mais l'idÃ©e d'exposer nos crÃ©ations ne nous sÃ©duisait pas particuliÃ¨rement. C'est alors que l'idÃ©e de la location a Ã©mergÃ©. Malheureusement, nous n'avons trouvÃ© aucun service local qui permettait cela.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-lego-anthracite mt-10 mb-4 tracking-tight">Notre mission</h2>
+                    <p class="mb-6">
+                        En rÃ©flÃ©chissant davantage, il nous est apparu que les sets de construction ne sont pas accessibles Ã  toutes les familles en raison de leur coÃ»t et que bien quâ€™extraordinaires, ils prennent Ã©normÃ©ment de place. Nous avons imaginÃ© que d'autres personnes pourraient Ã©galement ressentir ce besoin de faÃ§on occasionnelle : que ce soit des patients d'hÃ´pitaux, des rÃ©sidents de centres de rÃ©Ã©ducation, des maisons de retraite, ou encore des grands-parents accueillant leurs petits-enfants pendant les vacances.
+                    </p>
+
+                    <h2 class="text-2xl font-black text-lego-anthracite mt-10 mb-4 tracking-tight">Notre engagement</h2>
+                    <p class="mb-6">
+                        Ã€ la maison, nous adoptons un mode de consommation raisonnÃ©. Nous privilÃ©gions le seconde main, le fait maison et la rÃ©utilisation. C'est dans cet esprit que la rÃ©utilisation des sets de construction prend tout son sens. En proposant un service de location Ã  moindre coÃ»t, nous souhaitons rendre ces moments de crÃ©ativitÃ© accessibles Ã  tous, tout en favorisant une consommation responsable.
+                    </p>
+                    <p class="mb-6 font-bold text-lego-anthracite text-xl">
+                        Rejoignez-nous dans cette aventure et redÃ©couvrez le plaisir de construire ensemble, sans les contraintes financiÃ¨res ou d'espace.
+                    </p>
+                    <p class="mb-6">
+                        Chez Set et Brique, la remise en main propre et le service local nous permettent de maintenir cet esprit de partage, de convivialitÃ© et du vivre ensemble quâ€™apporte les briques de constructions.
+                    </p>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="index.html" class="inline-flex px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md hover:-translate-y-1 transition-all duration-300 items-center justify-center">
+                        <i data-lucide="arrow-left" class="w-5 h-5 mr-3"></i> Retour Ã  l'accueil
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white pt-20 md:pt-24 pb-12 border-t-[6px] border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-16 md:mb-20">
+                <!-- Branding -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6 md:mb-8">
+                        <div class="bg-white p-1.5 rounded-xl mr-4 shadow-sm border border-slate-200">
+                            <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique"
+                                class="h-8 md:h-10 w-auto rounded-lg">
+                        </div>
+                        <span class="font-black text-xl md:text-2xl tracking-tighter text-white">Set et Brique</span>
+                    </div>
+                    <p class="text-sm md:text-base text-slate-400 font-medium leading-relaxed mb-8 max-w-sm">
+                        La première plateforme locale de location de sets de construction à Lorient.
+                    </p>
+                    <div class="flex flex-col space-y-4">
+                        <a href="https://www.facebook.com/people/Set-et-brique/61587641073898/" target="_blank"
+                            rel="noopener noreferrer" class="flex items-center space-x-3 group w-fit">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="w-8 h-8 text-[#1877F2] transition-all duration-300 group-hover:opacity-80 group-hover:scale-110"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                            <span
+                                class="text-[#1877F2] font-bold transition-all duration-300 group-hover:opacity-80">Facebook</span>
+                        </a>
+                        <a href="https://www.instagram.com/explore/tags/setetbrique/" target="_blank"
+                            rel="noopener noreferrer" title="Bientôt disponible"
+                            class="flex items-center space-x-3 group w-fit">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="w-8 h-8 transition-all duration-300 group-hover:opacity-80 group-hover:scale-110"
+                                viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad-footer)" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <defs>
+                                    <linearGradient id="ig-grad-footer" x1="0%" y1="100%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#f09433" />
+                                        <stop offset="25%" stop-color="#e6683c" />
+                                        <stop offset="50%" stop-color="#dc2743" />
+                                        <stop offset="75%" stop-color="#cc2366" />
+                                        <stop offset="100%" stop-color="#bc1888" />
+                                    </linearGradient>
+                                </defs>
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                            </svg>
+                            <span
+                                class="font-bold transition-all duration-300 group-hover:opacity-80 text-transparent bg-clip-text bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xs md:text-sm font-bold mb-6 md:mb-8 text-slate-300 uppercase tracking-widest">
+                        Localisation & Contact
+                    </h3>
+                    <ul class="space-y-4 md:space-y-6 text-sm md:text-base text-slate-400 font-medium">
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-3 md:mr-4 text-red-600 shrink-0 mt-0.5"></i>
+                            <span>Basé à Lorient<br>Retrait en main propre</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="phone" class="w-5 h-5 mr-3 md:mr-4 text-red-600 shrink-0"></i>
+                            <a href="tel:0984371846" class="hover:text-white transition-colors">09.84.37.18.46</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="mail" class="w-5 h-5 mr-3 md:mr-4 text-red-600 shrink-0"></i>
+                            <a href="mailto:setetbrique@gmail.com"
+                                class="hover:text-white transition-colors">setetbrique@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Liens Rapides -->
+                <div>
+                    <h3 class="text-xs md:text-sm font-bold mb-6 md:mb-8 text-slate-300 uppercase tracking-widest">
+                        Navigation</h3>
+                    <ul class="space-y-3 md:space-y-4 text-sm md:text-base text-slate-400 font-medium">
+                        <li><a href="index.html#concept"
+                                class="hover:text-white transition-colors flex items-center group">Concept</a></li>
+                        <li><a href="#" onclick="handlePoppinsClick(event)"
+                                class="hover:text-white transition-colors flex items-center group">Catalogue Poppins</a>
+                        </li>
+                        <li><a href="index.html#vinted"
+                                class="hover:text-white transition-colors flex items-center group">Boutique Vinted</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-slate-500 font-medium">
+                <p class="text-center md:text-left mb-4 md:mb-0">&copy; 2026 Set et Brique - Tous droits réservés.</p>
+                <div class="space-x-6 md:space-x-8">
+                    <a href="javascript:void(0)" onclick="openMentionsLegales()"
+                        class="opacity-60 hover:opacity-100 hover:text-white transition-all duration-300">Mentions
+                        Légales</a>
+                    <a href="#"
+                        class="opacity-60 hover:opacity-100 hover:text-white transition-all duration-300">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Mentions Légales -->
+    <div id="mentions-legales-modal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md transition-all duration-300 opacity-0"
+        aria-modal="true" role="dialog" aria-labelledby="modal-title">
+        <!-- Modal Content Container -->
+        <div
+            class="relative w-full max-w-2xl bg-white rounded-[2rem] border border-slate-200 shadow-2xl overflow-hidden transform scale-95 transition-all duration-300 flex flex-col max-h-[85vh]">
+            <!-- Header -->
+            <div
+                class="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
+                <h2 id="modal-title"
+                    class="text-2xl md:text-3xl font-black text-lego-anthracite tracking-tight flex items-center">
+                    <i data-lucide="scale" class="w-7 h-7 text-red-600 mr-3"></i>
+                    Mentions Légales
+                </h2>
+                <button onclick="closeMentionsLegales()"
+                    class="p-2 rounded-xl text-slate-400 hover:text-red-600 hover:bg-slate-50 transition-all focus:outline-none focus:ring-2 focus:ring-red-600/20"
+                    aria-label="Fermer">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Body (Scrollable) -->
+            <div
+                class="p-6 md:p-8 overflow-y-auto space-y-6 text-slate-700 text-sm md:text-base leading-relaxed no-scrollbar">
+                <!-- Section 1: Propriétaire & Publication -->
+                <section class="space-y-3">
+                    <h3 class="text-lg md:text-xl font-bold text-lego-anthracite tracking-tight flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-600 mr-2 md:mr-3"></span>
+                        1. Propriétaire du site et Responsable de la publication
+                    </h3>
+                    <p class="font-medium text-slate-600 pl-4 md:pl-6 border-l-2 border-red-100">
+                        Le site internet <strong>Set et Brique</strong> est la propriété de :
+                    </p>
+                    <ul class="space-y-2 pl-4 md:pl-6 list-none text-slate-600">
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Entreprise :</span>
+                            <span>Marion KERBRAT (LANGE-BERTEAUX), exploitant sous le nom commercial SET ET
+                                BRIQUE</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Siège social :</span>
+                            <span>73 Boulevard René Laennec, 56100 Lorient</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Immatriculation :</span>
+                            <span>RCS Lorient 535 372 221</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Activité :</span>
+                            <span>Achat revente sur internet de produits d'occasions et location de sets de jeux de
+                                construction via une application dédiée.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Contact :</span>
+                            <a href="mailto:setetbrique@gmail.com"
+                                class="text-blue-600 hover:underline">setetbrique@gmail.com</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <hr class="border-slate-100">
+
+                <!-- Section 2: Éditeur du site (Conception & Réalisation) -->
+                <section class="space-y-3">
+                    <h3 class="text-lg md:text-xl font-bold text-lego-anthracite tracking-tight flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mr-2 md:mr-3"></span>
+                        2. Éditeur du site (Conception et Réalisation)
+                    </h3>
+                    <p class="font-medium text-slate-600 pl-4 md:pl-6 border-l-2 border-emerald-100">
+                        La conception technique et la réalisation du site sont assurées par :
+                    </p>
+                    <ul class="space-y-2 pl-4 md:pl-6 list-none text-slate-600">
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Société :</span>
+                            <span>AGON-GATE</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <hr class="border-slate-100">
+
+                <!-- Section 3: Hébergeur -->
+                <section class="space-y-3">
+                    <h3 class="text-lg md:text-xl font-bold text-lego-anthracite tracking-tight flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-800 mr-2 md:mr-3"></span>
+                        3. Hébergement
+                    </h3>
+                    <p class="font-medium text-slate-600 pl-4 md:pl-6 border-l-2 border-blue-100">
+                        Le site internet est hébergé par :
+                    </p>
+                    <ul class="space-y-2 pl-4 md:pl-6 list-none text-slate-600">
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Hébergeur :</span>
+                            <span>Cloudflare Pages (Cloudflare, Inc.)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Adresse :</span>
+                            <span>101 Townsend St, San Francisco, CA 94107, USA</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="font-bold text-lego-anthracite w-36 shrink-0">Site web :</span>
+                            <a href="https://pages.cloudflare.com" target="_blank" rel="noopener noreferrer"
+                                class="text-blue-600 hover:underline">pages.cloudflare.com</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <hr class="border-slate-100">
+
+                <!-- Section 4: Propriété intellectuelle -->
+                <section class="space-y-3">
+                    <h3 class="text-lg md:text-xl font-bold text-lego-anthracite tracking-tight flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 mr-2 md:mr-3"></span>
+                        4. Propriété intellectuelle
+                    </h3>
+                    <p class="text-slate-600 pl-4 md:pl-6 border-l-2 border-yellow-100">
+                        Tous les éléments du site (textes, images, logo, charte graphique) sont la propriété exclusive
+                        de SET ET BRIQUE ou de leurs auteurs respectifs.
+                        Toute reproduction ou diffusion non autorisée constitue une contrefaçon sanctionnée par le Code
+                        de la propriété intellectuelle.
+                    </p>
+                </section>
+            </div>
+
+            <!-- Footer (Discret / CTA Fermer) -->
+            <div class="p-6 md:p-8 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeMentionsLegales()"
+                    class="px-6 py-3 bg-lego-anthracite hover:bg-red-600 text-white font-bold rounded-2xl shadow-sm transition-all duration-300 transform active:scale-95 text-sm md:text-base">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Sticky CTA -->
+    <a href="#" onclick="handlePoppinsClick(event)" id="floating-cta"
+        class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 flex items-center justify-center py-4 px-6 md:px-8 bg-red-600 text-white font-black rounded-full shadow-2xl hover:bg-red-700 active:scale-95 transition-all duration-500 opacity-0 translate-y-10 pointer-events-none shadow-red-600/30 text-sm md:text-base tracking-wide">
+        <i data-lucide="book-open" class="w-5 h-5 md:w-6 md:h-6 mr-3"></i>
+        Voir le catalogue 🧱
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-sm');
+                navbar.classList.remove('bg-slate-50/90', 'border-b');
+                navbar.classList.add('bg-white/95', 'border-slate-200');
+            } else {
+                navbar.classList.remove('shadow-sm');
+                navbar.classList.remove('bg-white/95');
+                navbar.classList.add('bg-slate-50/90', 'border-b');
+            }
+        });
+
+        // Floating CTA Scroll Effect
+        const floatingCta = document.getElementById('floating-cta');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                floatingCta.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                floatingCta.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                floatingCta.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                floatingCta.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        });
+        function handlePoppinsClick(event) {
+            event.preventDefault();
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = "https://poppins.go.link/21DxY?userId=2d6ae82f-e457-4d85-94ea-43983bb7b3f2";
+            } else {
+                window.open("https://www.wearepoppins.com/fr", "_blank");
+            }
+        }
+
+        // Deep Linking Mobile Logic (Universal Links & Custom URL Schemes)
+        document.addEventListener("DOMContentLoaded", () => {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Vinted : Fallback Deep Linking (Custom URL Scheme)
+                document.querySelectorAll('a[href^="https://www.vinted.fr"]').forEach(link => {
+                    link.removeAttribute('target');
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const webUrl = this.href;
+
+                        // Tentative d'ouverture de l'App Vinted
+                        window.location.href = 'vinted://it/users/3128472152/items';
+
+                        // Fallback vers la version web si l'App ne s'ouvre pas dans les 500ms
+                        setTimeout(() => {
+                            window.location.href = webUrl;
+                        }, 500);
+                    });
+                });
+            }
+        });
+
+        // Mentions Légales Modal Logic
+        const modal = document.getElementById('mentions-legales-modal');
+
+        function openMentionsLegales() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Force Lucide to refresh icons inside the modal
+            lucide.createIcons();
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.relative').classList.remove('scale-95');
+                modal.querySelector('.relative').classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // block page scroll
+        }
+
+        function closeMentionsLegales() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.relative').classList.remove('scale-100');
+            modal.querySelector('.relative').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = ''; // restore page scroll
+        }
+
+        // Close modal when clicking outside of it
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeMentionsLegales();
+            }
+        });
+    </script>
+</body>
+
+</html>
