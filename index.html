@@ -363,8 +363,8 @@
                         <p
                             class="text-slate-500 font-bold mb-6 md:mb-8 text-center uppercase tracking-widest text-[10px] md:text-xs">
                             Scannez pour réserver</p>
-                        <div
-                            class="bg-white p-3 md:p-4 rounded-2xl md:rounded-3xl shadow-sm border border-slate-200 transform group-hover:scale-105 transition-all duration-500">
+                        <div onclick="openQrModal()"
+                            class="bg-white p-3 md:p-4 rounded-2xl md:rounded-3xl shadow-sm border border-slate-200 transform group-hover:scale-105 hover:shadow-md transition-all duration-500 cursor-pointer">
                             <!-- Image QR Code Placeholder -->
                             <img src="assets/qr-poppins.png" alt="QR Code Poppins"
                                 class="w-32 h-32 md:w-48 md:h-48 max-w-full object-cover rounded-xl md:rounded-2xl"
@@ -822,6 +822,18 @@
         Voir le catalogue 🧱
     </a>
 
+    <!-- Modal QR Code -->
+    <div id="qrModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="relative max-w-lg w-full mx-4 flex flex-col items-center">
+            <!-- Bouton fermer -->
+            <button onclick="closeQrModal()" class="absolute -top-12 right-0 md:-right-12 text-white hover:text-red-400 focus:outline-none transition-colors p-2">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <!-- Image QR en grand -->
+            <img src="assets/qr-poppins.png" alt="QR Code Poppins en grand" class="w-full h-auto bg-white rounded-3xl p-4 md:p-6 shadow-2xl scale-95 transition-transform duration-300" id="qrModalImg">
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
         // Initialize Lucide Icons
@@ -933,6 +945,38 @@
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeMentionsLegales();
+            }
+        });
+
+        // Modal QR Code Logic
+        const qrModal = document.getElementById('qrModal');
+        const qrImg = document.getElementById('qrModalImg');
+
+        function openQrModal() {
+            qrModal.classList.remove('hidden');
+            qrModal.classList.add('flex');
+            setTimeout(() => {
+                qrModal.classList.remove('opacity-0');
+                qrImg.classList.remove('scale-95');
+                qrImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQrModal() {
+            qrModal.classList.add('opacity-0');
+            qrImg.classList.remove('scale-100');
+            qrImg.classList.add('scale-95');
+            setTimeout(() => {
+                qrModal.classList.remove('flex');
+                qrModal.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) {
+                closeQrModal();
             }
         });
     </script>
