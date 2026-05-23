@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 – Page introuvable | Set et Brique</title>
+    <meta name="description" content="La page que vous cherchez n'existe pas. Retournez à l'accueil de Set et Brique, location de sets de briques à Lorient.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS (via CDN for static architecture) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lego: {
+                            red: '#E3000B',
+                            yellow: '#FCD54B',
+                            blue: '#2B207D',
+                            white: '#FFFFFF',
+                            anthracite: '#172554',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ===== BRICK ILLUSTRATION CSS ===== */
+        .brick-scene {
+            position: relative;
+            width: 220px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        /* Individual brick shape */
+        .brick {
+            position: absolute;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        /* Studs on top of bricks */
+        .brick::before {
+            content: '';
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+        }
+
+        .stud {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            top: -8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+
+        /* BRICK 1 — big red (bottom left) */
+        .brick-1 {
+            width: 100px;
+            height: 36px;
+            background: linear-gradient(135deg, #E3000B 0%, #c20009 100%);
+            bottom: 20px;
+            left: 10px;
+            animation: float1 3.8s ease-in-out infinite;
+        }
+        .brick-1 .stud-1 { left: 14px; background: linear-gradient(135deg, #ff1f2b, #b0000a); }
+        .brick-1 .stud-2 { left: 42px; background: linear-gradient(135deg, #ff1f2b, #b0000a); }
+        .brick-1 .stud-3 { left: 70px; background: linear-gradient(135deg, #ff1f2b, #b0000a); }
+
+        /* BRICK 2 — yellow (middle) */
+        .brick-2 {
+            width: 66px;
+            height: 36px;
+            background: linear-gradient(135deg, #FCD54B 0%, #e6bc2a 100%);
+            bottom: 56px;
+            left: 10px;
+            animation: float2 4.2s ease-in-out infinite;
+        }
+        .brick-2 .stud-1 { left: 12px; background: linear-gradient(135deg, #ffe070, #d4a800); }
+        .brick-2 .stud-2 { left: 40px; background: linear-gradient(135deg, #ffe070, #d4a800); }
+
+        /* BRICK 3 — blue anthracite (top) */
+        .brick-3 {
+            width: 66px;
+            height: 36px;
+            background: linear-gradient(135deg, #172554 0%, #0f1a3e 100%);
+            bottom: 92px;
+            left: 10px;
+            animation: float3 5s ease-in-out infinite;
+        }
+        .brick-3 .stud-1 { left: 12px; background: linear-gradient(135deg, #1e3a7a, #0b1225); }
+        .brick-3 .stud-2 { left: 40px; background: linear-gradient(135deg, #1e3a7a, #0b1225); }
+
+        /* BRICK 4 — solo detached (floating top right) with question mark */
+        .brick-4 {
+            width: 44px;
+            height: 36px;
+            background: linear-gradient(135deg, #E3000B 0%, #c20009 100%);
+            top: 10px;
+            right: 20px;
+            animation: floatAway 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .brick-4 .stud-1 { left: 15px; background: linear-gradient(135deg, #ff1f2b, #b0000a); }
+        .brick-4::after {
+            content: '?';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: #E3000B;
+            opacity: 0.8;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Dashed line from main stack to floating brick */
+        .dash-line {
+            position: absolute;
+            top: 52px;
+            right: 60px;
+            width: 60px;
+            height: 1px;
+            border-top: 2px dashed #cbd5e1;
+            transform: rotate(30deg);
+            transform-origin: left center;
+        }
+
+        /* Animations */
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes floatAway {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-14px) rotate(3deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+        }
+
+        /* 404 number gradient */
+        .giant-404 {
+            background: linear-gradient(135deg, #E3000B 0%, #172554 60%, #E3000B 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Subtle background dots pattern */
+        .dots-bg {
+            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            border-radius: 3px;
+            opacity: 0.15;
+            animation: drift linear infinite;
+        }
+        @keyframes drift {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-50 bg-slate-50/90 backdrop-blur-xl border-b border-slate-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
+                    <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4 group-hover:border-red-200">
+                        <img src="assets/logo-set-et-brique.jpg" alt="Logo Set et Brique" class="h-10 md:h-12 w-auto max-w-full rounded-xl">
+                    </div>
+                    <span class="font-black text-xl md:text-2xl tracking-tighter text-lego-anthracite group-hover:text-red-600 transition-colors duration-300">Set et Brique</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-10">
+                    <a href="index.html#concept" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Concept</a>
+                    <a href="qui-sommes-nous.html" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Qui sommes-nous ?</a>
+                    <a href="#" onclick="handlePoppinsClick(event)" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Catalogue</a>
+                    <a href="index.html#vinted" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Vinted</a>
+                    <a href="index.html#contact" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-red-600 focus:outline-none p-2 rounded-xl hover:bg-slate-200 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-50 border-t border-slate-200 absolute w-full shadow-2xl origin-top transition-transform">
+            <div class="px-6 pt-4 pb-8 space-y-3">
+                <a href="index.html#concept" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Concept</a>
+                <a href="qui-sommes-nous.html" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Qui sommes-nous ?</a>
+                <a href="#" onclick="handlePoppinsClick(event)" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Catalogue Poppins</a>
+                <a href="index.html#vinted" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Boutique Vinted</a>
+                <a href="index.html#contact" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main 404 Content -->
+    <main class="min-h-screen dots-bg flex items-center justify-center pt-24 pb-20 relative overflow-hidden">
+
+        <!-- Floating particles (decorative mini bricks) -->
+        <div class="particle w-8 h-5 bg-red-600 rounded" style="left:5%; animation-duration:12s; animation-delay:0s;"></div>
+        <div class="particle w-5 h-3 bg-lego-yellow rounded" style="left:15%; animation-duration:16s; animation-delay:2s;"></div>
+        <div class="particle w-10 h-5 bg-lego-anthracite rounded" style="left:80%; animation-duration:14s; animation-delay:4s;"></div>
+        <div class="particle w-6 h-4 bg-red-400 rounded" style="left:90%; animation-duration:10s; animation-delay:1s;"></div>
+        <div class="particle w-8 h-5 bg-yellow-300 rounded" style="left:60%; animation-duration:18s; animation-delay:6s;"></div>
+        <div class="particle w-4 h-3 bg-blue-950 rounded" style="left:40%; animation-duration:13s; animation-delay:3s;"></div>
+
+        <div class="max-w-3xl mx-auto px-6 md:px-8 text-center relative z-10">
+
+            <!-- Giant 404 -->
+            <div class="giant-404 font-black text-[120px] md:text-[180px] leading-none tracking-tighter select-none mb-2">
+                404
+            </div>
+
+            <!-- Brick illustration -->
+            <div class="brick-scene my-4 md:my-6" aria-hidden="true">
+                <!-- Stack of bricks -->
+                <div class="brick brick-1">
+                    <div class="stud stud-1"></div>
+                    <div class="stud stud-2"></div>
+                    <div class="stud stud-3"></div>
+                </div>
+                <div class="brick brick-2">
+                    <div class="stud stud-1"></div>
+                    <div class="stud stud-2"></div>
+                </div>
+                <div class="brick brick-3">
+                    <div class="stud stud-1"></div>
+                    <div class="stud stud-2"></div>
+                </div>
+
+                <!-- Floating lone brick -->
+                <div class="brick brick-4">
+                    <div class="stud stud-1"></div>
+                </div>
+
+                <!-- Dashed line connecting the gap -->
+                <div class="dash-line"></div>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm p-8 md:p-14 mt-4">
+                <!-- Title -->
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-lego-anthracite mb-5 leading-tight">
+                    Aïe, l'assemblage a échoué&nbsp;!
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-base md:text-lg text-slate-500 font-medium leading-relaxed max-w-xl mx-auto mb-10">
+                    La page que vous cherchez s'est détachée du set ou n'a jamais été construite.<br class="hidden sm:block">
+                    Pas de panique, l'accueil est toujours debout !
+                </p>
+
+                <!-- Divider -->
+                <div class="flex items-center justify-center gap-3 mb-10">
+                    <span class="h-1 w-8 rounded-full bg-red-600 block"></span>
+                    <span class="h-1 w-3 rounded-full bg-yellow-400 block"></span>
+                    <span class="h-1 w-2 rounded-full bg-lego-anthracite block opacity-30"></span>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="index.html" id="cta-retour-accueil"
+                        class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md shadow-red-600/20 hover:shadow-lg hover:shadow-red-600/30 hover:-translate-y-1 active:scale-95 transition-all duration-300 text-sm md:text-base tracking-wide group">
+                        <i data-lucide="home" class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:scale-110"></i>
+                        Retourner à l'accueil
+                    </a>
+                    <a href="#" onclick="handlePoppinsClick(event)" id="cta-catalogue-poppins"
+                        class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 bg-white border-2 border-slate-200 hover:border-red-200 text-slate-700 hover:text-red-600 font-bold rounded-full shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-95 transition-all duration-300 text-sm md:text-base tracking-wide group">
+                        <i data-lucide="book-open" class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:scale-110"></i>
+                        Voir le catalogue 🧱
+                    </a>
+                </div>
+            </div>
+
+            <!-- Small helper text -->
+            <p class="mt-8 text-xs text-slate-400 font-medium">
+                Code d'erreur <span class="font-bold text-slate-500">404</span> — Page introuvable
+            </p>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => { menu.classList.add('hidden'); });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-sm');
+                navbar.classList.remove('bg-slate-50/90', 'border-b');
+                navbar.classList.add('bg-white/95', 'border-slate-200');
+            } else {
+                navbar.classList.remove('shadow-sm', 'bg-white/95');
+                navbar.classList.add('bg-slate-50/90', 'border-b');
+            }
+        });
+
+        // Poppins click handler
+        function handlePoppinsClick(event) {
+            event.preventDefault();
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = "https://poppins.go.link/21DxY?userId=2d6ae82f-e457-4d85-94ea-43983bb7b3f2";
+            } else {
+                window.open("https://www.wearepoppins.com/fr", "_blank");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
