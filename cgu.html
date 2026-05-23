@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGU – Conditions Générales d'Utilisation | Set et Brique</title>
+    <meta name="description" content="Conditions Générales d'Utilisation du site vitrine Set et Brique, service de location de sets de construction à Lorient.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS (via CDN for static architecture) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lego: {
+                            red: '#E3000B',
+                            yellow: '#FCD54B',
+                            blue: '#2B207D',
+                            white: '#FFFFFF',
+                            anthracite: '#172554',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- Global Animated Background -->
+    <div class="fixed inset-0 pointer-events-none z-[-10] overflow-hidden dots-bg">
+        <div class="particle w-8 h-5 bg-red-600 rounded" style="left:5%; animation-duration:12s; animation-delay:0s;"></div>
+        <div class="particle w-5 h-3 bg-lego-yellow rounded" style="left:15%; animation-duration:16s; animation-delay:2s;"></div>
+        <div class="particle w-10 h-5 bg-lego-anthracite rounded" style="left:80%; animation-duration:14s; animation-delay:4s;"></div>
+        <div class="particle w-6 h-4 bg-red-400 rounded" style="left:90%; animation-duration:10s; animation-delay:1s;"></div>
+        <div class="particle w-8 h-5 bg-yellow-300 rounded" style="left:60%; animation-duration:18s; animation-delay:6s;"></div>
+        <div class="particle w-4 h-3 bg-blue-950 rounded" style="left:40%; animation-duration:13s; animation-delay:3s;"></div>
+        <div class="particle w-7 h-4 bg-red-500 rounded" style="left:25%; animation-duration:15s; animation-delay:1.5s;"></div>
+        <div class="particle w-6 h-6 bg-lego-yellow rounded" style="left:70%; animation-duration:17s; animation-delay:3.5s;"></div>
+        <div class="particle w-9 h-5 bg-lego-anthracite rounded" style="left:30%; animation-duration:14s; animation-delay:5s;"></div>
+        <div class="particle w-5 h-3 bg-red-600 rounded" style="left:55%; animation-duration:11s; animation-delay:2.5s;"></div>
+        <div class="particle w-12 h-6 bg-blue-900 rounded" style="left:85%; animation-duration:19s; animation-delay:0.5s;"></div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-50 bg-slate-50/90 backdrop-blur-xl border-b border-slate-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
+                    <div class="bg-white p-2 rounded-2xl shadow-sm border border-slate-200 transition-transform duration-300 group-hover:scale-105 mr-4 group-hover:border-red-200">
+                        <img src="assets/logo-set-et-brique.png" alt="Logo Set et Brique" class="h-10 md:h-12 w-auto max-w-full rounded-xl">
+                    </div>
+                    <span class="font-black text-xl md:text-2xl tracking-tighter text-lego-anthracite group-hover:text-red-600 transition-colors duration-300">Set et Brique</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-10">
+                    <a href="index.html#concept" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Concept</a>
+                    <a href="qui-sommes-nous.html" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Qui sommes-nous ?</a>
+                    <a href="#" onclick="handlePoppinsClick(event)" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Catalogue</a>
+                    <a href="index.html#vinted" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Vinted</a>
+                    <a href="index.html#contact" class="text-slate-700 hover:text-red-600 font-semibold transition-colors duration-200">Contact</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-red-600 focus:outline-none p-2 rounded-xl hover:bg-slate-200 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-50 border-t border-slate-200 absolute w-full shadow-2xl origin-top transition-transform">
+            <div class="px-6 pt-4 pb-8 space-y-3">
+                <a href="index.html#concept" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Concept</a>
+                <a href="qui-sommes-nous.html" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Qui sommes-nous ?</a>
+                <a href="#" onclick="handlePoppinsClick(event)" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Catalogue Poppins</a>
+                <a href="index.html#vinted" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Boutique Vinted</a>
+                <a href="index.html#contact" class="mobile-link flex items-center px-4 py-4 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-slate-100 rounded-2xl transition-all">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 md:pt-40 md:pb-32 relative">
+        <div class="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
+
+            <!-- Page Header -->
+            <div class="mb-12 md:mb-16">
+                <div class="inline-flex items-center px-4 py-2 bg-red-50 border border-red-100 rounded-full text-red-600 font-bold text-xs uppercase tracking-widest mb-6">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i>
+                    Document légal
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-lego-anthracite mb-4 leading-tight">
+                    Conditions Générales<br class="hidden sm:block"> d'Utilisation
+                </h1>
+                <p class="text-slate-500 font-medium text-base md:text-lg">
+                    Dernière mise à jour : <strong>Mai 2026</strong> — Site vitrine Set et Brique
+                </p>
+                <!-- Décor divider -->
+                <div class="flex items-center gap-3 mt-6">
+                    <span class="h-1 w-12 rounded-full bg-red-600 block"></span>
+                    <span class="h-1 w-4 rounded-full bg-yellow-400 block"></span>
+                    <span class="h-1 w-2 rounded-full bg-lego-anthracite block opacity-30"></span>
+                </div>
+            </div>
+
+            <!-- Content Card -->
+            <div class="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
+
+                <!-- Intro banner -->
+                <div class="bg-gradient-to-r from-lego-anthracite to-blue-900 px-8 md:px-16 py-8 md:py-10">
+                    <p class="text-white/90 font-medium leading-relaxed text-sm md:text-base">
+                        Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site internet
+                        <strong class="text-white">setetbrique.fr</strong> (ci-après « le Site »), édité par <strong class="text-white">SET ET BRIQUE</strong>.
+                        Ce site est un <strong class="text-lego-yellow">site vitrine à vocation informative</strong> : il ne propose ni vente en ligne, ni transaction financière directe.
+                        En consultant ce site, vous acceptez les présentes CGU dans leur intégralité.
+                    </p>
+                </div>
+
+                <!-- Sections -->
+                <div class="p-8 md:p-16 space-y-10 md:space-y-14">
+
+                    <!-- Article 1 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">1</span>
+                            Objet du site
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                Le Site <strong>setetbrique.fr</strong> est un site vitrine ayant pour objet de présenter l'activité de l'entreprise SET ET BRIQUE, spécialisée dans :
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>La <strong>location de sets de jeux de construction</strong> (gérée via l'application partenaire <strong>Poppins</strong>)</li>
+                                <li>La <strong>vente de pièces et sets d'occasion</strong> via la boutique Vinted officielle de l'entreprise</li>
+                            </ul>
+                            <p>
+                                Le Site ne traite aucune commande, paiement ou réservation directement. Ces opérations sont effectuées sur les plateformes partenaires (Poppins, Vinted) soumises à leurs propres conditions générales.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 2 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">2</span>
+                            Accès au site
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                Le Site est accessible gratuitement à tout utilisateur disposant d'un accès à Internet. Tous les coûts afférents à l'accès au Site, que ce soient les frais matériels, logiciels ou d'accès à Internet, sont exclusivement à la charge de l'utilisateur.
+                            </p>
+                            <p>
+                                SET ET BRIQUE se réserve le droit de suspendre, interrompre ou limiter l'accès à tout ou partie du Site, notamment pour des opérations de maintenance, sans que cela ne puisse ouvrir droit à une indemnité quelconque.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 3 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">3</span>
+                            Propriété intellectuelle
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                L'ensemble des éléments composant le Site (textes, photographies, images, logo, charte graphique, structure et code source) est la propriété exclusive de <strong>SET ET BRIQUE</strong> ou de leurs auteurs respectifs, et est protégé par le droit français de la propriété intellectuelle (loi n°92-597 du 1er juillet 1992).
+                            </p>
+                            <p>
+                                Toute reproduction, représentation, utilisation, adaptation ou transmission, intégrale ou partielle, à des fins commerciales ou non, par quelque procédé que ce soit, est interdite sans l'autorisation écrite préalable de SET ET BRIQUE.
+                            </p>
+                            <p class="text-xs text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                ⚠️ Les marques LEGO® et toute image de produit LEGO® appartiennent à The LEGO Group. SET ET BRIQUE est une entreprise indépendante, non affiliée, partenaire ou sponsorisée par The LEGO Group.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 4 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">4</span>
+                            Responsabilité de l'utilisateur
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>L'utilisateur s'engage à :</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Utiliser le Site à des fins licites et conformes aux présentes CGU</li>
+                                <li>Ne pas tenter de porter atteinte au fonctionnement du Site (attaques, virus, scraping abusif, etc.)</li>
+                                <li>Ne pas diffuser d'informations fausses ou trompeuses concernant SET ET BRIQUE</li>
+                                <li>Respecter les droits de propriété intellectuelle mentionnés à l'article 3</li>
+                            </ul>
+                            <p>
+                                SET ET BRIQUE se réserve le droit de poursuivre toute utilisation abusive ou frauduleuse du Site.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 5 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">5</span>
+                            Limitation de responsabilité de l'éditeur
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                SET ET BRIQUE s'efforce de maintenir les informations du Site exactes et à jour, mais ne saurait garantir l'exhaustivité, la précision ou la complétude des contenus publiés. L'éditeur décline toute responsabilité pour :
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Les erreurs ou omissions dans les informations fournies</li>
+                                <li>Les interruptions ou indisponibilités du Site</li>
+                                <li>Tout dommage direct ou indirect résultant de l'accès ou de l'utilisation du Site</li>
+                                <li>Le contenu des sites tiers accessibles via des liens hypertextes</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 6 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">6</span>
+                            Liens hypertextes et sites tiers
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                Le Site contient des liens vers des sites tiers, notamment :
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li><strong>Poppins</strong> (wearepoppins.com) — plateforme de location, soumise aux CGU et politique de confidentialité de Poppins</li>
+                                <li><strong>Vinted</strong> (vinted.fr) — plateforme de vente, soumise aux CGU de Vinted</li>
+                                <li><strong>Facebook</strong> et <strong>Instagram</strong> — réseaux sociaux tiers</li>
+                            </ul>
+                            <p>
+                                SET ET BRIQUE n'exerce aucun contrôle sur ces plateformes et ne saurait être tenu responsable de leur contenu ou de leurs pratiques en matière de données personnelles.
+                            </p>
+                            <p>
+                                La mise en place d'un lien hypertexte vers le Site setetbrique.fr est soumise à l'accord préalable et écrit de SET ET BRIQUE.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 7 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">7</span>
+                            Données personnelles et cookies
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                Le Site est un site vitrine et <strong>ne collecte aucune donnée personnelle</strong> via des formulaires d'inscription, de commande ou de paiement.
+                            </p>
+                            <p>
+                                Les seules données personnelles traitées sont celles que vous transmettez volontairement en nous contactant par e-mail (<a href="mailto:setetbrique@gmail.com" class="text-red-600 hover:underline font-semibold">setetbrique@gmail.com</a>) ou par téléphone (<a href="tel:0984371846" class="text-red-600 hover:underline font-semibold">09.84.37.18.46</a>). Ces données sont utilisées exclusivement pour répondre à vos demandes et ne sont jamais transmises à des tiers.
+                            </p>
+                            <p>
+                                Conformément au RGPD (UE 2016/679) et à la loi Informatique et Libertés (loi n°78-17 du 6 janvier 1978), vous disposez des droits suivants sur vos données :
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Droit d'accès</li>
+                                <li>Droit de rectification</li>
+                                <li>Droit à l'effacement (« droit à l'oubli »)</li>
+                                <li>Droit d'opposition</li>
+                                <li>Droit à la portabilité</li>
+                                <li>Droit de limitation du traitement</li>
+                            </ul>
+                            <p>
+                                Pour exercer ces droits, adressez votre demande à : <a href="mailto:setetbrique@gmail.com" class="text-red-600 hover:underline font-semibold">setetbrique@gmail.com</a>. En cas de litige non résolu, vous pouvez saisir la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) — <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">www.cnil.fr</a>.
+                            </p>
+                            <p>
+                                <strong>Cookies :</strong> Ce site n'utilise pas de cookies publicitaires ou de traçage. D'éventuels cookies techniques strictement nécessaires au bon fonctionnement du site peuvent être déposés sans consentement préalable (directive ePrivacy).
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 8 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">8</span>
+                            Modification des CGU
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                SET ET BRIQUE se réserve le droit de modifier les présentes CGU à tout moment, notamment pour les adapter à l'évolution du Site ou de la réglementation applicable. Les modifications prennent effet dès leur publication sur le Site. L'utilisation du Site après modification vaut acceptation des nouvelles CGU.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 9 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">9</span>
+                            Droit applicable et juridiction compétente
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>
+                                Les présentes CGU sont soumises au droit français. En cas de litige relatif à l'interprétation ou à l'exécution des présentes CGU, et après tentative de résolution amiable, compétence expresse est attribuée aux <strong>tribunaux du ressort de Lorient</strong>.
+                            </p>
+                        </div>
+                    </section>
+
+                    <hr class="border-slate-100">
+
+                    <!-- Article 10 -->
+                    <section class="space-y-4">
+                        <h2 class="text-xl md:text-2xl font-black text-lego-anthracite tracking-tight flex items-center">
+                            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-red-600 text-white text-sm font-black flex items-center justify-center mr-4">10</span>
+                            Contact
+                        </h2>
+                        <div class="pl-12 space-y-3 text-slate-600 leading-relaxed">
+                            <p>Pour toute question relative aux présentes CGU ou à l'utilisation du Site, contactez-nous :</p>
+                            <ul class="list-none space-y-2">
+                                <li class="flex items-center">
+                                    <i data-lucide="mail" class="w-4 h-4 mr-3 text-red-600 shrink-0"></i>
+                                    <a href="mailto:setetbrique@gmail.com" class="text-red-600 hover:underline font-semibold">setetbrique@gmail.com</a>
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-lucide="phone" class="w-4 h-4 mr-3 text-red-600 shrink-0"></i>
+                                    <a href="tel:0984371846" class="text-red-600 hover:underline font-semibold">09.84.37.18.46</a>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-lucide="map-pin" class="w-4 h-4 mr-3 text-red-600 shrink-0 mt-0.5"></i>
+                                    <span>73 Boulevard René Laennec, 56100 Lorient</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Retour -->
+                    <div class="mt-4 pt-8 border-t border-slate-100 text-center">
+                        <a href="index.html" class="inline-flex px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-md hover:-translate-y-1 transition-all duration-300 items-center justify-center">
+                            <i data-lucide="arrow-left" class="w-5 h-5 mr-3"></i> Retour à l'accueil
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => { menu.classList.add('hidden'); });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-sm');
+                navbar.classList.remove('bg-slate-50/90', 'border-b');
+                navbar.classList.add('bg-white/95', 'border-slate-200');
+            } else {
+                navbar.classList.remove('shadow-sm', 'bg-white/95');
+                navbar.classList.add('bg-slate-50/90', 'border-b');
+            }
+        });
+
+        // Poppins click handler
+        function handlePoppinsClick(event) {
+            event.preventDefault();
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = "https://poppins.go.link/21DxY?userId=2d6ae82f-e457-4d85-94ea-43983bb7b3f2";
+            } else {
+                window.open("https://www.wearepoppins.com/fr", "_blank");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
