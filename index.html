@@ -548,7 +548,12 @@
             </div>
 
             <div class="bg-white p-8 md:p-14 rounded-[2rem] md:rounded-[2.5rem] shadow-sm border border-slate-200">
-                <form action="#" method="POST" class="space-y-6 md:space-y-8">
+                <form action="https://api.web3forms.com/submit" method="POST" id="contact-form" class="space-y-6 md:space-y-8">
+                    <!-- Web3Forms Configurations -->
+                    <input type="hidden" name="access_key" value="525e9d91-336b-448e-9b13-8349f730cc0b">
+                    <input type="hidden" name="from_name" value="Set et Brique - Site Web">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
                             <label for="name" class="block text-sm font-bold text-slate-800 mb-2 md:mb-3">Nom</label>
@@ -583,6 +588,11 @@
                         </button>
                     </div>
                 </form>
+
+                <!-- Feedback Message Container -->
+                <div id="form-feedback" class="hidden mt-6 p-4 rounded-2xl border transition-all duration-300">
+                    <p id="feedback-message" class="font-bold text-sm md:text-base"></p>
+                </div>
             </div>
         </div>
     </section>
@@ -1068,6 +1078,77 @@
             if (e.target === qrModal) {
                 closeQrModal();
             }
+        });
+
+        // Contact Form Submission via AJAX (Web3Forms)
+        const contactForm = document.getElementById('contact-form');
+        const feedbackDiv = document.getElementById('form-feedback');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnContent = submitBtn.innerHTML;
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            // UI state: Loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 mr-3 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg> Envoi en cours...
+            `;
+
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let result = await response.json();
+                if (response.status === 200) {
+                    // Success state
+                    feedbackDiv.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'border-red-100');
+                    feedbackDiv.classList.add('flex', 'items-center', 'justify-center', 'gap-3', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-100');
+                    feedbackMessage.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 shrink-0"></i> Merci ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.`;
+                    contactForm.reset();
+                    if (window.lucide) {
+                        window.lucide.createIcons();
+                    }
+                } else {
+                    console.error(response);
+                    throw new Error(result.message || "Erreur de soumission");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                // Error state
+                feedbackDiv.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800', 'border-emerald-100');
+                feedbackDiv.classList.add('flex', 'items-center', 'justify-center', 'gap-3', 'bg-red-50', 'text-red-800', 'border-red-100');
+                feedbackMessage.innerHTML = `<i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0"></i> Oups, une erreur est survenue. N'hésitez pas à nous écrire directement à setetbrique@gmail.com.`;
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            })
+            .then(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+                // Keep the feedback visible for a while, then hide it smoothly
+                setTimeout(() => {
+                    feedbackDiv.classList.add('opacity-0');
+                    setTimeout(() => {
+                        feedbackDiv.classList.add('hidden');
+                        feedbackDiv.classList.remove('flex', 'opacity-0');
+                    }, 300);
+                }, 8000);
+            });
         });
     </script>
 </body>
