@@ -278,61 +278,172 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
-                <!-- Avis 1 -->
-                <div class="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-full flex items-center justify-center font-bold text-blue-600 mr-4 text-xl md:text-2xl">
-                                A
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Aurore Fsd</h3>
-                                <p class="text-xs md:text-sm text-slate-500">7 avis</p>
-                            </div>
-                        </div>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8">
-                    </div>
-                    <div class="flex mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                    </div>
-                    <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
-                        "J'adore !! Une super activité sur plusieurs jours partagée avec mon fils. Et parfois un moment calme pour lui seul. Il était fier de finir un si grand Lego ! Je reprendrai sur une période de vacances aussi, ce qui fait une bonne activité complémentaire. Très bon contact avec les gérants. Je recommande à tout le monde autour de moi maintenant !"
-                    </p>
+            <!-- Conteneur Carousel -->
+            <div class="relative max-w-6xl mx-auto px-4 md:px-6">
+                <!-- Navigation (Desktop) -->
+                <div class="hidden md:flex justify-end space-x-3 mb-6">
+                    <button id="carousel-prev" class="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 flex items-center justify-center transition-all duration-300 active:scale-95 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md" aria-label="Avis précédent">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button id="carousel-next" class="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-700 hover:border-blue-500 hover:text-blue-600 flex items-center justify-center transition-all duration-300 active:scale-95 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md" aria-label="Avis suivant">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
                 </div>
 
-                <!-- Avis 2 -->
-                <div class="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 md:w-14 md:h-14 bg-red-50 rounded-full flex items-center justify-center font-bold text-red-600 mr-4 text-xl md:text-2xl">
-                                M
+                <!-- Track de défilement -->
+                <div id="carousel-track" class="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-6 md:gap-8 pb-8 no-scrollbar scroll-smooth">
+                    <!-- Avis 1 -->
+                    <div class="w-[85vw] sm:w-[450px] shrink-0 snap-start snap-always bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-50 rounded-full flex items-center justify-center font-bold text-blue-600 mr-4 text-xl md:text-2xl shrink-0">
+                                        A
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Aurore Fsd</h3>
+                                        <p class="text-xs md:text-sm text-slate-500">7 avis</p>
+                                    </div>
+                                </div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8 shrink-0">
                             </div>
-                            <div>
-                                <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Marine Chauvel</h3>
-                                <p class="text-xs md:text-sm text-slate-500">2 avis</p>
+                            <div class="flex mb-4 animate-stars">
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
                             </div>
+                            <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
+                                "J'adore !! Une super activité sur plusieurs jours partagée avec mon fils. Et parfois un moment calme pour lui seul. Il était fier de finir un si grand Lego ! Je reprendrai sur une période de vacances aussi, ce qui fait une bonne activité complémentaire. Très bon contact avec les gérants. Je recommande à tout le monde autour de moi maintenant !"
+                            </p>
                         </div>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8">
                     </div>
-                    <div class="flex mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+
+                    <!-- Avis 2 -->
+                    <div class="w-[85vw] sm:w-[450px] shrink-0 snap-start snap-always bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 md:w-14 md:h-14 bg-purple-50 rounded-full flex items-center justify-center font-bold text-purple-600 mr-4 text-xl md:text-2xl shrink-0">
+                                        N
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Nathalie Guillevic-Le Dantec</h3>
+                                        <p class="text-xs md:text-sm text-slate-500">2 avis</p>
+                                    </div>
+                                </div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8 shrink-0">
+                            </div>
+                            <div class="flex mb-4">
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            </div>
+                            <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
+                                "L’idée de location de Lego était pile ce que je recherchais. J’admire l’organisation de la famille « Set et Briques », leur gentillesse, et leur disponibilité tant dans les échanges que pour la remise et la restitution des sets. Je louerai de nouveau sans hésitation, et en ai déjà parle autour de moi tellement je trouve l'idée au top! Merci et à bientôt pour la location de nouvelles heures de plaisir de montage!"
+                            </p>
+                        </div>
                     </div>
-                    <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
-                        "Une superbe expérience que nous allons renouveler avec plaisir !!<br>
-                        L'idée de location est génial.<br>
-                        Tout est très bien organisé, échange simple et réactif via Poppins.<br>
-                        Gentillesse, sourire et bienveillance sont au rdv lors des échanges.<br>
-                        Je recommande + + +"
-                    </p>
+
+                    <!-- Avis 3 -->
+                    <div class="w-[85vw] sm:w-[450px] shrink-0 snap-start snap-always bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 rounded-full flex items-center justify-center font-bold text-emerald-600 mr-4 text-xl md:text-2xl shrink-0">
+                                        V
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Virginie Le Guen</h3>
+                                        <p class="text-xs md:text-sm text-slate-500">6 avis</p>
+                                    </div>
+                                </div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8 shrink-0">
+                            </div>
+                            <div class="flex mb-4">
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            </div>
+                            <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
+                                "Très bonne expérience. Première location de lego et surement pas la dernière. Tout est parfait et très bien organisé. Mon fils a été ravi."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Avis 4 -->
+                    <div class="w-[85vw] sm:w-[450px] shrink-0 snap-start snap-always bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 md:w-14 md:h-14 bg-amber-50 rounded-full flex items-center justify-center font-bold text-amber-600 mr-4 text-xl md:text-2xl shrink-0">
+                                        X
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Xavier Carré</h3>
+                                        <p class="text-xs md:text-sm text-slate-500">3 avis</p>
+                                    </div>
+                                </div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8 shrink-0">
+                            </div>
+                            <div class="flex mb-4">
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            </div>
+                            <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
+                                "Lego très agréable à monter, location et retour faciles 🙂 et très bonne communication. Merci !"
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Avis 5 -->
+                    <div class="w-[85vw] sm:w-[450px] shrink-0 snap-start snap-always bg-white p-8 md:p-10 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 md:w-14 md:h-14 bg-red-50 rounded-full flex items-center justify-center font-bold text-red-600 mr-4 text-xl md:text-2xl shrink-0">
+                                        M
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg md:text-xl text-lego-anthracite">Marine Chauvel</h3>
+                                        <p class="text-xs md:text-sm text-slate-500">3 avis</p>
+                                    </div>
+                                </div>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-6 h-6 md:w-8 md:h-8 shrink-0">
+                            </div>
+                            <div class="flex mb-4">
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            </div>
+                            <p class="text-base md:text-lg text-slate-700 font-medium leading-relaxed">
+                                "Une superbe expérience que nous allons renouveler avec plaisir !!<br>
+                                L'idée de location est génial.<br>
+                                Tout est très bien organisé, échange simple et réactif via Poppins.<br>
+                                Gentillesse, sourire et bienveillance sont au rdv lors des échanges.<br>
+                                Je recommande + + +"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicateurs (Dots) -->
+                <div id="carousel-dots" class="flex justify-center space-x-2 mt-4">
+                    <button class="w-2.5 h-2.5 rounded-full bg-blue-900 transition-all duration-300" aria-label="Aller à l'avis 1"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Aller à l'avis 2"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Aller à l'avis 3"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Aller à l'avis 4"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300" aria-label="Aller à l'avis 5"></button>
                 </div>
             </div>
             
@@ -967,6 +1078,129 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Google Reviews Carousel Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById('carousel-track');
+            const prevBtn = document.getElementById('carousel-prev');
+            const nextBtn = document.getElementById('carousel-next');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            if (!track || !dotsContainer) return;
+            const dots = dotsContainer.querySelectorAll('button');
+
+            function updateCarouselState() {
+                const cards = track.querySelectorAll('#carousel-track > div');
+                if (!cards.length) return;
+
+                const trackRect = track.getBoundingClientRect();
+                let activeIndex = 0;
+                let minDiff = Infinity;
+
+                cards.forEach((card, idx) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const diff = Math.abs(cardRect.left - trackRect.left);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        activeIndex = idx;
+                    }
+                });
+
+                // Update active dot
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.classList.remove('bg-slate-300', 'hover:bg-slate-400');
+                        dot.classList.add('bg-blue-900');
+                    } else {
+                        dot.classList.remove('bg-blue-900');
+                        dot.classList.add('bg-slate-300', 'hover:bg-slate-400');
+                    }
+                });
+
+                // Update prev/next button states
+                const isAtStart = track.scrollLeft <= 5;
+                const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+
+                if (prevBtn) prevBtn.disabled = isAtStart;
+                if (nextBtn) nextBtn.disabled = isAtEnd;
+            }
+
+            // Navigation arrows click logic
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const cards = track.querySelectorAll('#carousel-track > div');
+                    const trackRect = track.getBoundingClientRect();
+                    let targetIndex = 0;
+
+                    // Find the current active/leftmost card index
+                    let minDiff = Infinity;
+                    cards.forEach((card, idx) => {
+                        const cardRect = card.getBoundingClientRect();
+                        const diff = Math.abs(cardRect.left - trackRect.left);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            targetIndex = idx;
+                        }
+                    });
+
+                    const prevIndex = Math.max(0, targetIndex - 1);
+                    const targetCard = cards[prevIndex];
+                    if (targetCard) {
+                        track.scrollTo({
+                            left: targetCard.offsetLeft - track.offsetLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    const cards = track.querySelectorAll('#carousel-track > div');
+                    const trackRect = track.getBoundingClientRect();
+                    let targetIndex = 0;
+
+                    // Find the current active/leftmost card index
+                    let minDiff = Infinity;
+                    cards.forEach((card, idx) => {
+                        const cardRect = card.getBoundingClientRect();
+                        const diff = Math.abs(cardRect.left - trackRect.left);
+                        if (diff < minDiff) {
+                            minDiff = diff;
+                            targetIndex = idx;
+                        }
+                    });
+
+                    const nextIndex = Math.min(cards.length - 1, targetIndex + 1);
+                    const targetCard = cards[nextIndex];
+                    if (targetCard) {
+                        track.scrollTo({
+                            left: targetCard.offsetLeft - track.offsetLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+
+            // Dot indicators click logic
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    const cards = track.querySelectorAll('#carousel-track > div');
+                    const targetCard = cards[idx];
+                    if (targetCard) {
+                        track.scrollTo({
+                            left: targetCard.offsetLeft - track.offsetLeft,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Listeners
+            track.addEventListener('scroll', updateCarouselState);
+            window.addEventListener('resize', updateCarouselState);
+
+            // Initial check
+            setTimeout(updateCarouselState, 100);
+        });
 
         // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
