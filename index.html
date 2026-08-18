@@ -1090,9 +1090,12 @@
             const dots = dotsContainer.querySelectorAll('button');
             let autoplayInterval = null;
 
-            function updateCarouselState() {
+            function getActiveIndex() {
                 const cards = track.querySelectorAll('#carousel-track > div');
-                if (!cards.length) return;
+                const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 5;
+                if (isAtEnd) {
+                    return cards.length - 1;
+                }
 
                 const trackRect = track.getBoundingClientRect();
                 let activeIndex = 0;
@@ -1106,6 +1109,14 @@
                         activeIndex = idx;
                     }
                 });
+                return activeIndex;
+            }
+
+            function updateCarouselState() {
+                const cards = track.querySelectorAll('#carousel-track > div');
+                if (!cards.length) return;
+
+                const activeIndex = getActiveIndex();
 
                 // Update active dot
                 dots.forEach((dot, idx) => {
@@ -1124,23 +1135,6 @@
 
                 if (prevBtn) prevBtn.disabled = isAtStart;
                 if (nextBtn) nextBtn.disabled = isAtEnd;
-            }
-
-            function getActiveIndex() {
-                const cards = track.querySelectorAll('#carousel-track > div');
-                const trackRect = track.getBoundingClientRect();
-                let activeIndex = 0;
-                let minDiff = Infinity;
-
-                cards.forEach((card, idx) => {
-                    const cardRect = card.getBoundingClientRect();
-                    const diff = Math.abs(cardRect.left - trackRect.left);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        activeIndex = idx;
-                    }
-                });
-                return activeIndex;
             }
 
             function scrollToIndex(idx) {
@@ -1170,7 +1164,7 @@
 
             function startAutoplay() {
                 stopAutoplay();
-                autoplayInterval = setInterval(nextSlide, 4500); // Shift slide every 4.5 seconds
+                autoplayInterval = setInterval(nextSlide, 3000); // Shift slide every 3 seconds
             }
 
             function stopAutoplay() {
