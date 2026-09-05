@@ -40,7 +40,6 @@ complètent l'activité.
 - Gestion du stock et des quantités disponibles
 - Définition du montant de caution par article
 - Suivi des entrées et sorties de matériel
-- Suivi des colis envoyés / reçus (le cas échéant)
 
 ### 2. Planning des locations — 660 €
 - Calendrier des périodes de location
