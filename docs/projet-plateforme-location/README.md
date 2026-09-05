@@ -9,7 +9,9 @@ et gestion des locations, pour progressivement se passer de Poppins.
 ## Documents de référence
 
 - [devis-set-et-brique.docx](devis-set-et-brique.docx) / [.md](devis-set-et-brique.md) —
-  devis détaillé, 12 modules, 5 520 € au total, 2 options de règlement.
+  devis détaillé, 11 modules, 5 520 € au total, 2 options de règlement. Ordre de
+  développement revu (voir ci-dessous) : module 11 "Espace client" d'origine fusionné dans
+  le module 3 "Comptes clients".
 - [contrat-set-et-brique.docx](contrat-set-et-brique.docx) / [.md](contrat-set-et-brique.md) —
   contrat de prestation AGON-GATE ↔ Set et Brique (projet de contrat, à faire relire par un
   juriste avant signature).
@@ -30,6 +32,27 @@ Montants fixes, identiques pour tous les sets (pas de variation selon la valeur/
 | 1 mois | 45 € |
 
 > Info transmise par la cliente après le RDV de cadrage (hors notes brutes du RDV).
+
+## Ordre de développement des modules (revu)
+
+Tarification devenue fixe (voir grille ci-dessus) → la "tarification dégressive" a été
+retirée du module 1. Le module "Espace client en ligne" (ex-module 11) a été fusionné dans
+le module 3 "Comptes clients" : le client suit désormais l'avancement de ses locations en
+cours (prochaine date de retrait, set concerné, statut récupéré / à rendre, date de retour,
+retard éventuel). Total inchangé à 5 520 € (le prix de l'ancien module 11 a été absorbé dans
+le module 3, qui passe de 540 € à 660 €).
+
+1. Location pure — catalogue & stock (900 €)
+2. Planning des locations (660 €)
+3. Comptes clients & espace de suivi (660 €)
+4. Paiement Stripe (540 €)
+5. Tunnel de réservation client (480 €)
+6. Contrat de location / conditions générales (300 €)
+7. Facturation (420 €)
+8. État des lieux & gestion des dommages (450 €)
+9. Notifications automatisées (300 €)
+10. Back-office & reporting (450 €)
+11. Intégration, tests, déploiement, formation (360 €)
 
 ## Périmètre V1 (confirmé)
 
