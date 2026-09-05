@@ -67,7 +67,8 @@ complètent l'activité.
   grâce à cette mutualisation)
 
 ### 6. Contrat de location / conditions générales — 300 €
-- Conditions générales de location intégrées au tunnel de réservation
+- Génération automatique d'un contrat de location personnalisé (PDF) à chaque réservation,
+  avec les mentions légales, le set, la durée, les dates et le montant
 - Acceptation obligatoire avant validation de la commande
 
 ### 7. Facturation — 420 €
@@ -88,6 +89,7 @@ complètent l'activité.
 ### 10. Back-office & reporting — 450 €
 - Vue d'ensemble des locations en cours
 - Suivi du stock et du chiffre d'affaires
+- Export simple des ventes par année civile (hors export comptable complet, prévu en V2)
 
 ### 11. Intégration, tests, déploiement, formation — 360 €
 - Mise en production

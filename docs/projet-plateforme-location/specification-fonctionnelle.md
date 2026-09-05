@@ -26,6 +26,11 @@ posé en question avant développement plutôt que supposé.
 - ✅ Nom, référence LEGO officielle, nombre de pièces, âge conseillé, photo(s), état
   (neuf/occasion), valeur de remplacement (sert de base à la caution).
 - ✅ Champ commentaire libre, **visible côté client** sur la fiche du set.
+- ✅ Poids du set : stocké en interne (utile à la vérification au retour, module 8), mais
+  **jamais affiché côté client** — décision volontaire pour éviter que les locataires ne
+  devinent le contenu exact des sachets pesés.
+- ⏳ Nombre de photos à afficher par set : proposition 3 à 4 par défaut, à confirmer avec
+  Marion.
 
 **Stock :**
 - ✅ Un seul exemplaire par référence aujourd'hui (~25 références au catalogue, ajout moyen
@@ -54,6 +59,9 @@ posé en question avant développement plutôt que supposé.
 - 🔜 **Prolongation d'une location en cours** : souhaitée par Marion mais reportée en V2. Le
   cas du conflit avec une réservation déjà prise juste après (comment refuser/renégocier
   sans léser le client suivant) reste à trancher à ce moment-là.
+- ⏳ Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
+  indisponibilité générale), indépendamment du statut de chaque set ? Non tranché — remonté
+  par Madus en lien avec le délai minimum de réservation.
 
 ---
 
@@ -86,9 +94,8 @@ posé en question avant développement plutôt que supposé.
 
 **Caution :**
 - ✅ Toujours en **pré-autorisation**, jamais débitée sauf litige.
-- ⚠️ Point à vérifier avec Marion : si le loyer est payé par TPE sur place, comment se fait
-  la pré-autorisation de la caution (carte enregistrée en amont côté client tout de même) ?
-  Pas encore posé — à ajouter aux questions si le sujet n'est pas déjà couvert.
+- ⏳ Si le loyer est payé par TPE sur place, comment se fait la pré-autorisation de la
+  caution (carte enregistrée en amont côté client tout de même) ? Question posée à Marion.
 
 **Hors périmètre :**
 - Pas d'option d'assurance/protection additionnelle — la caution est la seule protection.
@@ -111,12 +118,20 @@ posé en question avant développement plutôt que supposé.
 
 ## 6. Contrat de location / conditions générales
 
-- ✅ Acceptation par **simple case à cocher** ("J'accepte les conditions générales") — pas de
-  signature électronique nominative en V1.
+- ✅ **Contrat généré automatiquement (PDF) à chaque réservation** — pas un simple texte CGL
+  statique. Le PDF doit reprendre les mentions légales, le set loué, la durée, les dates de
+  retrait/retour et le montant. Réutiliser le même mécanisme de génération PDF que les
+  factures (module 7) est probablement pertinent.
+- ✅ Acceptation par **simple case à cocher** ("J'accepte les conditions générales") avant
+  validation de la commande — pas de signature électronique nominative en V1. C'est cette
+  acceptation qui déclenche la génération du contrat.
 - ✅ Le document physique remis dans la boîte lors du prêt (avertissement d'âge conseillé)
   est **géré indépendamment par Marion**, hors système — rien à générer côté plateforme.
-- ⏳ Le contenu réel des CGL dépend des barèmes non tranchés (pénalités, annulation, retard)
-  — **ne pas démarrer ce module avant réponse de Marion**.
+- ⏳ Le contenu légal exact du contrat (barèmes de pénalités, annulation, retard) dépend des
+  réponses de Marion — **le moteur de génération PDF peut être développé dès maintenant, mais
+  le texte légal définitif ne pourra être finalisé qu'après ses réponses**.
+- Prix du module inchangé (300 €) malgré ce développement plus conséquent que la case à
+  cocher initialement prévue — décision d'Alexis d'absorber le coût dans le forfait.
 
 ---
 
@@ -129,8 +144,9 @@ posé en question avant développement plutôt que supposé.
   - après que Marion ait marqué manuellement la réservation "payée" sur le site, pour un
     paiement TPE sur place.
   - **Jamais de facture avant paiement effectif.**
-- 🔜 Export comptable (format, fréquence) : non défini, Marion n'a pas d'outil de
-  comptabilité précis à ce jour — reporté en V2.
+- 🔜 Export comptable complet (format, fréquence) : non défini, Marion n'a pas d'outil de
+  comptabilité précis à ce jour — reporté en V2 (voir aussi module 10 pour l'export simple
+  des ventes, inclus en V1).
 
 ---
 
@@ -167,7 +183,12 @@ posé en question avant développement plutôt que supposé.
   utilisateur prévu pour l'instant.
 - ✅ Tableau de bord : chiffre d'affaires du mois, taux d'occupation par set, sets les plus
   loués.
-- 🔜 Export de données : reporté en V2 (même dépendance que l'export comptable du module 7).
+- ✅ Export simple des ventes par année civile, inclus en V1 (distinct de l'export comptable
+  complet, qui reste en V2). Modèle de données : une **vente** est un nœud entre un **set**,
+  une **durée** et un **client** — c'est cet élément qui doit être interrogeable en base pour
+  produire cet export.
+- 🔜 Export comptable complet (format lié à un outil de comptabilité) : reporté en V2, Marion
+  n'a pas d'outil précis à ce jour.
 
 ---
 
@@ -189,8 +210,13 @@ barèmes ne sont pas connus :
 4. Délai minimum entre réservation et retrait (modules 2, 5).
 5. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
 6. Locations simultanées par client — oui/non (module 3).
+7. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
+8. Nombre de photos par set à afficher (proposition 3-4) (module 1).
+9. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité
+   (module 2).
 
 ## Récapitulatif des points reportés en V2 (🔜)
 
 1. Prolongation d'une location en cours (module 2).
-2. Export comptable / export de données (modules 7, 10).
+2. Export comptable complet (modules 7, 10) — l'export simple des ventes par année civile,
+   lui, est inclus en V1 (module 10).

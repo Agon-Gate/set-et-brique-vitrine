@@ -67,6 +67,21 @@ le module 3, qui passe de 540 € à 660 €).
 - Caution = prix neuf du set, libérée automatiquement 48h après confirmation du bon retour.
 - Pas d'export catalogue/historique depuis Poppins possible → ressaisie manuelle.
 
+## Précisions techniques (remontées de Madus, tranchées)
+
+- **Poids du set** : non affiché côté client — information volontairement privée pour éviter
+  que les locataires ne devinent le contenu exact des sachets pesés (Set et Brique sépare le
+  poids des sachets de pièces de celui de la notice et des autres accessoires). Le poids de
+  référence reste stocké en interne, utile pour la vérification au retour (module 8).
+- **Contrat de location automatique** : confirmé, un contrat personnalisé (PDF) est généré à
+  chaque réservation avec les mentions légales, le set, la durée, les dates et le montant —
+  répercuté dans le devis (module 6). Prix du module inchangé (300 €), le développement
+  supplémentaire est absorbé dans le forfait.
+- **Export des ventes par année civile** : ajouté en V1 (module 10), même sans export
+  comptable complet. Modèle de données : une **vente** est un nœud entre un **set**, une
+  **durée** et un **client** — c'est cet élément qui doit être interrogeable en base pour
+  produire cet export.
+
 ## Points encore ouverts (bloquants pour certains modules)
 
 Ces points ne sont pas tranchés côté cliente — cf. section "Points à trancher" du récap
@@ -81,6 +96,14 @@ des dommages) tant qu'ils ne sont pas clarifiés :
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
 6. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
    réservés simultanément), ou une seule location active à la fois par client ?
+7. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
+   pour la pré-autorisation de la caution, ou la caution est-elle prise directement sur
+   place via le TPE ?
+8. Combien de photos par set afficher sur la fiche produit ? Proposition : 3 à 4 par défaut,
+   à confirmer.
+9. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
+   indisponibilité générale), indépendamment du statut de chaque set ? — remontée par Madus
+   en lien avec le délai minimum de réservation (point 4).
 
 ## Reporté à une V2 (hors périmètre actuel)
 
@@ -89,9 +112,9 @@ des dommages) tant qu'ils ne sont pas clarifiés :
   une V2 — question non tranchée à traiter à ce moment-là : que faire si un autre client a
   déjà réservé ce set juste après (comment refuser/renégocier sans le léser) ? Ne pas
   développer cette fonctionnalité en V1.
-- **Export comptable** (module 7 Facturation / module 10 Back-office) : format et fréquence
-  d'export non définis pour l'instant (pas d'outil de comptabilité précis côté cliente à ce
-  jour). Retiré du devis (modules 7 et 10) — à revoir et rechiffrer en V2 le moment venu.
+- **Export comptable complet** (format lié à un outil de comptabilité) : non défini, Marion
+  n'a pas d'outil précis à ce jour. Reste hors périmètre V1. Une version allégée est en
+  revanche incluse en V1 (module 10) : export simple des ventes par année civile.
 
 ## Financier / juridique — points d'attention
 
