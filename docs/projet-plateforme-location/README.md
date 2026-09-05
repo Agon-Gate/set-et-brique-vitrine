@@ -9,9 +9,10 @@ et gestion des locations, pour progressivement se passer de Poppins.
 ## Documents de référence
 
 - [devis-set-et-brique.docx](devis-set-et-brique.docx) / [.md](devis-set-et-brique.md) —
-  devis détaillé, 11 modules, 5 520 € au total, 2 options de règlement. Ordre de
-  développement revu (voir ci-dessous) : module 11 "Espace client" d'origine fusionné dans
-  le module 3 "Comptes clients".
+  devis détaillé, 12 modules, 5 520 € au total, 2 options de règlement. Ordre de
+  développement revu (voir ci-dessous) : module "Espace client" d'origine fusionné dans le
+  module 3 "Comptes clients" ; module 6 "Bons cadeaux" ajouté en cours de route (inclus,
+  sans surcoût).
 - [contrat-set-et-brique.docx](contrat-set-et-brique.docx) / [.md](contrat-set-et-brique.md) —
   contrat de prestation AGON-GATE ↔ Set et Brique (projet de contrat, à faire relire par un
   juriste avant signature).
@@ -50,12 +51,13 @@ le module 3, qui passe de 540 € à 660 €).
 3. Comptes clients & espace de suivi (660 €)
 4. Paiement Stripe (540 €)
 5. Tunnel de réservation client (480 €)
-6. Contrat de location / conditions générales (300 €)
-7. Facturation (420 €)
-8. État des lieux & gestion des dommages (450 €)
-9. Notifications automatisées (300 €)
-10. Back-office & reporting (450 €)
-11. Intégration, tests, déploiement, formation (360 €)
+6. Bons cadeaux (Inclus — voir section dédiée ci-dessous)
+7. Contrat de location / conditions générales (300 €)
+8. Facturation (420 €)
+9. État des lieux & gestion des dommages (450 €)
+10. Notifications automatisées (300 €)
+11. Back-office & reporting (450 €)
+12. Intégration, tests, déploiement, formation (360 €)
 
 ## Périmètre V1 (confirmé)
 
@@ -75,12 +77,29 @@ le module 3, qui passe de 540 € à 660 €).
   référence reste stocké en interne, utile pour la vérification au retour (module 8).
 - **Contrat de location automatique** : confirmé, un contrat personnalisé (PDF) est généré à
   chaque réservation avec les mentions légales, le set, la durée, les dates et le montant —
-  répercuté dans le devis (module 6). Prix du module inchangé (300 €), le développement
-  supplémentaire est absorbé dans le forfait.
-- **Export des ventes par année civile** : ajouté en V1 (module 10), même sans export
-  comptable complet. Modèle de données : une **vente** est un nœud entre un **set**, une
-  **durée** et un **client** — c'est cet élément qui doit être interrogeable en base pour
+  répercuté dans le devis (module 7, Contrat de location). Prix du module inchangé (300 €),
+  le développement supplémentaire est absorbé dans le forfait.
+- **Export des ventes par année civile** : ajouté en V1 (module 11, Back-office), même sans
+  export comptable complet. Modèle de données : une **vente** est un nœud entre un **set**,
+  une **durée** et un **client** — c'est cet élément qui doit être interrogeable en base pour
   produire cet export.
+
+## Module 6 — Bons cadeaux (nouveau, ajouté en cours de cadrage)
+
+Demande remontée par la cliente, absente du devis initial. Module dédié, ajouté sans faire
+bouger le prix des autres modules ni le total (5 520 €) — listé "Inclus" dans le devis,
+présenté comme rendu possible grâce à la réutilisation des modules Paiement Stripe (4) et
+Tunnel de réservation (5) déjà prévus.
+
+**Confirmé :**
+- Bons vendus aux montants de la grille tarifaire (10 € / 15 € / 25 € / 45 €), pas de montant
+  libre.
+- Génération automatique d'un code unique par bon, envoyé par email à l'achat.
+- Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
+  Stripe/TPE.
+- Suivi des bons (valide / utilisé / expiré) depuis le back-office.
+
+**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 10 à 14).
 
 ## Points encore ouverts (bloquants pour certains modules)
 
@@ -104,6 +123,19 @@ des dommages) tant qu'ils ne sont pas clarifiés :
 9. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
    indisponibilité générale), indépendamment du statut de chaque set ? — remontée par Madus
    en lien avec le délai minimum de réservation (point 4).
+10. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
+    utilisable uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour
+    compléter un paiement plus important avec un autre moyen de paiement pour la différence ?
+11. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
+    conservé pour une prochaine location, ou perdu ?
+12. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
+    détenant le code (cas classique du cadeau) ?
+13. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
+    pour les bons d'achat non alimentaires (loi Chatel). Quelle durée exacte Marion
+    souhaite-t-elle (1 an, 2 ans, illimité) ?
+14. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
+15. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
+    Marion, sans achat) pour le point 5 ci-dessus (client lésé en cas de non-retour) ?
 
 ## Reporté à une V2 (hors périmètre actuel)
 

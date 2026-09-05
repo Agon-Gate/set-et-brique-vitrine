@@ -26,12 +26,13 @@ complètent l'activité.
 | 3 | Comptes clients & espace de suivi | 660 € |
 | 4 | Paiement Stripe | 540 € |
 | 5 | Tunnel de réservation client | 480 € |
-| 6 | Contrat de location / conditions générales | 300 € |
-| 7 | Facturation | 420 € |
-| 8 | État des lieux & gestion des dommages | 450 € |
-| 9 | Notifications automatisées | 300 € |
-| 10 | Back-office & reporting | 450 € |
-| 11 | Intégration, tests, déploiement, formation | 360 € |
+| 6 | Bons cadeaux | Inclus |
+| 7 | Contrat de location / conditions générales | 300 € |
+| 8 | Facturation | 420 € |
+| 9 | État des lieux & gestion des dommages | 450 € |
+| 10 | Notifications automatisées | 300 € |
+| 11 | Back-office & reporting | 450 € |
+| 12 | Intégration, tests, déploiement, formation | 360 € |
 
 **Total développement complet : 5 520 €**
 
@@ -66,32 +67,42 @@ complètent l'activité.
 - Réutilise les composants déjà développés pour le planning et le catalogue (module allégé
   grâce à cette mutualisation)
 
-### 6. Contrat de location / conditions générales — 300 €
+### 6. Bons cadeaux — Inclus
+- Vente de bons cadeaux en ligne, aux montants correspondant à la grille tarifaire
+  (10 € / 15 € / 25 € / 45 €)
+- Génération automatique d'un code unique par bon acheté, envoyé par email à l'acheteur
+- Utilisation du bon comme moyen de paiement dans le tunnel de réservation, au même titre
+  que Stripe ou le TPE
+- Suivi des bons émis (valide / utilisé / expiré) depuis le back-office
+- Module rendu possible sans surcoût grâce à la réutilisation du paiement (module 4) et du
+  tunnel de réservation (module 5) déjà développés
+
+### 7. Contrat de location / conditions générales — 300 €
 - Génération automatique d'un contrat de location personnalisé (PDF) à chaque réservation,
   avec les mentions légales, le set, la durée, les dates et le montant
 - Acceptation obligatoire avant validation de la commande
 
-### 7. Facturation — 420 €
+### 8. Facturation — 420 €
 - Génération automatique de devis et factures au format PDF
 - Numérotation légale
 
-### 8. État des lieux & gestion des dommages — 450 €
+### 9. État des lieux & gestion des dommages — 450 €
 - Constat de retour réalisé par Set et Brique (pesée des pièces par sachet/couleur,
   vérification des figurines et des manuels de montage officiels), généralement le soir
   même de la réception du set
 - Prélèvement partiel ou total sur la caution en cas de dommage ou de pièce manquante
 
-### 9. Notifications automatisées — 300 €
+### 10. Notifications automatisées — 300 €
 - Email de confirmation de réservation
 - Rappel avant la date de retour
 - Relance en cas de retard
 
-### 10. Back-office & reporting — 450 €
+### 11. Back-office & reporting — 450 €
 - Vue d'ensemble des locations en cours
 - Suivi du stock et du chiffre d'affaires
 - Export simple des ventes par année civile (hors export comptable complet, prévu en V2)
 
-### 11. Intégration, tests, déploiement, formation — 360 €
+### 12. Intégration, tests, déploiement, formation — 360 €
 - Mise en production
 - Tests du parcours complet
 - Formation à l'utilisation de l'outil

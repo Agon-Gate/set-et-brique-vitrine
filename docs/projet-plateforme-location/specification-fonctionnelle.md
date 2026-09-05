@@ -15,7 +15,7 @@ posé en question avant développement plutôt que supposé.
 ## Légende
 
 - ✅ Règle confirmée, prête à développer.
-- ⏳ En attente d'une réponse de la cliente (Marion) — cf. [questions-recap-a-envoyer.docx](questions-recap-a-envoyer.docx).
+- ⏳ En attente d'une réponse de la cliente (Marion) ou d'Alexis — cf. [questions-recap-a-envoyer.docx](questions-recap-a-envoyer.docx).
 - 🔜 Reporté à une V2, ne pas développer maintenant.
 
 ---
@@ -26,7 +26,7 @@ posé en question avant développement plutôt que supposé.
 - ✅ Nom, référence LEGO officielle, nombre de pièces, âge conseillé, photo(s), état
   (neuf/occasion), valeur de remplacement (sert de base à la caution).
 - ✅ Champ commentaire libre, **visible côté client** sur la fiche du set.
-- ✅ Poids du set : stocké en interne (utile à la vérification au retour, module 8), mais
+- ✅ Poids du set : stocké en interne (utile à la vérification au retour, module 9), mais
   **jamais affiché côté client** — décision volontaire pour éviter que les locataires ne
   devinent le contenu exact des sachets pesés.
 - ⏳ Nombre de photos à afficher par set : proposition 3 à 4 par défaut, à confirmer avec
@@ -110,18 +110,50 @@ posé en question avant développement plutôt que supposé.
 ## 5. Tunnel de réservation client
 
 - ✅ Parcours : sélection du set → choix de la durée (4 options fixes) → choix du créneau de
-  retrait → paiement (en ligne ou "à la remise par TPE").
+  retrait → paiement (en ligne, à la remise par TPE, ou par bon cadeau — module 6).
 - ✅ En V1, tous les sets sont disponibles à tous les lieux de retrait (pas de restriction
   géographique par set).
 
 ---
 
-## 6. Contrat de location / conditions générales
+## 6. Bons cadeaux
+
+Module ajouté en cours de cadrage (absent du devis initial), à la demande de la cliente.
+Listé "Inclus" dans le devis — pas de surcoût, présenté comme rendu possible grâce à la
+réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
+
+**Confirmé :**
+- ✅ Bons vendus aux montants de la grille tarifaire uniquement (10 € / 15 € / 25 € / 45 €) —
+  pas de montant libre.
+- ✅ Génération automatique d'un code unique par bon acheté, envoyé par email à l'acheteur.
+- ✅ Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
+  Stripe ou le TPE.
+- ✅ Suivi des bons émis (valide / utilisé / expiré) depuis le back-office.
+
+**Encore à trancher :**
+- ⏳ Un bon doit-il correspondre exactement à une des 4 durées (ex. bon de 15 € utilisable
+  uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour compléter un
+  paiement plus important avec un autre moyen de paiement pour la différence ?
+- ⏳ Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
+  conservé pour une prochaine location, ou perdu ?
+- ⏳ Un bon est-il nominatif (lié à un compte client), ou utilisable par toute personne
+  détenant le code (cas classique du cadeau) ?
+- ⏳ Durée de validité : la loi française impose un minimum d'1 an pour les bons d'achat non
+  alimentaires (loi Chatel). Quelle durée exacte Marion souhaite-t-elle (1 an, 2 ans,
+  illimité) ?
+- ⏳ Un bon acheté et non utilisé peut-il être remboursé/annulé par le client ?
+- ⏳ Le même système peut-il aussi servir à émettre des avoirs gratuits (offerts par Marion,
+  sans achat) pour compenser un client lésé par un retard de retour (cf. point ouvert du
+  module 1/2 sur le chevauchement de réservation) ?
+
+---
+
+## 7. Contrat de location / conditions générales
 
 - ✅ **Contrat généré automatiquement (PDF) à chaque réservation** — pas un simple texte CGL
   statique. Le PDF doit reprendre les mentions légales, le set loué, la durée, les dates de
   retrait/retour et le montant. Réutiliser le même mécanisme de génération PDF que les
-  factures (module 7) est probablement pertinent.
+  factures (module 8) est probablement pertinent.
 - ✅ Acceptation par **simple case à cocher** ("J'accepte les conditions générales") avant
   validation de la commande — pas de signature électronique nominative en V1. C'est cette
   acceptation qui déclenche la génération du contrat.
@@ -135,22 +167,22 @@ posé en question avant développement plutôt que supposé.
 
 ---
 
-## 7. Facturation
+## 8. Facturation
 
 - ✅ Nouvelle numérotation de factures, **repart de zéro** (pas de reprise de Poppins ou
   d'une séquence existante).
 - ✅ Facture générée uniquement une fois le paiement confirmé :
-  - automatiquement pour un paiement en ligne ;
+  - automatiquement pour un paiement en ligne ou par bon cadeau ;
   - après que Marion ait marqué manuellement la réservation "payée" sur le site, pour un
     paiement TPE sur place.
   - **Jamais de facture avant paiement effectif.**
 - 🔜 Export comptable complet (format, fréquence) : non défini, Marion n'a pas d'outil de
-  comptabilité précis à ce jour — reporté en V2 (voir aussi module 10 pour l'export simple
+  comptabilité précis à ce jour — reporté en V2 (voir aussi module 11 pour l'export simple
   des ventes, inclus en V1).
 
 ---
 
-## 8. État des lieux & gestion des dommages
+## 9. État des lieux & gestion des dommages
 
 **Processus de retour :**
 - ✅ Le client dépose physiquement le set, sans déclaration formelle à faire (il peut
@@ -166,7 +198,7 @@ posé en question avant développement plutôt que supposé.
 
 ---
 
-## 9. Notifications automatisées
+## 10. Notifications automatisées
 
 - ✅ Canal : email uniquement en V1 (pas de SMS).
 - ✅ Rappel avant retour : envoyé **48h avant** la date de retour prévue.
@@ -177,7 +209,7 @@ posé en question avant développement plutôt que supposé.
 
 ---
 
-## 10. Back-office & reporting
+## 11. Back-office & reporting
 
 - ✅ Deux comptes d'accès en V1 : Alexis (admin), Marion (compte propriétaire). Pas d'autre
   utilisateur prévu pour l'instant.
@@ -192,21 +224,21 @@ posé en question avant développement plutôt que supposé.
 
 ---
 
-## 11. Intégration, tests, déploiement, formation
+## 12. Intégration, tests, déploiement, formation
 
 - ✅ Formation destinée à Marion uniquement.
 - ✅ Format : documentation écrite + sessions en présentiel chez elle (pas de visio prévue).
 
 ---
 
-## Récapitulatif des points bloquants (⏳ en attente de Marion)
+## Récapitulatif des points bloquants (⏳ en attente de Marion ou d'Alexis)
 
-Cf. [README.md](README.md) pour le détail — ne pas démarrer les modules 6 et 8 tant que les
-barèmes ne sont pas connus :
+Cf. [README.md](README.md) pour le détail — ne pas démarrer les modules 6, 7 et 9 tant que
+les barèmes/règles ne sont pas connus :
 
-1. Barème de pénalité en cas de pièce manquante ou cassée (modules 6, 8).
-2. Politique d'annulation (module 6).
-3. Pénalité de retard de retour (modules 6, 8).
+1. Barème de pénalité en cas de pièce manquante ou cassée (modules 7, 9).
+2. Politique d'annulation (module 7).
+3. Pénalité de retard de retour (modules 7, 9).
 4. Délai minimum entre réservation et retrait (modules 2, 5).
 5. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
 6. Locations simultanées par client — oui/non (module 3).
@@ -214,9 +246,17 @@ barèmes ne sont pas connus :
 8. Nombre de photos par set à afficher (proposition 3-4) (module 1).
 9. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité
    (module 2).
+10. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
+    paiement (module 6).
+11. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
+12. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
+13. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
+14. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
+15. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
+    litige (lien avec le point 5) (module 6).
 
 ## Récapitulatif des points reportés en V2 (🔜)
 
 1. Prolongation d'une location en cours (module 2).
-2. Export comptable complet (modules 7, 10) — l'export simple des ventes par année civile,
-   lui, est inclus en V1 (module 10).
+2. Export comptable complet (modules 8, 11) — l'export simple des ventes par année civile,
+   lui, est inclus en V1 (module 11).
