@@ -91,7 +91,7 @@ des dommages) tant qu'ils ne sont pas clarifiés :
   développer cette fonctionnalité en V1.
 - **Export comptable** (module 7 Facturation / module 10 Back-office) : format et fréquence
   d'export non définis pour l'instant (pas d'outil de comptabilité précis côté cliente à ce
-  jour). À revoir en V2.
+  jour). Retiré du devis (modules 7 et 10) — à revoir et rechiffrer en V2 le moment venu.
 
 ## Financier / juridique — points d'attention
 

@@ -73,10 +73,11 @@ complètent l'activité.
 ### 7. Facturation — 420 €
 - Génération automatique de devis et factures au format PDF
 - Numérotation légale
-- Export pour la comptabilité
 
 ### 8. État des lieux & gestion des dommages — 450 €
-- Constat de retour — méthode à confirmer avec le client (photos et/ou checklist)
+- Constat de retour réalisé par Set et Brique (pesée des pièces par sachet/couleur,
+  vérification des figurines et des manuels de montage officiels), généralement le soir
+  même de la réception du set
 - Prélèvement partiel ou total sur la caution en cas de dommage ou de pièce manquante
 
 ### 9. Notifications automatisées — 300 €
@@ -87,15 +88,11 @@ complètent l'activité.
 ### 10. Back-office & reporting — 450 €
 - Vue d'ensemble des locations en cours
 - Suivi du stock et du chiffre d'affaires
-- Exports de données
 
 ### 11. Intégration, tests, déploiement, formation — 360 €
 - Mise en production
 - Tests du parcours complet
 - Formation à l'utilisation de l'outil
-
-> \* La méthode exacte de constat de retour (module 8) sera précisée avec vous avant le
-> démarrage du développement, selon votre fonctionnement actuel.
 
 ## Méthode de travail et jalons
 
