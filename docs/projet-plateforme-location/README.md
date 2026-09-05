@@ -77,6 +77,14 @@ des dommages) tant qu'ils ne sont pas clarifiés :
 5. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
 
+## Reporté à une V2 (hors périmètre actuel)
+
+- **Prolongation d'une location en cours** : un client doit pouvoir demander à prolonger
+  avant de rendre son set. Confirmé par Marion comme souhaité, mais explicitement reporté à
+  une V2 — question non tranchée à traiter à ce moment-là : que faire si un autre client a
+  déjà réservé ce set juste après (comment refuser/renégocier sans le léser) ? Ne pas
+  développer cette fonctionnalité en V1.
+
 ## Financier / juridique — points d'attention
 
 - Devis total : **5 520 €**. Option B (échelonnée) : 10 % à la commande (552 €) + abonnement
