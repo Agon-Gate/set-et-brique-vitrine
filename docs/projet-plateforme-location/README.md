@@ -18,6 +18,19 @@ et gestion des locations, pour progressivement se passer de Poppins.
 - [questions-recap-a-envoyer.docx](questions-recap-a-envoyer.docx) — version nettoyée à
   envoyer par mail à la cliente, avec les points encore ouverts mis en évidence.
 
+## Grille tarifaire (confirmée)
+
+Montants fixes, identiques pour tous les sets (pas de variation selon la valeur/rareté du set) :
+
+| Durée | Prix |
+|---|---|
+| 4 jours | 10 € |
+| 7 jours | 15 € |
+| 15 jours | 25 € |
+| 1 mois | 45 € |
+
+> Info transmise par la cliente après le RDV de cadrage (hors notes brutes du RDV).
+
 ## Périmètre V1 (confirmé)
 
 - Remise en main propre uniquement, pas de livraison (extension livraison possible plus tard).
