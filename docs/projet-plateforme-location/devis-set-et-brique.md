@@ -58,8 +58,7 @@ complètent l'activité.
 
 ### 4. Paiement Stripe — 540 €
 - Intégration Stripe pour le règlement des locations
-- Gestion de la caution (pré-autorisation ou encaissement)
-- Option d'assurance / protection additionnelle
+- Gestion de la caution en pré-autorisation (jamais débitée, sauf litige)
 
 ### 5. Tunnel de réservation client — 480 €
 - Parcours de réservation en ligne : sélection → durée → créneau → paiement
