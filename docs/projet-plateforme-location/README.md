@@ -19,9 +19,9 @@ et gestion des locations, pour progressivement se passer de Poppins.
   notes brutes du cadrage : questions posées + réponses de la cliente lors du RDV.
 - [questions-recap-a-envoyer.docx](questions-recap-a-envoyer.docx) — version nettoyée à
   envoyer par mail à la cliente, avec les points encore ouverts mis en évidence.
-- [specification-fonctionnelle.md](specification-fonctionnelle.md) — document technique
-  métier pour Alexis & Madus : règles métier, statuts et cas limites par module, à jour des
-  échanges de cadrage. Référence principale pour développer.
+- [specification-fonctionnelle.md](specification-fonctionnelle.md) / [.docx](specification-fonctionnelle.docx) —
+  document technique métier pour Alexis & Madus : règles métier, statuts et cas limites par
+  module, à jour des échanges de cadrage. Référence principale pour développer.
 
 ## Grille tarifaire (confirmée)
 
