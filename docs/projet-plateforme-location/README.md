@@ -19,6 +19,9 @@ et gestion des locations, pour progressivement se passer de Poppins.
   notes brutes du cadrage : questions posées + réponses de la cliente lors du RDV.
 - [questions-recap-a-envoyer.docx](questions-recap-a-envoyer.docx) — version nettoyée à
   envoyer par mail à la cliente, avec les points encore ouverts mis en évidence.
+- [specification-fonctionnelle.md](specification-fonctionnelle.md) — document technique
+  métier pour Alexis & Madus : règles métier, statuts et cas limites par module, à jour des
+  échanges de cadrage. Référence principale pour développer.
 
 ## Grille tarifaire (confirmée)
 
@@ -76,6 +79,8 @@ des dommages) tant qu'ils ne sont pas clarifiés :
 4. Délai minimum entre réservation et retrait.
 5. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
+6. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
+   réservés simultanément), ou une seule location active à la fois par client ?
 
 ## Reporté à une V2 (hors périmètre actuel)
 
@@ -84,6 +89,9 @@ des dommages) tant qu'ils ne sont pas clarifiés :
   une V2 — question non tranchée à traiter à ce moment-là : que faire si un autre client a
   déjà réservé ce set juste après (comment refuser/renégocier sans le léser) ? Ne pas
   développer cette fonctionnalité en V1.
+- **Export comptable** (module 7 Facturation / module 10 Back-office) : format et fréquence
+  d'export non définis pour l'instant (pas d'outil de comptabilité précis côté cliente à ce
+  jour). À revoir en V2.
 
 ## Financier / juridique — points d'attention
 
