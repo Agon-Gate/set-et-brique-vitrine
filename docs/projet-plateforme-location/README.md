@@ -34,9 +34,18 @@ et gestion des locations, pour progressivement se passer de Poppins.
   séquence de relance en cas de retard, politique d'annulation, lieux de retrait réels,
   validation manuelle des demandes de réservation.
 
-## Grille tarifaire (confirmée)
+## ⚠️ Grille tarifaire — en cours de changement, ne pas développer dessus pour l'instant
 
-Montants fixes, identiques pour tous les sets (pas de variation selon la valeur/rareté du set) :
+**La cliente a annoncé changer son mode de prix : 2 €/jour, pour tous les sets, sans
+distinction.** Ça remplace potentiellement la grille à 4 paliers fixes ci-dessous — mais les
+détails ne sont pas encore clairs (est-ce que les 4 durées fixes du tunnel restent, avec un
+prix recalculé en 2 €×jours par palier ? Ou la durée devient libre, en nombre de jours ?).
+Alexis doit encore y réfléchir avant qu'on pose la question précise à Marion. **Ne pas
+modifier le devis, les bons cadeaux (module 6) ou le tunnel (module 5) tant que ce point
+n'est pas éclairci** — cf. [points encore ouverts](#points-encore-ouverts-bloquants-pour-certains-modules).
+
+Ancienne grille (montants fixes, identiques pour tous les sets), pour référence tant que le
+nouveau modèle n'est pas confirmé :
 
 | Durée | Prix |
 |---|---|
@@ -82,7 +91,9 @@ le module 3, qui passe de 540 € à 660 €).
 - **28 références au catalogue** (mise à jour du chiffre "~25" estimé au RDV — cf.
   [catalogue-sets-lego.md](catalogue-sets-lego.md)).
 - Le tunnel de réservation ne fait réserver qu'une **date**, pas un créneau horaire précis —
-  l'heure de remise se négocie ensuite directement avec la cliente (téléphone/chat/email).
+  l'heure de remise se négocie ensuite directement avec la cliente (téléphone/email en V1 ;
+  un outil de chat est souhaité par la cliente mais explicitement pas développé pour
+  l'instant, éventuellement en V2).
 - La durée de location se compte en **jours calendaires** (une location de 4 jours démarrée
   un mardi se termine le vendredi, quelle que soit l'heure de remise/retour ce jour-là), avec
   une tolérance d'environ 30 min le jour du retour avant que ça compte comme un retard.
@@ -180,8 +191,9 @@ présenté comme rendu possible grâce à la réutilisation des modules Paiement
 Tunnel de réservation (5) déjà prévus.
 
 **Confirmé :**
-- Bons vendus aux montants de la grille tarifaire (10 € / 15 € / 25 € / 45 €), pas de montant
-  libre.
+- Bons vendus aux montants de la grille tarifaire, pas de montant libre — ⚠️ montants exacts
+  (actuellement 10 € / 15 € / 25 € / 45 €) à revoir selon le nouveau modèle tarifaire en
+  cours de clarification (cf. points encore ouverts, item 1).
 - Génération automatique d'un code unique par bon, envoyé par email à l'achat.
 - Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
   Stripe/TPE.
@@ -195,35 +207,45 @@ Ces points ne sont pas tranchés côté cliente — cf. section "Points à tranc
 envoyé. Ne pas démarrer le développement des modules concernés tant qu'ils ne sont pas
 clarifiés :
 
-1. Comment le "% de pertes" du barème de pénalité est-il calculé (écart de poids constaté,
-   ou comptage précis des pièces manquantes) ?
+1. **⚠️ Nouveau modèle tarifaire (2 €/jour, tous les sets)** — Alexis doit d'abord clarifier
+   en interne comment ça s'articule avec les 4 durées fixes actuelles avant qu'on formule la
+   question précise à poser à Marion. Bloque : la grille tarifaire, les montants des bons
+   cadeaux (module 6), potentiellement le fonctionnement du tunnel (module 5) si la durée
+   devient libre plutôt que fixée à 4 paliers.
 2. **Validation manuelle des réservations** : Marion valide-t-elle vraiment chaque demande
    une par une (accepter/refuser/proposer une autre date) ? Si oui, le paiement est-il pris
    avant ou après cette validation ? — à trancher avec Alexis avant de demander à Marion.
-3. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
+3. Comment le "% de pertes" du barème de pénalité est-il calculé (écart de poids constaté,
+   ou comptage précis des pièces manquantes) ? — c'est Set et Brique qui détermine cette
+   méthode, à leur demander explicitement.
+4. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
-4. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
+5. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
    réservés simultanément), ou une seule location active à la fois par client ?
-5. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
+6. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
    pour la pré-autorisation de la caution, ou la caution est-elle prise directement sur
    place via le TPE ?
-6. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
+7. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
    mais l'exemple fourni (Faucon Millénium) contient 12 photos — faut-il toutes les afficher,
    ou nous laisse-t-elle choisir ?
-7. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
+8. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
    indisponibilité générale), indépendamment du statut de chaque set ? (Ceci dit, si chaque
    réservation est validée manuellement — point 2 — cette question devient peut-être sans
    objet : elle peut simplement refuser une demande sur ses dates d'indisponibilité.)
-8. Le "chat" mentionné par la cliente comme canal de contact (prise d'horaire, demande de
-   prolongation) — est-ce un outil déjà existant côté cliente à simplement référencer sur le
-   site, ou une fonctionnalité de chat en direct à développer (hors devis actuel si c'est le
-   cas) ?
-9. Lors d'une prolongation immédiate (nouvelle réservation du même client à la suite de la
-   première, sans retour physique du set), le délai de battement standard s'applique-t-il
-   quand même, ou faut-il pouvoir le sauter dans ce cas précis ?
+9. **Battement lors d'une prolongation immédiate — exemple concret pour clarifier la
+   question** : un client loue le Faucon Millénium du 1er au 8, puis décide de le garder plus
+   longtemps et réserve lui-même, via le tunnel, une nouvelle location du 9 au 15 *pour ce
+   même set qu'il a déjà en main* (il ne le rend jamais entre les deux réservations). Le
+   délai de battement standard (4 jours par défaut, pour que Marion nettoie/vérifie le set
+   entre deux locataires) n'a ici aucune raison d'exister puisque rien n'est physiquement
+   rendu. Question : le système doit-il quand même imposer ce délai entre les deux
+   réservations du même client (ce qui bloquerait cette prolongation en pratique), ou faut-il
+   le sauter spécifiquement dans ce cas ?
 10. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
     utilisable uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour
     compléter un paiement plus important avec un autre moyen de paiement pour la différence ?
+    **À reconsidérer une fois le nouveau modèle tarifaire (point 1) clarifié** — si la durée
+    devient libre en jours, la logique "bon = une des 4 durées" ne tient plus telle quelle.
 11. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
     conservé pour une prochaine location, ou perdu ?
 12. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
@@ -233,20 +255,24 @@ clarifiés :
     souhaite-t-elle (1 an, 2 ans, illimité) ?
 14. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
 15. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
-    Marion, sans achat) pour le point 3 ci-dessus (client lésé en cas de non-retour) ? — la
+    Marion, sans achat) pour le point 4 ci-dessus (client lésé en cas de non-retour) ? — la
     réponse est probablement oui vu la politique d'annulation ci-dessus ("avoir sur un autre
     set"), mais à confirmer explicitement.
 
 **Résolus par le 2ᵉ document du 11/09** (retirés de cette liste) : barème de pénalité
 pièce manquante/cassée, montant de la pénalité de retard, politique d'annulation, lieux de
 retrait, délai minimum entre réservation et retrait (remplacé par le point 2 ci-dessus, plus
-structurant).
+structurant). **Résolu (réponse d'Alexis) :** nature du "chat" — souhaité par la cliente mais
+pas développé pour l'instant, cf. section V2 ci-dessous.
 
 ## Reporté à une V2 (hors périmètre actuel)
 
+- **Outil de chat** : la cliente souhaite un chat pour être contactée (prise d'horaire,
+  demandes diverses), mais **ne sera pas développé en V1**, éventuellement en V2 (confirmé
+  par Alexis). En V1, contact par téléphone/email uniquement.
 - **Tranche horaire précise dans le tunnel de réservation** : la cliente envisage elle-même
   de l'ajouter plus tard ("pas dans l'immédiat"). En V1, le tunnel ne réserve qu'une date ;
-  l'horaire de remise se négocie hors outil (chat/téléphone/email).
+  l'horaire de remise se négocie hors outil (téléphone/email).
 - **Export comptable complet** (format lié à un outil de comptabilité) : non défini, Marion
   n'a pas d'outil précis à ce jour. Reste hors périmètre V1. Une version allégée est en
   revanche incluse en V1 (module 11) : export simple des ventes par année civile.

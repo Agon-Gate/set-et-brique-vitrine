@@ -76,38 +76,47 @@ posé en question avant développement plutôt que supposé.
 - ✅ Lieux de retrait réels confirmés (5) : aire de covoiturage de Lanester (à côté du McDo),
   covoiturage de Guidel, covoiturage de Kerizan (Brec'h), Intermarché Drive de Monistrol
   (Lorient), covoiturage de Plouay.
-- ✅ Un client ne peut réserver que l'une des 4 durées fixes du tarif (4j / 7j / 15j /
-  1 mois) — pas de durée libre dans le tunnel. **Pas de durée maximale de location** côté
-  entreprise (confirmé par la cliente), mais le tunnel ne propose toujours que les 4 durées :
-  au-delà, cf. règle de prolongation ci-dessous.
+- ⚠️ Un client ne peut réserver que l'une des 4 durées fixes du tarif (4j / 7j / 15j /
+  1 mois) — pas de durée libre dans le tunnel. **Ce point est remis en question** par le
+  nouveau modèle tarifaire annoncé par la cliente (2 €/jour, tous les sets — cf. README,
+  section tarifaire) : si la durée devient libre en nombre de jours plutôt que fixée à 4
+  paliers, cette règle et tout le tunnel de réservation doivent être repensés. **Ne pas
+  développer le sélecteur de durée tant que ce point n'est pas éclairci avec Alexis.**
+  Pas de durée maximale de location côté entreprise (confirmé par la cliente), quel que soit
+  le modèle tarifaire retenu.
 - ✅ **Le tunnel réserve une date, pas un créneau horaire précis.** L'heure exacte de remise
-  est négociée directement avec le client via chat/téléphone/email après la réservation — pas
-  de sélecteur d'horaire dans le tunnel en V1. (Confirmé par la cliente ; elle envisage
+  est négociée directement avec le client par téléphone/email en V1 (un outil de chat est
+  souhaité par la cliente mais explicitement pas développé pour l'instant — cf. section V2) —
+  pas de sélecteur d'horaire dans le tunnel en V1. (Confirmé par la cliente ; elle envisage
   d'ajouter une tranche horaire plus tard, cf. section V2.)
 - ✅ **Durée comptée en jours calendaires, pas en blocs de 24h.** Une location démarrant un
   mardi (quelle que soit l'heure de remise ce jour-là) et prévue pour 4 jours se termine le
   vendredi — le client doit rendre le set ce jour-là, quelle que soit l'heure. Cette règle
-  détermine la date de retour attendue pour tous les calculs (rappel J-48h, déclenchement de
+  détermine la date de retour attendue pour tous les calculs (rappel J-1, déclenchement de
   la relance de retard, etc.).
 - ✅ **Prolongation d'une location en cours** : possible, mais **gérée manuellement, pas par
-  un bouton dédié dans l'espace client**. Le client contacte Set et Brique (téléphone, chat
-  ou email) pour vérifier la disponibilité, puis effectue lui-même une **nouvelle réservation
-  via le tunnel** pour les jours supplémentaires — comme une location normale qui suit
-  immédiatement la première. Aucun développement spécifique nécessaire pour la prolongation
-  en elle-même.
-- ⏳ Cette nouvelle réservation "à la suite" doit-elle sauter le délai de battement (puisque
-  le set n'est jamais physiquement rendu entre les deux réservations), ou le système la
-  traite-t-il comme une location normale avec battement standard, obligeant Marion à
-  l'ajuster manuellement au cas par cas ?
-- ⏳ "Chat" mentionné comme canal de contact (ici et pour la prise de créneau horaire) — est-ce
-  un outil existant côté cliente (WhatsApp, Messenger...) à référencer simplement sur le site,
-  ou une fonctionnalité de chat en direct à développer sur la plateforme ? Pas dans le
-  périmètre actuel du devis si c'est la 2ᵉ option — à clarifier avant de l'assumer.
+  un bouton dédié dans l'espace client**. Le client contacte Set et Brique (téléphone ou
+  email — pas de chat en V1) pour vérifier la disponibilité, puis effectue lui-même une
+  **nouvelle réservation via le tunnel** pour les jours supplémentaires — comme une location
+  normale qui suit immédiatement la première. Aucun développement spécifique nécessaire pour
+  la prolongation en elle-même.
+- ⏳ **Battement lors d'une prolongation immédiate — exemple concret** : un client loue le
+  Faucon Millénium du 1er au 8, puis décide de le garder plus longtemps et réserve lui-même,
+  via le tunnel, une nouvelle location du 9 au 15 *pour ce même set qu'il a déjà en main* (il
+  ne le rend jamais entre les deux réservations). Le délai de battement standard (4 jours par
+  défaut, prévu pour que Marion nettoie/vérifie le set entre deux locataires différents) n'a
+  ici aucune raison d'exister puisque rien n'est physiquement rendu. Question : le système
+  doit-il quand même imposer ce délai entre les deux réservations du même client (ce qui
+  bloquerait cette prolongation en pratique), ou faut-il le sauter spécifiquement dans ce cas ?
+- ✅ **Outil de chat** : souhaité par la cliente comme canal de contact, mais confirmé par
+  Alexis comme **non développé en V1**, éventuellement en V2.
 - ⏳ Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
   indisponibilité générale), indépendamment du statut de chaque set ? Non tranché — remonté
-  par Madus en lien avec le délai minimum de réservation.
+  par Madus en lien avec le délai minimum de réservation. Possiblement sans objet si la
+  validation manuelle des réservations (module 5) est confirmée.
 
 **Reporté en V2 :**
+- 🔜 Outil de chat pour contacter la cliente — souhaité mais pas développé en V1.
 - 🔜 Tranche horaire précise sélectionnable dans le tunnel (créneaux de remise) — la cliente
   confirme elle-même vouloir l'envisager plus tard, "pas dans l'immédiat".
 
@@ -191,8 +200,11 @@ Listé "Inclus" dans le devis — pas de surcoût, présenté comme rendu possib
 réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 
 **Confirmé :**
-- ✅ Bons vendus aux montants de la grille tarifaire uniquement (10 € / 15 € / 25 € / 45 €) —
-  pas de montant libre.
+- ⚠️ Bons vendus aux montants de la grille tarifaire, pas de montant libre — **montants
+  exacts à revoir** : la grille actuelle (10 € / 15 € / 25 € / 45 €) est remise en question
+  par le nouveau modèle tarifaire annoncé par la cliente (2 €/jour, tous les sets). Ne pas
+  figer les montants des bons tant que ce point n'est pas éclairci avec Alexis (cf. module 2
+  et README).
 - ✅ Génération automatique d'un code unique par bon acheté, envoyé par email à l'acheteur.
 - ✅ Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
   Stripe ou le TPE.
@@ -201,7 +213,9 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 **Encore à trancher :**
 - ⏳ Un bon doit-il correspondre exactement à une des 4 durées (ex. bon de 15 € utilisable
   uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour compléter un
-  paiement plus important avec un autre moyen de paiement pour la différence ?
+  paiement plus important avec un autre moyen de paiement pour la différence ? **À
+  reconsidérer une fois le nouveau modèle tarifaire clarifié** — si la durée devient libre en
+  jours, la logique "bon = une des 4 durées" ne tient plus telle quelle.
 - ⏳ Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
   conservé pour une prochaine location, ou perdu ?
 - ⏳ Un bon est-il nominatif (lié à un compte client), ou utilisable par toute personne
@@ -301,7 +315,8 @@ règle "rappel 48h avant + relance quotidienne" :**
   le redémonter dans ses sachets d'origine.
 - ⏳ Reste ouvert : comment le "% de pertes" est-il calculé en pratique — à partir de l'écart
   de poids constaté à la pesée (cf. module 1), ou d'un comptage précis des pièces manquantes
-  par rapport à la notice ?
+  par rapport à la notice ? C'est Set et Brique qui détermine cette méthode (Alexis doit le
+  leur demander explicitement).
 - Bricklink est un site de référence communautaire pour les prix des pièces/sets LEGO
   d'occasion — la consultation du prix de référence sera probablement manuelle (Marion), pas
   une intégration automatisée, sauf si une API est envisagée plus tard.
@@ -346,40 +361,44 @@ règle "rappel 48h avant + relance quotidienne" :**
 Cf. [README.md](README.md) pour le détail. **Résolus depuis le 2ᵉ document client du
 11/09** (ne figurent plus ici) : barème de pénalité, montant de la pénalité de retard,
 politique d'annulation, lieux de retrait. **Résolu précédemment** : sujet caution/durée de
-préautorisation (Swikly, Stripe étendu, PayPal — cf. module 4).
+préautorisation (Swikly, Stripe étendu, PayPal — cf. module 4). **Résolu (réponse
+d'Alexis) :** nature du "chat" — souhaité mais pas développé en V1, cf. section V2.
 
-1. Comment le "% de pertes" du barème est-il calculé (écart de poids ou comptage précis) ?
-   (module 9).
+1. **⚠️ Nouveau modèle tarifaire (2 €/jour, tous les sets)** — Alexis doit d'abord clarifier
+   en interne comment ça s'articule avec les 4 durées fixes actuelles avant qu'on formule la
+   question précise à poser à Marion. Bloque potentiellement : grille tarifaire, montants des
+   bons cadeaux (module 6), fonctionnement du tunnel (module 5, module 2).
 2. **Validation manuelle des réservations** — la cliente semble indiquer qu'elle valide
    chaque demande une par une ; à confirmer avec Alexis avant de développer le flux de
    confirmation automatique du tunnel, notamment le moment du paiement (module 5).
-3. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
-4. Locations simultanées par client — oui/non (module 3).
-5. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
-6. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
+3. Comment le "% de pertes" du barème est-il calculé (écart de poids ou comptage précis) ?
+   C'est Set et Brique qui détermine cette méthode (module 9).
+4. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
+5. Locations simultanées par client — oui/non (module 3).
+6. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
+7. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
    l'exemple fourni (12 photos pour un set) ; à réclarifier (module 1).
-7. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité (module 2)
+8. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité (module 2)
    — possiblement sans objet si la validation manuelle (point 2) est confirmée.
-8. Nature du "chat" mentionné par la cliente comme canal de contact : outil existant à
-   référencer, ou fonctionnalité à développer (hors devis actuel si c'est le cas) ? (module 2).
-9. Battement à appliquer (ou non) lors d'une prolongation immédiate du même client, sans
-   retour physique du set entre les deux réservations (module 2).
+9. **Battement lors d'une prolongation immédiate** (même client, même set, sans retour
+   physique entre les deux réservations) — exemple détaillé au module 2 (module 2).
 10. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
-    paiement (module 6).
+    paiement — à reconsidérer une fois le point 1 clarifié (module 6).
 11. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
 12. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
 13. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
 14. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
 15. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
-    litige (lien avec le point 3) (module 6) — probable vu la politique d'annulation
+    litige (lien avec le point 4) (module 6) — probable vu la politique d'annulation
     (module 7), à confirmer explicitement.
 
 ## Récapitulatif des points reportés en V2 (🔜)
 
-1. Tranche horaire précise sélectionnable dans le tunnel de réservation (module 2) — la
+1. Outil de chat pour contacter la cliente — souhaité mais pas développé en V1 (module 2).
+2. Tranche horaire précise sélectionnable dans le tunnel de réservation (module 2) — la
    cliente envisage de l'ajouter plus tard, "pas dans l'immédiat". En V1, l'heure se négocie
-   hors tunnel (chat/téléphone/email).
-2. Export comptable complet (modules 8, 11) — l'export simple des ventes par année civile,
+   hors tunnel (téléphone/email).
+3. Export comptable complet (modules 8, 11) — l'export simple des ventes par année civile,
    lui, est inclus en V1 (module 11).
 
 **Résolu, ne figure plus en V2 :** la prolongation d'une location en cours ne nécessite
