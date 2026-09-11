@@ -23,6 +23,12 @@ et gestion des locations, pour progressivement se passer de Poppins.
 - [specification-fonctionnelle.md](specification-fonctionnelle.md) / [.docx](specification-fonctionnelle.docx) —
   document technique métier pour Alexis & Madus : règles métier, statuts et cas limites par
   module, à jour des échanges de cadrage. Référence principale pour développer.
+- [catalogue-sets-lego.md](catalogue-sets-lego.md) / [.xlsx](catalogue-sets-lego.xlsx) —
+  catalogue complet des 28 sets actuellement loués (titre, référence(s), caution, etc.),
+  fourni par la cliente.
+- [precisions-client-caution-catalogue.pdf](precisions-client-caution-catalogue.pdf) —
+  réponses de la cliente reçues le 11/09 : caution/assurance au-delà de 7 jours, remise en
+  main propre, comptage des jours de location, champs produit détaillés.
 
 ## Grille tarifaire (confirmée)
 
@@ -66,8 +72,28 @@ le module 3, qui passe de 540 € à 660 €).
 - Compte client obligatoire (pas de mode invité).
 - Notifications par email uniquement (pas de SMS).
 - Pas de TVA (micro-entreprise, franchise en base).
-- Caution = prix neuf du set, libérée automatiquement 48h après confirmation du bon retour.
+- Caution = prix neuf du set (100 € à 650 € selon le set, cf. catalogue), en pré-autorisation
+  standard Stripe (7 jours), libérée automatiquement 48h après confirmation du bon retour.
 - Pas d'export catalogue/historique depuis Poppins possible → ressaisie manuelle.
+- **28 références au catalogue** (mise à jour du chiffre "~25" estimé au RDV — cf.
+  [catalogue-sets-lego.md](catalogue-sets-lego.md)).
+- Le tunnel de réservation ne fait réserver qu'une **date**, pas un créneau horaire précis —
+  l'heure de remise se négocie ensuite directement avec la cliente (téléphone/chat/email).
+- La durée de location se compte en **jours calendaires** (une location de 4 jours démarrée
+  un mardi se termine le vendredi, quelle que soit l'heure de remise/retour ce jour-là), avec
+  une tolérance d'environ 30 min le jour du retour avant que ça compte comme un retard.
+- Pas de durée maximale de location : au-delà des 4 durées du tunnel, la cliente gère les
+  prolongations manuellement (contact, puis nouvelle réservation standard pour les jours
+  supplémentaires) — aucun développement dédié nécessaire pour ce cas.
+
+## Caution au-delà de 7 jours — sujet résolu
+
+Un hold bancaire (pré-autorisation) ne peut pas dépasser 7 jours de façon fiable — ce qui
+posait problème pour les locations de 15 jours ou 1 mois (cf. l'exploration Swikly / Stripe
+autorisation étendue / PayPal menée précédemment). **La cliente a tranché elle-même** :
+Stripe reste en pré-autorisation standard (7 jours), et **elle prend une assurance
+professionnelle de son côté** pour couvrir le risque au-delà. Aucune intégration
+supplémentaire (Swikly, PayPal, autorisation étendue Stripe) n'est nécessaire.
 
 ## Précisions techniques (remontées de Madus, tranchées)
 
@@ -99,7 +125,7 @@ Tunnel de réservation (5) déjà prévus.
   Stripe/TPE.
 - Suivi des bons (valide / utilisé / expiré) depuis le back-office.
 
-**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 10 à 14).
+**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 12 à 17).
 
 ## Points encore ouverts (bloquants pour certains modules)
 
@@ -109,7 +135,9 @@ des dommages) tant qu'ils ne sont pas clarifiés :
 
 1. Barème de pénalité en cas de pièce manquante ou cassée.
 2. Politique d'annulation (remboursement total/partiel/aucun selon délai).
-3. Pénalité de retard de retour (automatique sur la caution, ou au cas par cas).
+3. Montant/barème de la pénalité de retard de retour (le déclencheur est désormais connu :
+   jour calendaire de fin de location + tolérance ~30 min, cf. ci-dessus — seul le montant
+   reste à définir).
 4. Délai minimum entre réservation et retrait.
 5. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
@@ -118,35 +146,46 @@ des dommages) tant qu'ils ne sont pas clarifiés :
 7. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
    pour la pré-autorisation de la caution, ou la caution est-elle prise directement sur
    place via le TPE ?
-8. Combien de photos par set afficher sur la fiche produit ? Proposition : 3 à 4 par défaut,
-   à confirmer.
+8. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
+   mais l'exemple fourni (Faucon Millénium) contient 12 photos — faut-il toutes les afficher,
+   ou nous laisse-t-elle choisir ?
 9. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
    indisponibilité générale), indépendamment du statut de chaque set ? — remontée par Madus
    en lien avec le délai minimum de réservation (point 4).
-10. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
+10. Lors d'une prolongation immédiate (nouvelle réservation du même client à la suite de la
+    première, sans retour physique du set), le délai de battement standard s'applique-t-il
+    quand même, ou faut-il pouvoir le sauter dans ce cas précis ?
+11. Le "chat" mentionné par la cliente comme canal de contact (prise d'horaire, demande de
+    prolongation) — est-ce un outil déjà existant côté cliente à simplement référencer sur le
+    site, ou une fonctionnalité de chat en direct à développer (hors devis actuel si c'est le
+    cas) ?
+12. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
     utilisable uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour
     compléter un paiement plus important avec un autre moyen de paiement pour la différence ?
-11. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
+13. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
     conservé pour une prochaine location, ou perdu ?
-12. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
+14. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
     détenant le code (cas classique du cadeau) ?
-13. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
+15. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
     pour les bons d'achat non alimentaires (loi Chatel). Quelle durée exacte Marion
     souhaite-t-elle (1 an, 2 ans, illimité) ?
-14. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
-15. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
+16. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
+17. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
     Marion, sans achat) pour le point 5 ci-dessus (client lésé en cas de non-retour) ?
 
 ## Reporté à une V2 (hors périmètre actuel)
 
-- **Prolongation d'une location en cours** : un client doit pouvoir demander à prolonger
-  avant de rendre son set. Confirmé par Marion comme souhaité, mais explicitement reporté à
-  une V2 — question non tranchée à traiter à ce moment-là : que faire si un autre client a
-  déjà réservé ce set juste après (comment refuser/renégocier sans le léser) ? Ne pas
-  développer cette fonctionnalité en V1.
+- **Tranche horaire précise dans le tunnel de réservation** : la cliente envisage elle-même
+  de l'ajouter plus tard ("pas dans l'immédiat"). En V1, le tunnel ne réserve qu'une date ;
+  l'horaire de remise se négocie hors outil (chat/téléphone/email).
 - **Export comptable complet** (format lié à un outil de comptabilité) : non défini, Marion
   n'a pas d'outil précis à ce jour. Reste hors périmètre V1. Une version allégée est en
-  revanche incluse en V1 (module 10) : export simple des ventes par année civile.
+  revanche incluse en V1 (module 11) : export simple des ventes par année civile.
+
+**Résolu, ne figure plus en V2 :** la prolongation d'une location en cours ne nécessite
+finalement aucun développement dédié — le client contacte Set et Brique pour vérifier la
+disponibilité, puis effectue lui-même une nouvelle réservation standard dans le tunnel pour
+les jours supplémentaires.
 
 ## Financier / juridique — points d'attention
 

@@ -22,20 +22,40 @@ posé en question avant développement plutôt que supposé.
 
 ## 1. Location pure — catalogue & stock
 
-**Fiche article (par set) — champs :**
-- ✅ Nom, référence LEGO officielle, nombre de pièces, âge conseillé, photo(s), état
-  (neuf/occasion), valeur de remplacement (sert de base à la caution).
-- ✅ Champ commentaire libre, **visible côté client** sur la fiche du set.
+**Fiche article (par set) — champs confirmés (document client du 11/09, exemple détaillé
+"Faucon Millénium" + [catalogue complet](catalogue-sets-lego.md)) :**
+- ✅ Titre.
+- ✅ Description (zone de texte libre).
+- ✅ Nombre de pièces total.
+- ✅ Dimensions une fois construit.
+- ✅ Numéro(s) du set — **peut être multiple** : un article loué regroupe parfois plusieurs
+  boîtes LEGO officielles combinées (ex. NINJAGO = 2 références, Château Harry Potter = 2,
+  Gare et train = 3). Le champ doit donc supporter une liste de références, pas une seule.
+- ✅ Nombre de notices (total, somme des références combinées le cas échéant).
+- ✅ Type de notice : papier ou numérique — **si numérique, avertissement à afficher au
+  client** (nécessite un accès à internet par téléphone/PC/tablette pour suivre le montage).
+- ✅ Nombre de figurines.
+- ✅ Temps estimatif de montage.
+- ✅ Âge conseillé.
+- ✅ Marque : LEGO ou autre — confirmé nécessaire, le catalogue contient au moins une
+  référence d'une autre marque ("La mine de l'ouest", marque "PANTASY").
+- ✅ Montant de la caution (par set, déjà su — cf. [grille des cautions](catalogue-sets-lego.md),
+  de 100 € à 650 € selon le set).
+- ✅ Champ commentaire libre, **visible côté client** sur la fiche du set (vide sur tous les
+  sets actuels, à remplir au cas par cas par Set et Brique).
 - ✅ Poids du set : stocké en interne (utile à la vérification au retour, module 9), mais
   **jamais affiché côté client** — décision volontaire pour éviter que les locataires ne
   devinent le contenu exact des sachets pesés.
-- ⏳ Nombre de photos à afficher par set : proposition 3 à 4 par défaut, à confirmer avec
-  Marion.
+- ⏳ Nombre de photos à afficher par set : on avait proposé 3 à 4 par défaut, mais l'exemple
+  fourni par la cliente pour le Faucon Millénium contient 12 photos. À reclarifier : faut-il
+  toutes les afficher, ou nous laisse-t-elle choisir parmi celles fournies ?
 
 **Stock :**
-- ✅ Un seul exemplaire par référence aujourd'hui (~25 références au catalogue, ajout moyen
-  de 0,5/mois), mais le modèle de données doit prévoir le multi-stock (plusieurs exemplaires
-  d'une même référence) pour une évolution future — ne pas coder en dur "quantité = 1".
+- ✅ **28 références au catalogue** (mise à jour de l'estimation "~25" du RDV de cadrage) —
+  liste complète dans [catalogue-sets-lego.md](catalogue-sets-lego.md). Un seul exemplaire
+  par référence aujourd'hui, mais le modèle de données doit prévoir le multi-stock (plusieurs
+  exemplaires d'une même référence) pour une évolution future — ne pas coder en dur
+  "quantité = 1".
 
 **Statuts d'un set :**
 - ✅ `Disponible` / `Location` / `Battement` / `Réparation` / `Retiré`.
@@ -54,14 +74,39 @@ posé en question avant développement plutôt que supposé.
 - ✅ Le planning est **propre à chaque lieu de retrait** (une seule personne fait les
   remises, donc impossible d'être sur deux lieux en même temps sur le même créneau).
 - ✅ Un client ne peut réserver que l'une des 4 durées fixes du tarif (4j / 7j / 15j /
-  1 mois) — pas de durée libre dans le tunnel. Un besoin différent passe par une demande de
-  contact par email, hors outil.
-- 🔜 **Prolongation d'une location en cours** : souhaitée par Marion mais reportée en V2. Le
-  cas du conflit avec une réservation déjà prise juste après (comment refuser/renégocier
-  sans léser le client suivant) reste à trancher à ce moment-là.
+  1 mois) — pas de durée libre dans le tunnel. **Pas de durée maximale de location** côté
+  entreprise (confirmé par la cliente), mais le tunnel ne propose toujours que les 4 durées :
+  au-delà, cf. règle de prolongation ci-dessous.
+- ✅ **Le tunnel réserve une date, pas un créneau horaire précis.** L'heure exacte de remise
+  est négociée directement avec le client via chat/téléphone/email après la réservation — pas
+  de sélecteur d'horaire dans le tunnel en V1. (Confirmé par la cliente ; elle envisage
+  d'ajouter une tranche horaire plus tard, cf. section V2.)
+- ✅ **Durée comptée en jours calendaires, pas en blocs de 24h.** Une location démarrant un
+  mardi (quelle que soit l'heure de remise ce jour-là) et prévue pour 4 jours se termine le
+  vendredi — le client doit rendre le set ce jour-là, quelle que soit l'heure. Cette règle
+  détermine la date de retour attendue pour tous les calculs (rappel J-48h, déclenchement de
+  la relance de retard, etc.).
+- ✅ **Prolongation d'une location en cours** : possible, mais **gérée manuellement, pas par
+  un bouton dédié dans l'espace client**. Le client contacte Set et Brique (téléphone, chat
+  ou email) pour vérifier la disponibilité, puis effectue lui-même une **nouvelle réservation
+  via le tunnel** pour les jours supplémentaires — comme une location normale qui suit
+  immédiatement la première. Aucun développement spécifique nécessaire pour la prolongation
+  en elle-même.
+- ⏳ Cette nouvelle réservation "à la suite" doit-elle sauter le délai de battement (puisque
+  le set n'est jamais physiquement rendu entre les deux réservations), ou le système la
+  traite-t-il comme une location normale avec battement standard, obligeant Marion à
+  l'ajuster manuellement au cas par cas ?
+- ⏳ "Chat" mentionné comme canal de contact (ici et pour la prise de créneau horaire) — est-ce
+  un outil existant côté cliente (WhatsApp, Messenger...) à référencer simplement sur le site,
+  ou une fonctionnalité de chat en direct à développer sur la plateforme ? Pas dans le
+  périmètre actuel du devis si c'est la 2ᵉ option — à clarifier avant de l'assumer.
 - ⏳ Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
   indisponibilité générale), indépendamment du statut de chaque set ? Non tranché — remonté
   par Madus en lien avec le délai minimum de réservation.
+
+**Reporté en V2 :**
+- 🔜 Tranche horaire précise sélectionnable dans le tunnel (créneaux de remise) — la cliente
+  confirme elle-même vouloir l'envisager plus tard, "pas dans l'immédiat".
 
 ---
 
@@ -92,10 +137,17 @@ posé en question avant développement plutôt que supposé.
 - ✅ Deux modes possibles : paiement en ligne (Stripe, prélevé **à la réservation**), ou
   paiement sur place par **TPE** au moment de la remise en main propre.
 
-**Caution :**
-- ✅ Toujours en **pré-autorisation**, jamais débitée sauf litige.
+**Caution — sujet résolu (document client du 11/09) :**
+- ✅ Toujours en **pré-autorisation standard Stripe (7 jours)**, jamais débitée sauf litige.
+- ✅ **Pas de solution technique de prolongation nécessaire** (ni Swikly, ni autorisation
+  étendue Stripe, ni PayPal) : la cliente a tranché elle-même. Un hold bancaire au-delà de
+  7 jours est techniquement impossible, elle en est consciente et **prend une assurance
+  professionnelle de son côté** pour couvrir le risque sur les locations de plus de 7 jours
+  (15 jours, 1 mois). Aucun développement supplémentaire à prévoir sur ce point — ce qui
+  clôt toute la réflexion Swikly/PayPal/autorisation étendue menée précédemment.
 - ⏳ Si le loyer est payé par TPE sur place, comment se fait la pré-autorisation de la
-  caution (carte enregistrée en amont côté client tout de même) ? Question posée à Marion.
+  caution (carte enregistrée en amont côté client tout de même) ? Question posée à Marion —
+  reste ouverte indépendamment du point ci-dessus.
 
 **Hors périmètre :**
 - Pas d'option d'assurance/protection additionnelle — la caution est la seule protection.
@@ -109,8 +161,9 @@ posé en question avant développement plutôt que supposé.
 
 ## 5. Tunnel de réservation client
 
-- ✅ Parcours : sélection du set → choix de la durée (4 options fixes) → choix du créneau de
-  retrait → paiement (en ligne, à la remise par TPE, ou par bon cadeau — module 6).
+- ✅ Parcours : sélection du set → choix de la durée (4 options fixes) → choix de la **date**
+  de retrait (pas d'heure précise, cf. module 2) → paiement (en ligne, à la remise par TPE,
+  ou par bon cadeau — module 6). L'heure exacte de remise se négocie après coup, hors tunnel.
 - ✅ En V1, tous les sets sont disponibles à tous les lieux de retrait (pas de restriction
   géographique par set).
 
@@ -192,7 +245,16 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 - ✅ Cette validation déclenche le compte à rebours des 48h avant libération automatique de
   la caution (cf. module 4 / règle déjà actée).
 
-**Barème de pénalité :**
+**Retard de retour — trigger désormais connu (document client du 11/09) :**
+- ✅ La date de retour attendue se calcule en jours calendaires (cf. module 2) : le client
+  doit rendre le set **le jour J de la fin de location, à n'importe quelle heure**.
+- ✅ Tolérance d'environ **30 minutes après la fermeture/l'horaire habituel du jour J** avant
+  qu'un retard soit considéré comme tel. Au-delà (ou passé le jour J), les pénalités de
+  retard s'appliquent.
+- ⏳ Montant/barème exact de la pénalité de retard : toujours non tranché — seul le
+  déclencheur (quand ça compte comme un retard) est désormais connu.
+
+**Barème de pénalité (pièces manquantes/cassées) :**
 - ⏳ Non tranché (pièce manquante/cassée) — **ne pas développer les prélèvements
   automatiques sur caution avant réponse de Marion**.
 
@@ -233,30 +295,43 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 
 ## Récapitulatif des points bloquants (⏳ en attente de Marion ou d'Alexis)
 
-Cf. [README.md](README.md) pour le détail — ne pas démarrer les modules 6, 7 et 9 tant que
-les barèmes/règles ne sont pas connus :
+Cf. [README.md](README.md) pour le détail — ne pas démarrer les modules 6 et 7 tant que les
+barèmes/règles ne sont pas connus. **Le sujet caution/durée de préautorisation (Swikly,
+Stripe étendu, PayPal) est résolu**, ne figure plus dans cette liste (cf. module 4).
 
 1. Barème de pénalité en cas de pièce manquante ou cassée (modules 7, 9).
 2. Politique d'annulation (module 7).
-3. Pénalité de retard de retour (modules 7, 9).
+3. Montant/barème de la pénalité de retard de retour — le déclencheur (jour calendaire +
+   tolérance ~30 min) est désormais connu, seul le montant reste ouvert (modules 7, 9).
 4. Délai minimum entre réservation et retrait (modules 2, 5).
 5. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
 6. Locations simultanées par client — oui/non (module 3).
 7. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
-8. Nombre de photos par set à afficher (proposition 3-4) (module 1).
+8. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
+   l'exemple fourni (12 photos pour un set) ; à réclarifier (module 1).
 9. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité
    (module 2).
-10. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
+10. Battement à appliquer (ou non) lors d'une prolongation immédiate du même client, sans
+    retour physique du set entre les deux réservations (module 2).
+11. Nature du "chat" mentionné par la cliente comme canal de contact : outil existant à
+    référencer, ou fonctionnalité à développer (hors devis actuel si c'est le cas) ? (module 2).
+12. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
     paiement (module 6).
-11. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
-12. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
-13. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
-14. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
-15. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
+13. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
+14. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
+15. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
+16. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
+17. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
     litige (lien avec le point 5) (module 6).
 
 ## Récapitulatif des points reportés en V2 (🔜)
 
-1. Prolongation d'une location en cours (module 2).
+1. Tranche horaire précise sélectionnable dans le tunnel de réservation (module 2) — la
+   cliente envisage de l'ajouter plus tard, "pas dans l'immédiat". En V1, l'heure se négocie
+   hors tunnel (chat/téléphone/email).
 2. Export comptable complet (modules 8, 11) — l'export simple des ventes par année civile,
    lui, est inclus en V1 (module 11).
+
+**Résolu, ne figure plus en V2 :** la prolongation d'une location en cours ne nécessite
+finalement aucun développement dédié — elle se fait via une nouvelle réservation standard
+dans le tunnel après accord manuel avec la cliente (cf. module 2).
