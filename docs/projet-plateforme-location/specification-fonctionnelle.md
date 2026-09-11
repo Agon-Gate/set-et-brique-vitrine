@@ -73,6 +73,9 @@ posé en question avant développement plutôt que supposé.
 
 - ✅ Le planning est **propre à chaque lieu de retrait** (une seule personne fait les
   remises, donc impossible d'être sur deux lieux en même temps sur le même créneau).
+- ✅ Lieux de retrait réels confirmés (5) : aire de covoiturage de Lanester (à côté du McDo),
+  covoiturage de Guidel, covoiturage de Kerizan (Brec'h), Intermarché Drive de Monistrol
+  (Lorient), covoiturage de Plouay.
 - ✅ Un client ne peut réserver que l'une des 4 durées fixes du tarif (4j / 7j / 15j /
   1 mois) — pas de durée libre dans le tunnel. **Pas de durée maximale de location** côté
   entreprise (confirmé par la cliente), mais le tunnel ne propose toujours que les 4 durées :
@@ -148,6 +151,9 @@ posé en question avant développement plutôt que supposé.
 - ⏳ Si le loyer est payé par TPE sur place, comment se fait la pré-autorisation de la
   caution (carte enregistrée en amont côté client tout de même) ? Question posée à Marion —
   reste ouverte indépendamment du point ci-dessus.
+- ✅ Restitution de la caution : automatique 48h après réception du set, **avec un plafond de
+  7 jours maximum** dans tous les cas (indépendant de la rapidité de Marion à valider l'état
+  des lieux).
 
 **Hors périmètre :**
 - Pas d'option d'assurance/protection additionnelle — la caution est la seule protection.
@@ -166,6 +172,15 @@ posé en question avant développement plutôt que supposé.
   ou par bon cadeau — module 6). L'heure exacte de remise se négocie après coup, hors tunnel.
 - ✅ En V1, tous les sets sont disponibles à tous les lieux de retrait (pas de restriction
   géographique par set).
+- ⚠️ **Point majeur à confirmer avec Alexis avant développement** : la cliente indique
+  qu'elle veut "avoir la main sur la demande de location" et pouvoir accepter/refuser/
+  proposer d'autres dates — ce qui suggère une **validation manuelle de chaque réservation**
+  plutôt qu'une confirmation automatique instantanée par le tunnel. Si confirmé, ça change le
+  flux : la réservation devient une *demande* en attente, avec une étape d'approbation côté
+  back-office avant confirmation définitive. Reste à définir : le paiement est-il pris avant
+  ou après cette validation, et que se passe-t-il en cas de refus d'une réservation déjà
+  payée (remboursement automatique) ? **Ne pas développer le flux de confirmation
+  automatique tant que ce point n'est pas tranché avec Alexis.**
 
 ---
 
@@ -218,6 +233,16 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 - Prix du module inchangé (300 €) malgré ce développement plus conséquent que la case à
   cocher initialement prévue — décision d'Alexis d'absorber le coût dans le forfait.
 
+**Politique d'annulation — résolu (document client du 11/09) :**
+- ✅ Annulation à l'initiative du client :
+  - Plus de 7 jours avant le retrait : gratuite (remboursement intégral).
+  - Entre 7 jours et 48h avant : 50 % du prix de la location retenu.
+  - Moins de 48h avant : 100 % retenu (pas de remboursement).
+- ✅ Annulation à l'initiative de Set et Brique : trois options au choix de Marion —
+  proposition d'un changement de date (gratuit), avoir sur un autre set disponible, ou
+  remboursement. Ce cas confirme que le système d'avoir (module 6, bons cadeaux) doit pouvoir
+  être déclenché gratuitement par Marion, pas seulement acheté par un client.
+
 ---
 
 ## 8. Facturation
@@ -245,27 +270,50 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 - ✅ Cette validation déclenche le compte à rebours des 48h avant libération automatique de
   la caution (cf. module 4 / règle déjà actée).
 
-**Retard de retour — trigger désormais connu (document client du 11/09) :**
+**Retard de retour — entièrement résolu (2ᵉ document client du 11/09), remplace l'ancienne
+règle "rappel 48h avant + relance quotidienne" :**
 - ✅ La date de retour attendue se calcule en jours calendaires (cf. module 2) : le client
   doit rendre le set **le jour J de la fin de location, à n'importe quelle heure**.
 - ✅ Tolérance d'environ **30 minutes après la fermeture/l'horaire habituel du jour J** avant
-  qu'un retard soit considéré comme tel. Au-delà (ou passé le jour J), les pénalités de
-  retard s'appliquent.
-- ⏳ Montant/barème exact de la pénalité de retard : toujours non tranché — seul le
-  déclencheur (quand ça compte comme un retard) est désormais connu.
+  qu'un retard soit considéré comme tel.
+- ✅ Séquence d'emails automatiques : **J-1** (veille de la fin), **J** (jour de fin), **J+1**
+  (retard constaté), **J+2**.
+- ✅ **J+1** : un forfait de retard de **30 €** est appliqué.
+- ✅ **J+2** : la **caution entière** est prélevée.
+- ✅ Marion doit pouvoir **stopper manuellement cette séquence** depuis le back-office (ex. si
+  elle joint le client par téléphone et obtient une explication valable) — prévoir une action
+  "suspendre/annuler la procédure de retard" sur chaque réservation concernée.
 
-**Barème de pénalité (pièces manquantes/cassées) :**
-- ⏳ Non tranché (pièce manquante/cassée) — **ne pas développer les prélèvements
-  automatiques sur caution avant réponse de Marion**.
+**Barème de pénalité (pièces manquantes/cassées, notices, figurines) — résolu :**
+
+| % de pertes constaté | Retenue sur caution |
+|---|---|
+| 0 à 5 % | Aucune |
+| 5 à 10 % | 10 € |
+| 10 à 15 % | 30 € |
+| 15 à 20 % | 50 € |
+| Plus de 20 % | Prix du set neuf, référence **Bricklink** |
+| Figurine manquante | Prix (référence Bricklink) |
+| Notice manquante | Prix (référence Bricklink) |
+| Set non restitué | Prix du set (référence Bricklink) |
+
+- ✅ **Forfait démontage** : 20 € si le client rapporte le set assemblé ("en vrac") au lieu de
+  le redémonter dans ses sachets d'origine.
+- ⏳ Reste ouvert : comment le "% de pertes" est-il calculé en pratique — à partir de l'écart
+  de poids constaté à la pesée (cf. module 1), ou d'un comptage précis des pièces manquantes
+  par rapport à la notice ?
+- Bricklink est un site de référence communautaire pour les prix des pièces/sets LEGO
+  d'occasion — la consultation du prix de référence sera probablement manuelle (Marion), pas
+  une intégration automatisée, sauf si une API est envisagée plus tard.
 
 ---
 
 ## 10. Notifications automatisées
 
 - ✅ Canal : email uniquement en V1 (pas de SMS).
-- ✅ Rappel avant retour : envoyé **48h avant** la date de retour prévue.
-- ✅ Relance en cas de retard : démarre **le lendemain** de la date de retour dépassée (vers
-  10h), puis **se répète chaque jour** tant que le set n'est pas rendu.
+- ✅ Séquence de rappel/relance autour de la fin de location : **J-1, J, J+1, J+2** — voir le
+  détail complet (forfaits associés à J+1/J+2, arrêt manuel possible) au module 9. Cette
+  séquence remplace l'ancienne règle "rappel 48h avant + relance quotidienne indéfinie".
 - ✅ Textes des emails rédigés par défaut par AGON-GATE, mais **Marion doit pouvoir les
   modifier elle-même** — prévoir un éditeur de templates dans le back-office.
 
@@ -295,34 +343,36 @@ réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 
 ## Récapitulatif des points bloquants (⏳ en attente de Marion ou d'Alexis)
 
-Cf. [README.md](README.md) pour le détail — ne pas démarrer les modules 6 et 7 tant que les
-barèmes/règles ne sont pas connus. **Le sujet caution/durée de préautorisation (Swikly,
-Stripe étendu, PayPal) est résolu**, ne figure plus dans cette liste (cf. module 4).
+Cf. [README.md](README.md) pour le détail. **Résolus depuis le 2ᵉ document client du
+11/09** (ne figurent plus ici) : barème de pénalité, montant de la pénalité de retard,
+politique d'annulation, lieux de retrait. **Résolu précédemment** : sujet caution/durée de
+préautorisation (Swikly, Stripe étendu, PayPal — cf. module 4).
 
-1. Barème de pénalité en cas de pièce manquante ou cassée (modules 7, 9).
-2. Politique d'annulation (module 7).
-3. Montant/barème de la pénalité de retard de retour — le déclencheur (jour calendaire +
-   tolérance ~30 min) est désormais connu, seul le montant reste ouvert (modules 7, 9).
-4. Délai minimum entre réservation et retrait (modules 2, 5).
-5. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
-6. Locations simultanées par client — oui/non (module 3).
-7. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
-8. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
+1. Comment le "% de pertes" du barème est-il calculé (écart de poids ou comptage précis) ?
+   (module 9).
+2. **Validation manuelle des réservations** — la cliente semble indiquer qu'elle valide
+   chaque demande une par une ; à confirmer avec Alexis avant de développer le flux de
+   confirmation automatique du tunnel, notamment le moment du paiement (module 5).
+3. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
+4. Locations simultanées par client — oui/non (module 3).
+5. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
+6. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
    l'exemple fourni (12 photos pour un set) ; à réclarifier (module 1).
-9. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité
-   (module 2).
-10. Battement à appliquer (ou non) lors d'une prolongation immédiate du même client, sans
-    retour physique du set entre les deux réservations (module 2).
-11. Nature du "chat" mentionné par la cliente comme canal de contact : outil existant à
-    référencer, ou fonctionnalité à développer (hors devis actuel si c'est le cas) ? (module 2).
-12. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
+7. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité (module 2)
+   — possiblement sans objet si la validation manuelle (point 2) est confirmée.
+8. Nature du "chat" mentionné par la cliente comme canal de contact : outil existant à
+   référencer, ou fonctionnalité à développer (hors devis actuel si c'est le cas) ? (module 2).
+9. Battement à appliquer (ou non) lors d'une prolongation immédiate du même client, sans
+   retour physique du set entre les deux réservations (module 2).
+10. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
     paiement (module 6).
-13. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
-14. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
-15. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
-16. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
-17. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
-    litige (lien avec le point 5) (module 6).
+11. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
+12. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
+13. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
+14. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
+15. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
+    litige (lien avec le point 3) (module 6) — probable vu la politique d'annulation
+    (module 7), à confirmer explicitement.
 
 ## Récapitulatif des points reportés en V2 (🔜)
 

@@ -29,6 +29,10 @@ et gestion des locations, pour progressivement se passer de Poppins.
 - [precisions-client-caution-catalogue.pdf](precisions-client-caution-catalogue.pdf) —
   réponses de la cliente reçues le 11/09 : caution/assurance au-delà de 7 jours, remise en
   main propre, comptage des jours de location, champs produit détaillés.
+- [precisions-client-bareme-annulation-lieux.pdf](precisions-client-bareme-annulation-lieux.pdf) —
+  réponses de la cliente reçues le 11/09 (2ᵉ document) : barème de pénalité détaillé,
+  séquence de relance en cas de retard, politique d'annulation, lieux de retrait réels,
+  validation manuelle des demandes de réservation.
 
 ## Grille tarifaire (confirmée)
 
@@ -95,6 +99,64 @@ Stripe reste en pré-autorisation standard (7 jours), et **elle prend une assura
 professionnelle de son côté** pour couvrir le risque au-delà. Aucune intégration
 supplémentaire (Swikly, PayPal, autorisation étendue Stripe) n'est nécessaire.
 
+## Barème, annulation, retard, lieux — résolu (2ᵉ document du 11/09)
+
+**Barème de pénalité (pièces manquantes/cassées, module 9) — résolu :**
+
+| % de pertes | Retenue sur caution |
+|---|---|
+| 0 à 5 % | Aucune |
+| 5 à 10 % | 10 € |
+| 10 à 15 % | 30 € |
+| 15 à 20 % | 50 € |
+| > 20 % | Prix du set neuf (référence **Bricklink**) |
+| Figurine manquante | Prix (référence Bricklink) |
+| Notice manquante | Prix (référence Bricklink) |
+| Set non restitué | Prix du set (référence Bricklink) |
+
+- **Forfait démontage** : 20 € si le client rapporte le set assemblé/"en vrac" au lieu de le
+  redémonter dans les sachets d'origine.
+- ⏳ Reste à préciser : comment le "% de pertes" est-il calculé concrètement — à partir de
+  l'écart de poids constaté (module 1/9), ou d'un comptage précis des pièces manquantes ?
+
+**Séquence de retard de retour (modules 9, 10) — résolu, remplace l'ancienne règle "rappel
+48h avant + relance quotidienne" :**
+- Email automatique à **J-1**, **J** (jour de fin de location), **J+1** et **J+2**.
+- **J+1** : forfait de retard de **30 €**.
+- **J+2** : prélèvement de la **caution entière**.
+- Marion veut pouvoir **stopper manuellement cette procédure** depuis le back-office si elle
+  parvient à joindre le client et obtient une explication — à prévoir comme action
+  disponible sur chaque réservation en retard.
+
+**Restitution de la caution (module 4/9) — précision :**
+- Automatique 48h après réception du set, **avec un plafond de 7 jours maximum** dans tous
+  les cas (ne dépend donc pas uniquement de la rapidité de Marion à faire l'état des lieux).
+
+**Politique d'annulation (module 7) — résolu :**
+- Annulation par le client : gratuite si > 7 jours avant le retrait ; 50 % du prix de la
+  location retenu entre 7 jours et 48h ; 100 % retenu à moins de 48h.
+- Annulation à l'initiative de Set et Brique : proposition d'un changement de date
+  (gratuit), ou avoir sur un autre set disponible, ou remboursement — au choix.
+
+**Lieux de retrait (module 1/2) — liste réelle confirmée :**
+- Parking de l'aire de covoiturage de Lanester (à côté du McDo)
+- Parking de covoiturage de Guidel
+- Parking de covoiturage de Kerizan (Brec'h)
+- Parking Intermarché Drive de Monistrol (Lorient)
+- Parking de covoiturage de Plouay
+
+**Validation des réservations (module 5) — point majeur à confirmer avec Alexis avant
+d'inscrire cette règle dans la spécification :**
+- Marion indique : *"pas de délai [minimum de réservation], vu que nous avons la main sur la
+  demande de location, nous pouvons oui ou non accepter et proposer d'autres dates."* Cela
+  suggère que chaque demande de réservation doit être **validée manuellement par elle**
+  (accepter / refuser / proposer une autre date) plutôt que confirmée automatiquement et
+  instantanément par le tunnel, contrairement à ce qui était prévu jusqu'ici (module 5 :
+  "réservation confirmée dès que le paiement est effectué"). ⏳ À confirmer avec Alexis :
+  cela implique-t-il vraiment une validation manuelle systématique ? Si oui, le paiement
+  est-il pris avant ou après cette validation, et que se passe-t-il en cas de refus d'une
+  réservation déjà payée ?
+
 ## Précisions techniques (remontées de Madus, tranchées)
 
 - **Poids du set** : non affiché côté client — information volontairement privée pour éviter
@@ -125,53 +187,60 @@ Tunnel de réservation (5) déjà prévus.
   Stripe/TPE.
 - Suivi des bons (valide / utilisé / expiré) depuis le back-office.
 
-**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 12 à 17).
+**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 10 à 15).
 
 ## Points encore ouverts (bloquants pour certains modules)
 
 Ces points ne sont pas tranchés côté cliente — cf. section "Points à trancher" du récap
-envoyé. Ne pas démarrer le développement des modules concernés (caution / planning / gestion
-des dommages) tant qu'ils ne sont pas clarifiés :
+envoyé. Ne pas démarrer le développement des modules concernés tant qu'ils ne sont pas
+clarifiés :
 
-1. Barème de pénalité en cas de pièce manquante ou cassée.
-2. Politique d'annulation (remboursement total/partiel/aucun selon délai).
-3. Montant/barème de la pénalité de retard de retour (le déclencheur est désormais connu :
-   jour calendaire de fin de location + tolérance ~30 min, cf. ci-dessus — seul le montant
-   reste à définir).
-4. Délai minimum entre réservation et retrait.
-5. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
+1. Comment le "% de pertes" du barème de pénalité est-il calculé (écart de poids constaté,
+   ou comptage précis des pièces manquantes) ?
+2. **Validation manuelle des réservations** : Marion valide-t-elle vraiment chaque demande
+   une par une (accepter/refuser/proposer une autre date) ? Si oui, le paiement est-il pris
+   avant ou après cette validation ? — à trancher avec Alexis avant de demander à Marion.
+3. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
    (avoir, bon cadeau, remboursement pour le client suivant lésé).
-6. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
+4. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
    réservés simultanément), ou une seule location active à la fois par client ?
-7. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
+5. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
    pour la pré-autorisation de la caution, ou la caution est-elle prise directement sur
    place via le TPE ?
-8. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
+6. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
    mais l'exemple fourni (Faucon Millénium) contient 12 photos — faut-il toutes les afficher,
    ou nous laisse-t-elle choisir ?
-9. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
-   indisponibilité générale), indépendamment du statut de chaque set ? — remontée par Madus
-   en lien avec le délai minimum de réservation (point 4).
-10. Lors d'une prolongation immédiate (nouvelle réservation du même client à la suite de la
-    première, sans retour physique du set), le délai de battement standard s'applique-t-il
-    quand même, ou faut-il pouvoir le sauter dans ce cas précis ?
-11. Le "chat" mentionné par la cliente comme canal de contact (prise d'horaire, demande de
-    prolongation) — est-ce un outil déjà existant côté cliente à simplement référencer sur le
-    site, ou une fonctionnalité de chat en direct à développer (hors devis actuel si c'est le
-    cas) ?
-12. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
+7. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
+   indisponibilité générale), indépendamment du statut de chaque set ? (Ceci dit, si chaque
+   réservation est validée manuellement — point 2 — cette question devient peut-être sans
+   objet : elle peut simplement refuser une demande sur ses dates d'indisponibilité.)
+8. Le "chat" mentionné par la cliente comme canal de contact (prise d'horaire, demande de
+   prolongation) — est-ce un outil déjà existant côté cliente à simplement référencer sur le
+   site, ou une fonctionnalité de chat en direct à développer (hors devis actuel si c'est le
+   cas) ?
+9. Lors d'une prolongation immédiate (nouvelle réservation du même client à la suite de la
+   première, sans retour physique du set), le délai de battement standard s'applique-t-il
+   quand même, ou faut-il pouvoir le sauter dans ce cas précis ?
+10. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
     utilisable uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour
     compléter un paiement plus important avec un autre moyen de paiement pour la différence ?
-13. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
+11. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
     conservé pour une prochaine location, ou perdu ?
-14. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
+12. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
     détenant le code (cas classique du cadeau) ?
-15. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
+13. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
     pour les bons d'achat non alimentaires (loi Chatel). Quelle durée exacte Marion
     souhaite-t-elle (1 an, 2 ans, illimité) ?
-16. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
-17. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
-    Marion, sans achat) pour le point 5 ci-dessus (client lésé en cas de non-retour) ?
+14. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
+15. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
+    Marion, sans achat) pour le point 3 ci-dessus (client lésé en cas de non-retour) ? — la
+    réponse est probablement oui vu la politique d'annulation ci-dessus ("avoir sur un autre
+    set"), mais à confirmer explicitement.
+
+**Résolus par le 2ᵉ document du 11/09** (retirés de cette liste) : barème de pénalité
+pièce manquante/cassée, montant de la pénalité de retard, politique d'annulation, lieux de
+retrait, délai minimum entre réservation et retrait (remplacé par le point 2 ci-dessus, plus
+structurant).
 
 ## Reporté à une V2 (hors périmètre actuel)
 
