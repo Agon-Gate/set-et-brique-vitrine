@@ -34,18 +34,27 @@ et gestion des locations, pour progressivement se passer de Poppins.
   séquence de relance en cas de retard, politique d'annulation, lieux de retrait réels,
   validation manuelle des demandes de réservation.
 
-## ⚠️ Grille tarifaire — en cours de changement, ne pas développer dessus pour l'instant
+## Grille tarifaire — nouveau modèle confirmé (2 €/jour, durée libre)
 
-**La cliente a annoncé changer son mode de prix : 2 €/jour, pour tous les sets, sans
-distinction.** Ça remplace potentiellement la grille à 4 paliers fixes ci-dessous — mais les
-détails ne sont pas encore clairs (est-ce que les 4 durées fixes du tunnel restent, avec un
-prix recalculé en 2 €×jours par palier ? Ou la durée devient libre, en nombre de jours ?).
-Alexis doit encore y réfléchir avant qu'on pose la question précise à Marion. **Ne pas
-modifier le devis, les bons cadeaux (module 6) ou le tunnel (module 5) tant que ce point
-n'est pas éclairci** — cf. [points encore ouverts](#points-encore-ouverts-bloquants-pour-certains-modules).
+**Résolu (réponse de Marion du 13/09).** Le tarif passe à **2 €/jour, pour tous les sets,
+sans distinction**, et remplace complètement l'ancienne grille à 4 paliers fixes. Le client
+**choisit librement son nombre de jours de location, sans blocage ni durée maximale** — le
+principe des "4 durées fixes" du tunnel (4j/7j/15j/1mois) n'existe plus.
 
-Ancienne grille (montants fixes, identiques pour tous les sets), pour référence tant que le
-nouveau modèle n'est pas confirmé :
+**Prolongation en cours de location — mécanique confirmée :** si le client veut garder le set
+plus longtemps, il peut faire une nouvelle demande (avec nouveau paiement et nouvelle
+caution) **sans avoir besoin de bloquer un nouveau RDV de remise en main propre**, puisqu'il a
+déjà le set en sa possession. Cela répond directement à la question du "battement lors d'une
+prolongation immédiate" (ex. Faucon Millénium loué du 1er au 8, puis reloué par le même
+client du 9 au 15 sans jamais rendre le set entre les deux) : **pas de RDV, donc pas de
+battement/nettoyage à imposer entre les deux réservations d'un même client sur le même set**.
+
+Impact sur les modules : le sélecteur de durée du tunnel (module 5) devient un simple nombre
+de jours (prix = 2 € × nombre de jours) au lieu d'un choix parmi 4 options ; le module 2
+(planning) n'a plus de règle de "durée fixe" à appliquer ; les montants des bons cadeaux
+(module 6) sont recalculés sur cette base (cf. section dédiée ci-dessous).
+
+Ancienne grille (obsolète, conservée pour mémoire) :
 
 | Durée | Prix |
 |---|---|
@@ -53,8 +62,6 @@ nouveau modèle n'est pas confirmé :
 | 7 jours | 15 € |
 | 15 jours | 25 € |
 | 1 mois | 45 € |
-
-> Info transmise par la cliente après le RDV de cadrage (hors notes brutes du RDV).
 
 ## Ordre de développement des modules (revu)
 
@@ -97,9 +104,11 @@ le module 3, qui passe de 540 € à 660 €).
 - La durée de location se compte en **jours calendaires** (une location de 4 jours démarrée
   un mardi se termine le vendredi, quelle que soit l'heure de remise/retour ce jour-là), avec
   une tolérance d'environ 30 min le jour du retour avant que ça compte comme un retard.
-- Pas de durée maximale de location : au-delà des 4 durées du tunnel, la cliente gère les
-  prolongations manuellement (contact, puis nouvelle réservation standard pour les jours
-  supplémentaires) — aucun développement dédié nécessaire pour ce cas.
+- Pas de durée maximale ni minimale : le client choisit librement son nombre de jours de
+  location (facturé 2 €/jour, cf. grille tarifaire ci-dessus). Une prolongation en cours de
+  location se fait via une nouvelle réservation dans le tunnel (nouveau paiement + nouvelle
+  caution), **sans nouveau RDV de remise en main propre** puisque le client a déjà le set en
+  main — aucun développement dédié nécessaire au-delà du tunnel standard.
 
 ## Caution au-delà de 7 jours — sujet résolu
 
@@ -127,8 +136,10 @@ supplémentaire (Swikly, PayPal, autorisation étendue Stripe) n'est nécessaire
 
 - **Forfait démontage** : 20 € si le client rapporte le set assemblé/"en vrac" au lieu de le
   redémonter dans les sachets d'origine.
-- ⏳ Reste à préciser : comment le "% de pertes" est-il calculé concrètement — à partir de
-  l'écart de poids constaté (module 1/9), ou d'un comptage précis des pièces manquantes ?
+- ✅ **Calcul du "% de pertes" — résolu (réponse de Marion du 13/09) :** comptage précis du
+  nombre de pièces manquantes par rapport au set de départ (pas un calcul par écart de poids).
+  Une **zone de commentaire libre** doit être prévue en plus, pour que Marion documente le
+  détail au moment de l'état des lieux (module 9).
 
 **Séquence de retard de retour (modules 9, 10) — résolu, remplace l'ancienne règle "rappel
 48h avant + relance quotidienne" :**
@@ -156,17 +167,28 @@ supplémentaire (Swikly, PayPal, autorisation étendue Stripe) n'est nécessaire
 - Parking Intermarché Drive de Monistrol (Lorient)
 - Parking de covoiturage de Plouay
 
-**Validation des réservations (module 5) — point majeur à confirmer avec Alexis avant
-d'inscrire cette règle dans la spécification :**
-- Marion indique : *"pas de délai [minimum de réservation], vu que nous avons la main sur la
-  demande de location, nous pouvons oui ou non accepter et proposer d'autres dates."* Cela
-  suggère que chaque demande de réservation doit être **validée manuellement par elle**
-  (accepter / refuser / proposer une autre date) plutôt que confirmée automatiquement et
-  instantanément par le tunnel, contrairement à ce qui était prévu jusqu'ici (module 5 :
-  "réservation confirmée dès que le paiement est effectué"). ⏳ À confirmer avec Alexis :
-  cela implique-t-il vraiment une validation manuelle systématique ? Si oui, le paiement
-  est-il pris avant ou après cette validation, et que se passe-t-il en cas de refus d'une
-  réservation déjà payée ?
+**Validation des réservations (module 5) — résolu (réponse de Marion du 13/09) :**
+- ✅ **Confirmé** : validation manuelle de Marion pour **toutes** les locations **et** les
+  prolongations, sans exception. Chaque demande passe par une étape d'approbation côté
+  back-office (accepter / refuser / proposer une autre date) avant confirmation définitive —
+  ce n'est donc pas une confirmation automatique et instantanée dès le paiement.
+- ⏳ Reste à préciser (résidu, à poser à Marion) : le paiement est-il pris **avant** ou
+  **après** cette validation manuelle ? Et que se passe-t-il en cas de refus d'une réservation
+  dont le paiement aurait déjà été prélevé (remboursement automatique) ?
+
+## Réponses de Marion du 13/09 — résolu (dernier lot de questions)
+
+- **Photos par set** : ✅ 10 photos maximum (au lieu des 3-4 proposées initialement).
+- **Client suivant en cas de non-retour dans les temps** : ✅ prévenu par email **et**
+  téléphone (Marion l'appelle elle-même), puis indemnisé selon son choix : **avoir ou
+  remboursement**.
+- **Locations simultanées** : ✅ un client peut louer plusieurs sets en même temps, mais cela
+  doit passer par **deux réservations distinctes** (pas un panier multi-articles unique).
+- **Blocage de dates sur le planning** : ✅ les deux mécanismes sont nécessaires — par **set**
+  (indisponible pour cause de retard, problème technique ou non-restitution) et par
+  **période** (congés de Marion, indépendamment du statut de chaque set).
+- **Horaires de remise/récupération** : ✅ confirmé, pas d'horaires fixes en V1 — tout se
+  négocie en direct avec le client par email et/ou téléphone.
 
 ## Précisions techniques (remontées de Madus, tranchées)
 
@@ -190,80 +212,63 @@ bouger le prix des autres modules ni le total (5 520 €) — listé "Inclus" da
 présenté comme rendu possible grâce à la réutilisation des modules Paiement Stripe (4) et
 Tunnel de réservation (5) déjà prévus.
 
-**Confirmé :**
-- Bons vendus aux montants de la grille tarifaire, pas de montant libre — ⚠️ montants exacts
-  (actuellement 10 € / 15 € / 25 € / 45 €) à revoir selon le nouveau modèle tarifaire en
-  cours de clarification (cf. points encore ouverts, item 1).
-- Génération automatique d'un code unique par bon, envoyé par email à l'achat.
-- Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
+**Résolu (réponse de Marion du 13/09) — fonctionnement complet du module :**
+- ✅ Montants fixes proposés à l'achat : **10 € / 20 € / 30 €** (remplacent les anciens
+  10/15/25/45 € qui étaient calés sur les 4 durées fixes, abandonnées avec le nouveau modèle
+  tarifaire). Ces montants correspondent respectivement à 5, 10 et 15 jours de location au
+  tarif de 2 €/jour, mais le bon reste un **crédit en euros**, pas une durée figée : le client
+  choisit n'importe quel set sur le site pour ce montant (ou plus, avec un complément de
+  règlement par carte).
+- ✅ Utilisation : au moment de réserver un set, le client voit le prix total de sa location
+  (2 € × nombre de jours) et **saisit son code cadeau**, qui est **défalqué du prix** — pas de
+  sélection de durée imposée par le bon.
+- ✅ **Complément de règlement possible par carte** si le montant du bon ne couvre pas la
+  totalité du prix de la location choisie.
+- ✅ **Le bon cadeau n'inclut jamais la caution** : la caution reste toujours due séparément
+  (pré-autorisation Stripe ou TPE), quel que soit le montant du bon utilisé.
+- ✅ **Usage unique** : si le bon vaut plus que le prix de la location réglée, le solde restant
+  est **perdu** (pas de report sur une prochaine location).
+- ✅ **Non nominatif** : utilisable par toute personne détenant le code (pas de lien avec un
+  compte client en particulier).
+- ✅ **Durée de validité : 1 an** (conforme au minimum légal de la loi Chatel).
+- ✅ **Non remboursable/non annulable** une fois acheté, s'il n'est pas utilisé.
+- ✅ **Réutilisation du système pour émettre des avoirs gratuits** (offerts par Marion, sans
+  achat, ex. pour compenser un client lésé par un retard de retour — cf. section "Réponses de
+  Marion du 13/09" ci-dessus) : confirmé, avec un montant égal à **la valeur de la durée de
+  la location initiale** du client concerné.
+- ✅ Génération automatique d'un code unique par bon, envoyé par email à l'achat (ou à
+  l'émission, pour un avoir gratuit).
+- ✅ Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
   Stripe/TPE.
-- Suivi des bons (valide / utilisé / expiré) depuis le back-office.
+- ✅ Suivi des bons (valide / utilisé / expiré) depuis le back-office.
 
-**Encore à trancher** (cf. section "Points encore ouverts" ci-dessous, items 10 à 15).
+Module entièrement tranché, plus aucun point ouvert sur les bons cadeaux.
 
 ## Points encore ouverts (bloquants pour certains modules)
 
-Ces points ne sont pas tranchés côté cliente — cf. section "Points à trancher" du récap
-envoyé. Ne pas démarrer le développement des modules concernés tant qu'ils ne sont pas
-clarifiés :
+Le lot de réponses de Marion du 13/09 a résolu la quasi-totalité des points qui restaient en
+suspens (cf. section "Réponses de Marion du 13/09" ci-dessus et le module 6 pour le détail).
+Il ne reste que deux points :
 
-1. **⚠️ Nouveau modèle tarifaire (2 €/jour, tous les sets)** — Alexis doit d'abord clarifier
-   en interne comment ça s'articule avec les 4 durées fixes actuelles avant qu'on formule la
-   question précise à poser à Marion. Bloque : la grille tarifaire, les montants des bons
-   cadeaux (module 6), potentiellement le fonctionnement du tunnel (module 5) si la durée
-   devient libre plutôt que fixée à 4 paliers.
-2. **Validation manuelle des réservations** : Marion valide-t-elle vraiment chaque demande
-   une par une (accepter/refuser/proposer une autre date) ? Si oui, le paiement est-il pris
-   avant ou après cette validation ? — à trancher avec Alexis avant de demander à Marion.
-3. Comment le "% de pertes" du barème de pénalité est-il calculé (écart de poids constaté,
-   ou comptage précis des pièces manquantes) ? — c'est Set et Brique qui détermine cette
-   méthode, à leur demander explicitement.
-4. Gestion d'un chevauchement de réservation quand un client ne rend pas le set à temps
-   (avoir, bon cadeau, remboursement pour le client suivant lésé).
-5. Un client peut-il avoir plusieurs locations en cours en même temps (plusieurs sets
-   réservés simultanément), ou une seule location active à la fois par client ?
-6. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
+1. Si un client paie sur place par TPE, faut-il quand même enregistrer sa carte en amont
    pour la pré-autorisation de la caution, ou la caution est-elle prise directement sur
-   place via le TPE ?
-7. Combien de photos par set afficher sur la fiche produit ? On proposait 3 à 4 par défaut,
-   mais l'exemple fourni (Faucon Millénium) contient 12 photos — faut-il toutes les afficher,
-   ou nous laisse-t-elle choisir ?
-8. Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
-   indisponibilité générale), indépendamment du statut de chaque set ? (Ceci dit, si chaque
-   réservation est validée manuellement — point 2 — cette question devient peut-être sans
-   objet : elle peut simplement refuser une demande sur ses dates d'indisponibilité.)
-9. **Battement lors d'une prolongation immédiate — exemple concret pour clarifier la
-   question** : un client loue le Faucon Millénium du 1er au 8, puis décide de le garder plus
-   longtemps et réserve lui-même, via le tunnel, une nouvelle location du 9 au 15 *pour ce
-   même set qu'il a déjà en main* (il ne le rend jamais entre les deux réservations). Le
-   délai de battement standard (4 jours par défaut, pour que Marion nettoie/vérifie le set
-   entre deux locataires) n'a ici aucune raison d'exister puisque rien n'est physiquement
-   rendu. Question : le système doit-il quand même imposer ce délai entre les deux
-   réservations du même client (ce qui bloquerait cette prolongation en pratique), ou faut-il
-   le sauter spécifiquement dans ce cas ?
-10. Un bon cadeau doit-il correspondre exactement à une des 4 durées (ex. bon de 15 €
-    utilisable uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour
-    compléter un paiement plus important avec un autre moyen de paiement pour la différence ?
-    **À reconsidérer une fois le nouveau modèle tarifaire (point 1) clarifié** — si la durée
-    devient libre en jours, la logique "bon = une des 4 durées" ne tient plus telle quelle.
-11. Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
-    conservé pour une prochaine location, ou perdu ?
-12. Un bon cadeau est-il nominatif (lié à un compte client), ou utilisable par toute personne
-    détenant le code (cas classique du cadeau) ?
-13. Durée de validité d'un bon cadeau — la loi française impose une durée minimale d'1 an
-    pour les bons d'achat non alimentaires (loi Chatel). Quelle durée exacte Marion
-    souhaite-t-elle (1 an, 2 ans, illimité) ?
-14. Un bon cadeau acheté et non utilisé peut-il être remboursé/annulé par le client ?
-15. Le même système de bons peut-il aussi servir à émettre des avoirs gratuits (offerts par
-    Marion, sans achat) pour le point 4 ci-dessus (client lésé en cas de non-retour) ? — la
-    réponse est probablement oui vu la politique d'annulation ci-dessus ("avoir sur un autre
-    set"), mais à confirmer explicitement.
+   place via le TPE ? (module 4)
+2. Résidu de la validation manuelle des réservations (module 5) : le paiement est-il pris
+   **avant** ou **après** la validation manuelle de Marion ? Et que se passe-t-il en cas de
+   refus d'une réservation dont le paiement aurait déjà été prélevé (remboursement
+   automatique) ?
 
-**Résolus par le 2ᵉ document du 11/09** (retirés de cette liste) : barème de pénalité
-pièce manquante/cassée, montant de la pénalité de retard, politique d'annulation, lieux de
-retrait, délai minimum entre réservation et retrait (remplacé par le point 2 ci-dessus, plus
-structurant). **Résolu (réponse d'Alexis) :** nature du "chat" — souhaité par la cliente mais
-pas développé pour l'instant, cf. section V2 ci-dessous.
+**Résolus par le 2ᵉ document du 11/09** : barème de pénalité pièce manquante/cassée, montant
+de la pénalité de retard, politique d'annulation, lieux de retrait. **Résolu (réponse
+d'Alexis) :** nature du "chat" — souhaité par la cliente mais pas développé pour l'instant,
+cf. section V2 ci-dessous. **Résolus par les réponses de Marion du 13/09** : nouveau modèle
+tarifaire (2 €/jour, durée libre), validation manuelle des réservations (flux confirmé),
+calcul du "% de pertes" (comptage précis + commentaire libre), gestion du client suivant lésé
+(avoir/remboursement au choix), locations simultanées (deux réservations distinctes), nombre
+de photos par set (10 max), blocage de dates sur le planning (par set et par période),
+battement lors d'une prolongation immédiate (pas de RDV donc pas de battement), et
+l'intégralité du fonctionnement des bons cadeaux (montants, usage unique, non-nominatif,
+validité 1 an, non-remboursable, réutilisation pour avoirs gratuits).
 
 ## Reporté à une V2 (hors périmètre actuel)
 

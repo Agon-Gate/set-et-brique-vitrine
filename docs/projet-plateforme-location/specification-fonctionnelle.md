@@ -46,9 +46,8 @@ posé en question avant développement plutôt que supposé.
 - ✅ Poids du set : stocké en interne (utile à la vérification au retour, module 9), mais
   **jamais affiché côté client** — décision volontaire pour éviter que les locataires ne
   devinent le contenu exact des sachets pesés.
-- ⏳ Nombre de photos à afficher par set : on avait proposé 3 à 4 par défaut, mais l'exemple
-  fourni par la cliente pour le Faucon Millénium contient 12 photos. À reclarifier : faut-il
-  toutes les afficher, ou nous laisse-t-elle choisir parmi celles fournies ?
+- ✅ **Nombre de photos par set — résolu (réponse de Marion du 13/09) : 10 photos maximum**
+  (remplace la proposition initiale de 3-4).
 
 **Stock :**
 - ✅ **28 références au catalogue** (mise à jour de l'estimation "~25" du RDV de cadrage) —
@@ -76,14 +75,11 @@ posé en question avant développement plutôt que supposé.
 - ✅ Lieux de retrait réels confirmés (5) : aire de covoiturage de Lanester (à côté du McDo),
   covoiturage de Guidel, covoiturage de Kerizan (Brec'h), Intermarché Drive de Monistrol
   (Lorient), covoiturage de Plouay.
-- ⚠️ Un client ne peut réserver que l'une des 4 durées fixes du tarif (4j / 7j / 15j /
-  1 mois) — pas de durée libre dans le tunnel. **Ce point est remis en question** par le
-  nouveau modèle tarifaire annoncé par la cliente (2 €/jour, tous les sets — cf. README,
-  section tarifaire) : si la durée devient libre en nombre de jours plutôt que fixée à 4
-  paliers, cette règle et tout le tunnel de réservation doivent être repensés. **Ne pas
-  développer le sélecteur de durée tant que ce point n'est pas éclairci avec Alexis.**
-  Pas de durée maximale de location côté entreprise (confirmé par la cliente), quel que soit
-  le modèle tarifaire retenu.
+- ✅ **Durée libre — résolu (réponse de Marion du 13/09).** Le tarif est maintenant de
+  **2 €/jour pour tous les sets**, sans distinction. Il n'y a **plus de 4 durées fixes** :
+  le client choisit librement son nombre de jours de location, sans blocage ni durée
+  maximale. Le sélecteur de durée du tunnel devient un simple nombre de jours (prix = 2 € ×
+  nombre de jours) au lieu d'un choix parmi 4 options.
 - ✅ **Le tunnel réserve une date, pas un créneau horaire précis.** L'heure exacte de remise
   est négociée directement avec le client par téléphone/email en V1 (un outil de chat est
   souhaité par la cliente mais explicitement pas développé pour l'instant — cf. section V2) —
@@ -100,20 +96,21 @@ posé en question avant développement plutôt que supposé.
   **nouvelle réservation via le tunnel** pour les jours supplémentaires — comme une location
   normale qui suit immédiatement la première. Aucun développement spécifique nécessaire pour
   la prolongation en elle-même.
-- ⏳ **Battement lors d'une prolongation immédiate — exemple concret** : un client loue le
-  Faucon Millénium du 1er au 8, puis décide de le garder plus longtemps et réserve lui-même,
-  via le tunnel, une nouvelle location du 9 au 15 *pour ce même set qu'il a déjà en main* (il
-  ne le rend jamais entre les deux réservations). Le délai de battement standard (4 jours par
-  défaut, prévu pour que Marion nettoie/vérifie le set entre deux locataires différents) n'a
-  ici aucune raison d'exister puisque rien n'est physiquement rendu. Question : le système
-  doit-il quand même imposer ce délai entre les deux réservations du même client (ce qui
-  bloquerait cette prolongation en pratique), ou faut-il le sauter spécifiquement dans ce cas ?
+- ✅ **Battement lors d'une prolongation immédiate — résolu (réponse de Marion du 13/09).**
+  Exemple : un client loue le Faucon Millénium du 1er au 8, puis décide de le garder plus
+  longtemps et réserve lui-même, via le tunnel, une nouvelle location du 9 au 15 *pour ce
+  même set qu'il a déjà en main* (il ne le rend jamais entre les deux réservations). Marion a
+  confirmé que ce type de prolongation se fait **sans avoir besoin de bloquer un nouveau RDV
+  de remise en main propre** — donc **pas de délai de battement à imposer** entre deux
+  réservations du même client sur le même set quand rien n'est physiquement rendu entre les
+  deux. Le délai de battement par défaut (4 jours) continue de s'appliquer normalement entre
+  deux locataires **différents**.
 - ✅ **Outil de chat** : souhaité par la cliente comme canal de contact, mais confirmé par
   Alexis comme **non développé en V1**, éventuellement en V2.
-- ⏳ Marion doit-elle pouvoir bloquer des dates à l'avance sur le planning (vacances,
-  indisponibilité générale), indépendamment du statut de chaque set ? Non tranché — remonté
-  par Madus en lien avec le délai minimum de réservation. Possiblement sans objet si la
-  validation manuelle des réservations (module 5) est confirmée.
+- ✅ **Blocage de dates sur le planning — résolu (réponse de Marion du 13/09).** Les deux
+  mécanismes sont nécessaires : blocage **par set** (set indisponible pour cause de retard,
+  problème technique, ou non-restitution) et blocage **par période** (congés de Marion),
+  indépendamment du statut de chaque set individuel.
 
 **Reporté en V2 :**
 - 🔜 Outil de chat pour contacter la cliente — souhaité mais pas développé en V1.
@@ -129,8 +126,10 @@ posé en question avant développement plutôt que supposé.
   facturation). Rien de plus (pas de date de naissance, etc.).
 
 **Locations simultanées :**
-- ⏳ Un client peut-il avoir plusieurs locations actives en même temps, ou une seule à la
-  fois ? Non tranché, question posée à Marion.
+- ✅ **Résolu (réponse de Marion du 13/09) :** un client peut louer plusieurs sets en même
+  temps, mais cela doit passer par **deux réservations distinctes** (pas de panier
+  multi-articles unique — chaque set fait l'objet de sa propre location, son propre paiement
+  et sa propre caution).
 
 **Compte bloqué :**
 - ✅ Statut "compte bloqué" à prévoir, activé/désactivé **manuellement par Marion** depuis le
@@ -176,20 +175,20 @@ posé en question avant développement plutôt que supposé.
 
 ## 5. Tunnel de réservation client
 
-- ✅ Parcours : sélection du set → choix de la durée (4 options fixes) → choix de la **date**
-  de retrait (pas d'heure précise, cf. module 2) → paiement (en ligne, à la remise par TPE,
-  ou par bon cadeau — module 6). L'heure exacte de remise se négocie après coup, hors tunnel.
+- ✅ Parcours : sélection du set → choix de la durée en **nombre de jours libre** (prix =
+  2 € × nombre de jours, cf. README section tarifaire) → choix de la **date** de retrait (pas
+  d'heure précise, cf. module 2) → paiement (en ligne, à la remise par TPE, ou par bon
+  cadeau — module 6). L'heure exacte de remise se négocie après coup, hors tunnel.
 - ✅ En V1, tous les sets sont disponibles à tous les lieux de retrait (pas de restriction
   géographique par set).
-- ⚠️ **Point majeur à confirmer avec Alexis avant développement** : la cliente indique
-  qu'elle veut "avoir la main sur la demande de location" et pouvoir accepter/refuser/
-  proposer d'autres dates — ce qui suggère une **validation manuelle de chaque réservation**
-  plutôt qu'une confirmation automatique instantanée par le tunnel. Si confirmé, ça change le
-  flux : la réservation devient une *demande* en attente, avec une étape d'approbation côté
-  back-office avant confirmation définitive. Reste à définir : le paiement est-il pris avant
-  ou après cette validation, et que se passe-t-il en cas de refus d'une réservation déjà
-  payée (remboursement automatique) ? **Ne pas développer le flux de confirmation
-  automatique tant que ce point n'est pas tranché avec Alexis.**
+- ✅ **Validation manuelle des réservations — résolu (réponse de Marion du 13/09).** Marion
+  valide manuellement **toutes** les locations **et** les prolongations, sans exception —
+  chaque demande est une *demande* en attente, avec une étape d'approbation côté back-office
+  (accepter / refuser / proposer une autre date) avant confirmation définitive. Ce n'est donc
+  **pas** une confirmation automatique instantanée dès le paiement.
+- ⏳ Résidu à préciser avec Marion : le paiement est-il pris **avant** ou **après** cette
+  validation manuelle ? Et que se passe-t-il en cas de refus d'une réservation dont le
+  paiement aurait déjà été prélevé (remboursement automatique) ?
 
 ---
 
@@ -199,34 +198,35 @@ Module ajouté en cours de cadrage (absent du devis initial), à la demande de l
 Listé "Inclus" dans le devis — pas de surcoût, présenté comme rendu possible grâce à la
 réutilisation des modules Paiement Stripe (4) et Tunnel de réservation (5).
 
-**Confirmé :**
-- ⚠️ Bons vendus aux montants de la grille tarifaire, pas de montant libre — **montants
-  exacts à revoir** : la grille actuelle (10 € / 15 € / 25 € / 45 €) est remise en question
-  par le nouveau modèle tarifaire annoncé par la cliente (2 €/jour, tous les sets). Ne pas
-  figer les montants des bons tant que ce point n'est pas éclairci avec Alexis (cf. module 2
-  et README).
-- ✅ Génération automatique d'un code unique par bon acheté, envoyé par email à l'acheteur.
+**Résolu (réponse de Marion du 13/09) — fonctionnement complet du module :**
+- ✅ Montants fixes proposés à l'achat : **10 € / 20 € / 30 €** (remplacent les anciens
+  10/15/25/45 € qui étaient calés sur les 4 durées fixes, abandonnées avec le nouveau modèle
+  tarifaire à 2 €/jour). Ces montants correspondent respectivement à 5, 10 et 15 jours de
+  location, mais le bon reste un **crédit en euros**, pas une durée figée.
+- ✅ **Utilisation** : au moment de réserver, le client voit le prix total de sa location
+  (2 € × nombre de jours choisi) et **saisit son code cadeau**, qui est **défalqué du prix**
+  — il peut choisir n'importe quel set pour ce montant, ou plus avec un complément de
+  règlement par carte.
+- ✅ **Complément de règlement par carte** possible si le bon ne couvre pas la totalité du
+  prix.
+- ✅ **Le bon cadeau n'inclut jamais la caution** : elle reste toujours due séparément
+  (pré-autorisation Stripe ou TPE), quel que soit le bon utilisé.
+- ✅ **Usage unique** : si le bon vaut plus que le prix réglé, le solde restant est **perdu**
+  (pas de report sur une prochaine location).
+- ✅ **Non nominatif** : utilisable par toute personne détenant le code.
+- ✅ **Durée de validité : 1 an** (conforme au minimum légal de la loi Chatel).
+- ✅ **Non remboursable/non annulable** une fois acheté, s'il n'est pas utilisé.
+- ✅ **Réutilisation du système pour émettre des avoirs gratuits** (offerts par Marion, sans
+  achat, ex. pour compenser un client lésé par un retard de retour du set précédent, cf.
+  module 1/2) : confirmé, avec un montant égal à **la valeur de la durée de la location
+  initiale** du client concerné.
+- ✅ Génération automatique d'un code unique par bon, envoyé par email à l'achat (ou à
+  l'émission, pour un avoir gratuit).
 - ✅ Utilisable comme moyen de paiement dans le tunnel de réservation, au même titre que
   Stripe ou le TPE.
 - ✅ Suivi des bons émis (valide / utilisé / expiré) depuis le back-office.
 
-**Encore à trancher :**
-- ⏳ Un bon doit-il correspondre exactement à une des 4 durées (ex. bon de 15 € utilisable
-  uniquement pour une location de 7 jours), ou est-ce un crédit utilisable pour compléter un
-  paiement plus important avec un autre moyen de paiement pour la différence ? **À
-  reconsidérer une fois le nouveau modèle tarifaire clarifié** — si la durée devient libre en
-  jours, la logique "bon = une des 4 durées" ne tient plus telle quelle.
-- ⏳ Si le montant du bon dépasse le prix de la location choisie, le solde restant est-il
-  conservé pour une prochaine location, ou perdu ?
-- ⏳ Un bon est-il nominatif (lié à un compte client), ou utilisable par toute personne
-  détenant le code (cas classique du cadeau) ?
-- ⏳ Durée de validité : la loi française impose un minimum d'1 an pour les bons d'achat non
-  alimentaires (loi Chatel). Quelle durée exacte Marion souhaite-t-elle (1 an, 2 ans,
-  illimité) ?
-- ⏳ Un bon acheté et non utilisé peut-il être remboursé/annulé par le client ?
-- ⏳ Le même système peut-il aussi servir à émettre des avoirs gratuits (offerts par Marion,
-  sans achat) pour compenser un client lésé par un retard de retour (cf. point ouvert du
-  module 1/2 sur le chevauchement de réservation) ?
+Module entièrement tranché, plus aucun point ouvert.
 
 ---
 
@@ -313,13 +313,19 @@ règle "rappel 48h avant + relance quotidienne" :**
 
 - ✅ **Forfait démontage** : 20 € si le client rapporte le set assemblé ("en vrac") au lieu de
   le redémonter dans ses sachets d'origine.
-- ⏳ Reste ouvert : comment le "% de pertes" est-il calculé en pratique — à partir de l'écart
-  de poids constaté à la pesée (cf. module 1), ou d'un comptage précis des pièces manquantes
-  par rapport à la notice ? C'est Set et Brique qui détermine cette méthode (Alexis doit le
-  leur demander explicitement).
+- ✅ **Calcul du "% de pertes" — résolu (réponse de Marion du 13/09) :** comptage précis du
+  nombre de pièces manquantes par rapport au set de départ (pas un calcul par écart de poids).
+  Une **zone de commentaire libre** doit être ajoutée en complément, pour que Marion
+  documente le détail de l'état des lieux.
 - Bricklink est un site de référence communautaire pour les prix des pièces/sets LEGO
   d'occasion — la consultation du prix de référence sera probablement manuelle (Marion), pas
   une intégration automatisée, sauf si une API est envisagée plus tard.
+
+**Client suivant lésé en cas de non-retour dans les temps — résolu (réponse de Marion du
+13/09) :**
+- ✅ Il est prévenu par **email et téléphone** (Marion l'appelle elle-même).
+- ✅ Il est indemnisé selon son choix : **avoir** (via le système de bons cadeaux, module 6)
+  ou **remboursement**.
 
 ---
 
@@ -356,41 +362,26 @@ règle "rappel 48h avant + relance quotidienne" :**
 
 ---
 
-## Récapitulatif des points bloquants (⏳ en attente de Marion ou d'Alexis)
+## Récapitulatif des points bloquants (⏳ en attente de Marion)
 
-Cf. [README.md](README.md) pour le détail. **Résolus depuis le 2ᵉ document client du
-11/09** (ne figurent plus ici) : barème de pénalité, montant de la pénalité de retard,
-politique d'annulation, lieux de retrait. **Résolu précédemment** : sujet caution/durée de
-préautorisation (Swikly, Stripe étendu, PayPal — cf. module 4). **Résolu (réponse
-d'Alexis) :** nature du "chat" — souhaité mais pas développé en V1, cf. section V2.
+Cf. [README.md](README.md) pour le détail. Le lot de réponses de Marion du 13/09 a résolu
+la quasi-totalité des points qui restaient : nouveau modèle tarifaire, validation manuelle
+des réservations, calcul du "% de pertes", gestion du client suivant lésé, locations
+simultanées, nombre de photos, blocage de dates sur le planning, battement lors d'une
+prolongation, et l'intégralité du fonctionnement des bons cadeaux (module 6). **Résolus
+depuis le 2ᵉ document client du 11/09** : barème de pénalité, montant de la pénalité de
+retard, politique d'annulation, lieux de retrait. **Résolu précédemment** : sujet
+caution/durée de préautorisation (Swikly, Stripe étendu, PayPal — cf. module 4). **Résolu
+(réponse d'Alexis) :** nature du "chat" — souhaité mais pas développé en V1, cf. section V2.
 
-1. **⚠️ Nouveau modèle tarifaire (2 €/jour, tous les sets)** — Alexis doit d'abord clarifier
-   en interne comment ça s'articule avec les 4 durées fixes actuelles avant qu'on formule la
-   question précise à poser à Marion. Bloque potentiellement : grille tarifaire, montants des
-   bons cadeaux (module 6), fonctionnement du tunnel (module 5, module 2).
-2. **Validation manuelle des réservations** — la cliente semble indiquer qu'elle valide
-   chaque demande une par une ; à confirmer avec Alexis avant de développer le flux de
-   confirmation automatique du tunnel, notamment le moment du paiement (module 5).
-3. Comment le "% de pertes" du barème est-il calculé (écart de poids ou comptage précis) ?
-   C'est Set et Brique qui détermine cette méthode (module 9).
-4. Gestion du client suivant en cas de non-retour dans les temps (modules 1, 2).
-5. Locations simultanées par client — oui/non (module 3).
-6. Pré-autorisation de la caution en cas de paiement TPE sur place (module 4).
-7. Nombre de photos par set à afficher — la proposition initiale (3-4) est contredite par
-   l'exemple fourni (12 photos pour un set) ; à réclarifier (module 1).
-8. Blocage de dates à l'avance sur le planning par Marion, vacances/indisponibilité (module 2)
-   — possiblement sans objet si la validation manuelle (point 2) est confirmée.
-9. **Battement lors d'une prolongation immédiate** (même client, même set, sans retour
-   physique entre les deux réservations) — exemple détaillé au module 2 (module 2).
-10. Bon cadeau = valeur exacte d'une durée, ou crédit complétable par un autre moyen de
-    paiement — à reconsidérer une fois le point 1 clarifié (module 6).
-11. Solde restant d'un bon cadeau partiellement utilisé : conservé ou perdu (module 6).
-12. Bon cadeau nominatif ou utilisable par toute personne détenant le code (module 6).
-13. Durée de validité légale du bon cadeau — minimum 1 an, valeur exacte à définir (module 6).
-14. Remboursement/annulation d'un bon cadeau non utilisé (module 6).
-15. Réutilisation du système de bons cadeaux pour émettre des avoirs gratuits en cas de
-    litige (lien avec le point 4) (module 6) — probable vu la politique d'annulation
-    (module 7), à confirmer explicitement.
+Il ne reste que deux points ouverts :
+
+1. Pré-autorisation de la caution en cas de paiement TPE sur place : faut-il enregistrer la
+   carte du client en amont, ou la caution est-elle prise directement sur place via le
+   TPE ? (module 4)
+2. Résidu de la validation manuelle des réservations : le paiement est-il pris avant ou
+   après la validation manuelle de Marion, et que se passe-t-il en cas de refus d'une
+   réservation déjà payée (remboursement automatique) ? (module 5)
 
 ## Récapitulatif des points reportés en V2 (🔜)
 
